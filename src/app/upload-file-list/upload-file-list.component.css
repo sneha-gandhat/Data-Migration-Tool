@@ -1,0 +1,48 @@
+/* custom styling for table  */
+
+.table-striped {
+  text-align: center;
+}
+
+th[scope="col"] {
+  background-color: #7a7abe;
+  color: white;
+  padding: 0px;
+}
+
+td {
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #e8e8ec;
+}
+
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+.main{
+  float: right;
+  width: 85%;
+}
+
+/* custom styling for button  */
+
+#btn {
+  background-color: rgba(255, 255, 255, 0.0);
+  border: none;
+}
+
+/* custom styling for specific icons  */
+
+.fa-trash-alt {
+  color: red;
+}
+
+.fa-arrow-alt-circle-down {
+  color: #67679b;
+}
+

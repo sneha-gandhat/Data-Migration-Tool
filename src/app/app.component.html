@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+  
+<script src="https://kit.fontawesome.com/e2456d7dd4.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <header>
+    <div class="topheader">
+      <div class="brandlogo">
+        Data Migration tool
+      </div>
+      <div>
+        <span class="menulines" onclick="javascript:document.getElementById('MysideNav').style.width='18%';">&nabla;</span>
+      </div>
+    </div>
+  <div class="sidenav" id="MysideNav">
+    <a href="javascript:void(0)" class="closebtn" onclick="javascript:document.getElementById('MysideNav').style.width='0%';">&#9776;</a>
+    <a routerLink="upload"><i class="fas fa-upload" id ="upload"></i>Upload</a>
+    <a routerLink="transform"><i class="fas fa-exchange-alt">></i>Transform</a>
+    <a href="#"><i class="fas fa-download"></i>Load</a>
+    <a href="#"><i class="fas fa-chart-line"></i>Dashboard</a>
+
+  </div>
+  </header>
+<footer class="footer">
+<ul>
+  <div class="social_media">
+    <a href="https://www.facebook.com/PersistentSystems" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/company/persistent-systems/" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://twitter.com/Persistentsys" target="_blank"><i class="fab fa-instagram"></i></a>
+</div>
+</ul>
+<ul> 
+  <ul> <a href="https://www.persistent.com/privacy-notice/" target="_blank">Privacy Notice | </a>
+    <a href="https://www.persistent.com/terms-of-use/" target="_blank">Terms of Use © 2020 Persistent Systems</a>
+    
+  </ul>
+
+</ul>
+
+
+</footer> 
+  
+</body>
+
+
+
+<router-outlet></router-outlet>

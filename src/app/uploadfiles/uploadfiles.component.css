@@ -1,0 +1,43 @@
+#drop_zone {
+  border: 3px #46b6d8 dotted;
+  height: 170px;
+}
+
+.file-list {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.5fr;
+}
+
+p {
+  text-align: center;
+}
+
+#choose {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+/* custom styling for image */
+
+.fa-upload {
+  color: blueviolet;
+}
+
+.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(+41%, -50%);
+}
