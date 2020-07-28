@@ -129,8 +129,10 @@ export class UploadfilesComponent implements OnInit {
     )
   }
 
-  deleteFile(file){
-    this.selectedFiles.splice(this.selectedFiles.indexOf(file), 1);
+  deleteFile(file) {
+    if(confirm("Are you sure you want to delete "+file.fileName+"?")) {
+      this.selectedFiles.splice(this.selectedFiles.indexOf(file), 1);
+    }
   }
 
   importFile(ev) {

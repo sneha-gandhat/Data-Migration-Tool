@@ -12,6 +12,24 @@ p {
   text-align: center;
 }
 
+.main {
+  position: fixed;
+  top: 5em;
+  left: 20em;
+  max-height: 430px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 70vw;
+}
+
+.fa-upload {
+  color: #4b4276;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 #choose {
   background-color: #4CAF50;
   /* Green */
@@ -24,6 +42,10 @@ p {
   font-size: 16px;
 }
 
+.fa-trash-alt {
+  color: red;
+}
+
 /* img{
   display: block;
   margin-left: auto;
@@ -32,9 +54,7 @@ p {
 
 /* custom styling for image */
 
-.fa-upload {
-  color: blueviolet;
-}
+
 
 .center {
   top: 50%;
