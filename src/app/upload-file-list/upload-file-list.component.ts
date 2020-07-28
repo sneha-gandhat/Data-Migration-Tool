@@ -26,11 +26,25 @@ export class UploadFileListComponent implements OnInit {
     new File("ETL", "2020-01-16", ".ppt", 100, ""),
     new File("ETL", "2020-01-16", ".ppt", 100, ""),
     new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
+    new File("ETL", "2020-01-16", ".ppt", 100, ""),
     new File("ETL", "2020-01-16", ".ppt", 100, "")
-];
+  ];
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  deleteFile() {
+
+  }
+  downloadFile() {
+
+  }
 }

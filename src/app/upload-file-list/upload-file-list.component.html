@@ -1,32 +1,36 @@
-<h3>Uploaded Files</h3><br>
-<div class="main">
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">File Name</th>
-            <th scope="col">Date Modified</th>
-            <th scope="col">Type</th>
-            <th scope="col">Size</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let file of filelist; index as i ">
-            <td scope="row">{{ i + 1 }}</td>
-            <td>{{file.fileName}}</td>
-            <td>{{file.modifiedDate}}</td>
-            <td>{{file.fileType}}</td>
-            <td>{{file.fileSize}}</td>
-            <td>
-                <button type="submit" id="btn" onclick="deleteFile();">
-                    <i class="fas fa-trash-alt fa-lg"></i>
-                </button>
-                <button type="submit" id="btn" onclick="downloadFile();">
-                    <i class="fas fa-arrow-alt-circle-down fa-lg"></i>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="main-filelist">
+    <h3>Uploaded Files</h3><br>
+    <div class="container">
+        <table class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">File Name</th>
+                        <th scope="col">Date Modified</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Size</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let file of filelist; index as i ">
+                        <td scope="row">{{ i + 1 }}</td>
+                        <td>{{file.fileName}}</td>
+                        <td>{{file.modifiedDate}}</td>
+                        <td>{{file.fileType}}</td>
+                        <td>{{file.fileSize}}</td>
+                        <td>
+                            <button type="submit" id="btn" (click)="deleteFile();">
+                                <i class="far fa-trash-alt fa-lg"></i>
+                            </button>
+                            <button type="submit" id="btn" (click)="downloadFile();">
+                                <i class="fas fa-arrow-alt-circle-down fa-lg"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </table>
+    </div>
 </div>
