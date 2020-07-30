@@ -3,12 +3,14 @@ import { UploadFileListComponent } from './upload-file-list/upload-file-list.com
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-
+import { FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FilelistComponent } from './filelist/filelist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
+import { from } from 'rxjs';
+import { SearchfilterPipe } from './upload-file-list/searchfilter.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import {MaterialModule} from './material/material.module';
     FilelistComponent,
     UploadfilesComponent,
     UploadFileListComponent,
+    SearchfilterPipe,
     
   ],
   imports: [
@@ -23,7 +26,8 @@ import {MaterialModule} from './material/material.module';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

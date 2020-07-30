@@ -1,11 +1,14 @@
 <div class="main-filelist">
-    <h3>Uploaded Files</h3><br>
+    <h3>Uploaded Files</h3>
+    <div class="inputWithIcon">
+        <input type="text" placeholder="Search Files" [(ngModel)]="searchValue">
+        <i class="fas fa-search fa-lg" aria-hidden="true"></i>
+    </div>
     <div class="container">
         <table class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">File Name</th>
                         <th scope="col">Date Modified</th>
                         <th scope="col">Type</th>
@@ -14,8 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let file of filelist; index as i ">
-                        <td scope="row">{{ i + 1 }}</td>
+                    <tr *ngFor="let file of filelist | searchfilter:searchValue">
                         <td>{{file.fileName}}</td>
                         <td>{{file.modifiedDate}}</td>
                         <td>{{file.fileType}}</td>
