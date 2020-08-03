@@ -1,13 +1,17 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from "@angular/common/http";
 import { summaryFileName } from '@angular/compiler/src/aot/util';
-
+import {UploadFileListComponent} from '../upload-file-list/upload-file-list.component'
 @Component({
   selector: 'app-uploadfiles',
   templateUrl: './uploadfiles.component.html',
   styleUrls: ['./uploadfiles.component.css']
 })
 export class UploadfilesComponent implements OnInit { 
+
+  navLinks =[    
+    {path: 'transform', lable: 'Uploaded File List'}
+  ];
 
   ngOnInit(): void {
   }
@@ -16,6 +20,8 @@ export class UploadfilesComponent implements OnInit {
   selectedFiles = [];
   fileUpload: any;
   loading: boolean;
+  canDropFolder = typeof DataTransferItem.prototype.webkitGetAsEntry === 'function';
+  uploadPaths = [];
 
   constructor(private http: HttpClient){}
 
@@ -41,8 +47,11 @@ export class UploadfilesComponent implements OnInit {
             fileId: `${file.name}-${file.lastModified}`,
             uploadCompleted: false
           }          
-          this.selectedFiles.push(obj);
-          console.log('... file[' + i + '].name = ' + file.name);
+          
+            if(this.filexists(obj)) {
+              this.selectedFiles.push(obj);
+            }
+              console.log('... file[' + i + '].name = ' + file.name);
         }
       }
      // this.selectedFiles.forEach(file => this.getFileUploadStatus(file));
@@ -54,6 +63,26 @@ export class UploadfilesComponent implements OnInit {
     }
   }
 
+  resetFiles(){ 
+    this.selectedFiles.splice(0,this.selectedFiles.length);
+
+  }
+
+  filexists(obj){
+    var exist=true;     
+    for(var p=0;p<this.selectedFiles.length;p++){ 
+      
+        if(this.selectedFiles[p].fileName===obj.fileName){
+          exist=false;
+          if (confirm(obj.fileName+ " already exists, Do you still want to add it ?")){
+            exist=true;
+          }
+          break;
+        }
+      }
+
+      return exist;
+  }
   dragOverHandler(ev) {
     console.log('File(s) in drop zone'); 
   
@@ -61,9 +90,6 @@ export class UploadfilesComponent implements OnInit {
     ev.preventDefault();
     ev.stopPropagation();
   }
-
-  
-
 
   getFileUploadStatus(file){
     // fetch the file status on upload
@@ -128,7 +154,6 @@ export class UploadfilesComponent implements OnInit {
       }
     )
   }
-
   deleteFile(file) {
     if(confirm("Are you sure you want to delete "+file.fileName+"?")) {
       this.selectedFiles.splice(this.selectedFiles.indexOf(file), 1);
@@ -136,8 +161,6 @@ export class UploadfilesComponent implements OnInit {
   }
 
   importFile(ev) {
-  
-
 
     ev.preventDefault();
 
@@ -161,8 +184,8 @@ export class UploadfilesComponent implements OnInit {
     
    @ViewChild('inputFile') inputFile;
   @ViewChild('buttonElem') buttonElem;
-
-  onChange(event: any) {
+  @ViewChild('folderInput') folderInput;
+    onChange(event: any) {
 
     let files: File = event.target.files;
 
@@ -175,11 +198,10 @@ export class UploadfilesComponent implements OnInit {
 		  }
     this.loading = false;
     this.fileUpload = event.target.files[i];
-    this.selectedFiles.push(obj);
+    if(this.filexists(obj)) {
+      this.selectedFiles.push(obj);
     }
-
-    
-  
+    }      
   }
 
   onBlur() {
@@ -192,5 +214,23 @@ export class UploadfilesComponent implements OnInit {
     this.inputFile.nativeElement.value = '';
     this.inputFile.nativeElement.click();
   }
-
+ 
+  openDialog1() {
+    this.folderInput.nativeElement.value = '';
+    this.folderInput.nativeElement.click();
+  }
+  filesPicked(files) {
+    console.log(files);
+    this.uploadPaths = [];
+   console.log(files.length);
+    Array.prototype.forEach.call(files, file => { 
+      let obj = {
+        fileName: file.name,
+        selectedFile: file        
+        }
+      this.uploadPaths.push(file.webkitRelativePath);
+      this.selectedFiles.push(obj);
+    });
+  
+  }
 }

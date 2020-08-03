@@ -1,35 +1,33 @@
 #drop_zone {
   border: 3px #46b6d8 dotted;
-  height: 170px;
+  height: 140px;
 }
 
+.main{
+  position: fixed;
+  top: 5em;
+  left: 20em;
+  max-height: 390px;  
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 78vw; 
+}
+
+.filelists{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .file-list {
   display: grid;
-  grid-template-columns: 1fr 2fr 0.5fr;
+  grid-template-columns: 1fr 2fr 0.5fr;   
 }
 
 p {
   text-align: center;
 }
-
-.main {
-  position: fixed;
-  top: 5em;
-  left: 20em;
-  max-height: 430px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  width: 70vw;
+.fa-trash-alt {
+  color: red;
 }
-
-.fa-upload {
-  color: #4b4276;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 #choose {
   background-color: #4CAF50;
   /* Green */
@@ -42,22 +40,22 @@ p {
   font-size: 16px;
 }
 
-.fa-trash-alt {
-  color: red;
+
+.fa-upload {
+  color: #4b4276; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-/* img{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-} */
-
-/* custom styling for image */
-
-
-
 .center {
-  top: 50%;
-  left: 50%;
-  transform: translate(+41%, -50%);
+  
+  transform: translate(+40%, -50%);
+}
+
+.fa-arrow-right{
+  color: #4b4276;
+  transform: translate(+950%, -50%);
+
 }

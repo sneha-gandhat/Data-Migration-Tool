@@ -1,46 +1,36 @@
-<!--<h3>Drag or Browse your file to upload</h3>-->
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="main">
-  <div>
-    <h1 style="text-align: center">Drag or Browse your file's to upload</h1>
+  <h1 style="text-align: center">Drag or Browse your file's to upload</h1>
+  <mat-card style="width: 50vw; margin: auto">
+    <div id="drop_zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
+      <p>Drag and Drop File here...</p>
+      <i class="fas fa-upload fa-5x"></i>
+    </div>
+    <br>
+    <div class="choose">
+      <p>or</p><br>
+      <div class="center">
+       <button style='margin-right:16px' #buttonElem mat-raised-button (blur)="onBlur()" multiple (click)="openDialog()">Choose a file</button>
+       <input #inputFile type="file" hidden multiple (click)="loading = true" accept=".json,.xml" (change)="onChange($event)">
 
-  </div>
-  <div>
-    <mat-card style="width: 50vw; margin: auto">
-
-      <div id="drop_zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
-        <p>Drag and Drop File here...</p>
-        <i class="fas fa-upload fa-7x"></i>
-      </div>
-
-      <br>
-      <div class="choose">
-        <p>or</p><br>
-        <div class="center">
-          <button #buttonElem mat-raised-button (blur)="onBlur()" multiple (click)="openDialog()">Choose a file</button>
-        </div>
-
-        <input #inputFile type="file" hidden multiple (click)="loading = true" (change)="onChange($event)">
-      </div>
-
-
+       <button #buttonElem mat-raised-button hidden (blur)="onBlur()" multiple (click)="openDialog1()">Choose a Folder</button>      
+       <input #folderInput type="file"hidden (change)="filesPicked(folderInput.files)"webkitDirectory>
+    </div>
+    </div>
       <mat-card-header>
-        <mat-card-title>File Upload</mat-card-title>
-      </mat-card-header>
-      <!-- <button mat-raised-button (click)="fileSelect.click()">Select File</button><br><br> -->
+      <mat-card-title>File Upload</mat-card-title>  
+    </mat-card-header>
+
+    <div class= "filelists">
       <div *ngFor="let file of selectedFiles" class="file-list">
-        <h4 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h4>
-        <mat-progress-bar style="margin-top: 30px" mode="determinate" [value]="file?.uploadedPercent">
-        </mat-progress-bar>
-        <i class="fas fa-trash-alt fa-lg" (click)="deleteFile(file)"></i>
-      </div>
-
-
-      <!-- <h4 *ngIf="name.length > 0">Selected File: {{name}}</h4>
-          <input type="file" hidden #fileSelect name="largeFile" (change)="onFileSelect($event)" /> -->
-
-      <button mat-raised-button (click)="uploadFiles()">Upload</button>
-      <br><br>
-    </mat-card>
+      <h4 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h4>
+      <mat-progress-bar style="margin-top: 30px" mode="determinate" [value]="file?.uploadedPercent"></mat-progress-bar>
+      <i class="fas fa-trash-alt fa-lg" (click)="deleteFile(file)"></i>    
+    </div>
   </div>
-</div>
+    <button mat-raised-button  style='margin-right:16px' (click)="uploadFiles()">Upload</button>
+    <button mat-raised-button style='margin-right:260px' (click)="resetFiles()">Reset</button>
+    <button mat-raised-button  routerLink='transform'>Uploaded File's List</button>
+    <router-outlet> </router-outlet>
+    <i class="fas fa-arrow-right fa-3x" hidden></i>
+  </mat-card>
+</div>  

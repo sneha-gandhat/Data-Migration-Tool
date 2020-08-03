@@ -1,32 +1,70 @@
+/* custom styling for heading  */
+
+h2 {
+  color: #4b4276;
+}
+
+/* custom styling for div  */
+
+.maindiv {
+  position: fixed;
+  top: 3.4em;
+  left: 15em;
+  width: 84.2vw;
+  bottom: 10px;
+}
+
+.table-container {
+  overflow: auto;
+}
+/* custom styling for Search box  */
+
+.search-data {
+  margin-left: 65em;
+  color: #4b4276;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+
 /* custom styling for table  */
 
-.table-striped {
+table {
+  width: 100%;
+}
+
+.data-table {
+  max-height: 23.4em;
+  min-height: 23.4em;
+  width: 84.2vw;
+}
+
+.mat-header-cell {
+  background-color: #4b4276;
+  color: white;
+  font-weight: 500;
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: white;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
+
+th.mat-header-cell, td.mat-cell {
   text-align: center;
 }
 
-tbody {
-  display: block;
-  height: 400px;
-  overflow: auto;
-}
-
-thead, tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
-th[scope="col"] {
-  background-color: #4b4276;
-  color: white;
-  padding: 1px;
-}
-
-td {
-  vertical-align: middle;
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 1px;
+tr.mat-header-row, tr.mat-row {
+  height: 25px !important;
 }
 
 table tr:nth-child(odd) {
@@ -37,26 +75,14 @@ table tr:nth-child(even) {
   background-color: #ffffff;
 }
 
-/* custom styling for heading  */
 
-h3 {
-  font-size: large;
-}
+/* custom styling for paginator  */
 
-.main-filelist {
-  position: fixed;
-  left: 205px;
-  /* top:-14px; */
-  top: 49px;
-  width: 85%;
-  bottom: 50px;
-}
-
-/* custom styling for button  */
-
-#btn {
-  background-color: rgba(255, 255, 255, 0.0);
-  border: none;
+.mat-paginator-sticky {
+  position: sticky;
+  color: #4b4276;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 /* custom styling for specific icons  */
@@ -67,57 +93,4 @@ h3 {
 
 .fa-arrow-alt-circle-down {
   color: #67679b;
-}
-
-/* custom styling for search box  */
-
-input[type="text"] {
-  width: 20%;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-  padding: 5px;
-  box-sizing: border-box;
-  transition: 0.3s;
-}
-
-input[type="text"]:focus {
-  border-color: rgb(104, 67, 134);
-  box-shadow: 0 0 8px 0 rgb(104, 67, 134);
-}
-
-.inputWithIcon input[type="text"] {
-  padding-left: 40px;
-}
-
-.inputWithIcon {
-  position: relative;
-  left: 900px;
-  top: -10px;
-}
-
-.inputWithIcon i {
-  position: absolute;
-  left: 0;
-  top: 10px;
-  padding: 9px 8px;
-  color: #aaa;
-  transition: 0.3s;
-}
-
-.inputWithIcon input[type="text"]:focus+i {
-  color: rgb(104, 67, 134);
-}
-
-.inputWithIcon.inputIconBg i {
-  background-color: #aaa;
-  color: #fff;
-  padding: 9px 4px;
-  border-radius: 4px 0 0 4px;
-}
-
-.inputWithIcon.inputIconBg input[type="text"]:focus+i {
-  color: #fff;
-  background-color: rgb(104, 67, 134);
 }

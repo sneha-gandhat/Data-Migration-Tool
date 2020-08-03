@@ -1,3 +1,4 @@
+import { MatTableModule } from '@angular/material/table';
 import { UploadfilesComponent } from './uploadfiles/uploadfiles.component';
 import { UploadFileListComponent } from './upload-file-list/upload-file-list.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +11,6 @@ import { FilelistComponent } from './filelist/filelist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import { from } from 'rxjs';
-import { SearchfilterPipe } from './upload-file-list/searchfilter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { SearchfilterPipe } from './upload-file-list/searchfilter.pipe';
     FilelistComponent,
     UploadfilesComponent,
     UploadFileListComponent,
-    SearchfilterPipe,
     
   ],
   imports: [
@@ -27,7 +26,8 @@ import { SearchfilterPipe } from './upload-file-list/searchfilter.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
