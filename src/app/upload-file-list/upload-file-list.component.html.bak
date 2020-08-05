@@ -59,8 +59,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> File Size </th>
                     <td mat-cell *matCellDef="let element"> {{element.size}} KB </td>
                 </ng-container>
-
-                <ng-container matColumnDef="modified">
+				<ng-container matColumnDef="modified">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified On </th>
                     <td mat-cell *matCellDef="let element"> {{element.modified}} KB </td>
                 </ng-container>
@@ -72,7 +71,7 @@
                         <button mat-icon-button (click)="deleteFile(element)">
                             <mat-icon><i class="far fa-trash-alt fa-xs"></i></mat-icon>
                         </button>
-                        <button mat-icon-button (click)="downloadFile(element)">
+                        <button mat-icon-button (click)="downloadFile()">
                             <mat-icon><i class="fas fa-arrow-alt-circle-down fa-xs"></i></mat-icon>
                         </button>
                     </td>

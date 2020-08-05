@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
 /* ---------------------------------------------------
     Header
 ----------------------------------------------------- */
@@ -22,13 +23,54 @@ align-items: center;
   margin-right:5% ;
   color: antiquewhite;
 }
+.fa-user-circle{
+  color:antiquewhite;
+  font-size:30px;
+}
+.dropdown-toggle{
+  color:antiquewhite;
+}
+.dropdown-item{
+  text-decoration: none;
+  color: #4b4276;
+  padding: 12px;
+   border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+
 /* ---------------------------------------------------
     Header
 ----------------------------------------------------- */
-
+.content{
+  /*background-color:aqua;*/
+  position: fixed;
+  top: 8%;
+  left:16%;
+  width: 84%;
+  bottom:9%;
+}
 /* ---------------------------------------------------
     Side Bar
 ----------------------------------------------------- */
+#show-sidebar {
+    position: fixed;
+    left: 0;
+    top: 8%;
+    border-radius: 0 4px 4px 0px;
+    width: 35px;
+    transition-delay: 0.3s;
+  }
+  .fa-bars{
+    font-weight: 30px;
+    color:white;
+    text-align: center;
+  }
+  .hamburger
+  {
+    width: 20px;
+    height: 25px;
+    background-color: #4b4276;
+  }
 .sidenav{
   height:100%;
   width: 15%;
@@ -56,8 +98,8 @@ align-items: center;
 .fas{  
   width:25px;
 }
-.closebtn{
-  text-align: right;
+.sidebarClose{
+  text-align: right!important;
   padding-right: 7%!important;
   font-size:20px;
   font-weight: bolder;
@@ -79,6 +121,7 @@ align-items: center;
   background-color: #4b4276;
   color: white;
   text-align: center;
+  height:8%;
 }
 .fab{
   color:antiquewhite;

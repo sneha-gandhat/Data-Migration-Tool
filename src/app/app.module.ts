@@ -3,22 +3,21 @@ import { UploadfilesComponent } from './uploadfiles/uploadfiles.component';
 import { UploadFileListComponent } from './upload-file-list/upload-file-list.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import { FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FilelistComponent } from './filelist/filelist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MaterialModule} from './material/material.module';
-import { from } from 'rxjs';
+import { MaterialModule } from './material/material.module';
+import { AuthModule } from './auth/auth.module';
+import { FileUploadService } from './services/file-upload.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilelistComponent,
     UploadfilesComponent,
     UploadFileListComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -27,9 +26,11 @@ import { from } from 'rxjs';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule,
+    AuthModule
   ],
-  providers: [],
+  providers: [FileUploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

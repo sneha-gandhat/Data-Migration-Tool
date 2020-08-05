@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from "@angular/common/http";
 import { summaryFileName } from '@angular/compiler/src/aot/util';
 import {UploadFileListComponent} from '../upload-file-list/upload-file-list.component'
+import { FileUploadService } from '../services/file-upload.service';														
 @Component({
   selector: 'app-uploadfiles',
   templateUrl: './uploadfiles.component.html',
@@ -23,7 +25,7 @@ export class UploadfilesComponent implements OnInit {
   canDropFolder = typeof DataTransferItem.prototype.webkitGetAsEntry === 'function';
   uploadPaths = [];
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private router:Router,private fileService:FileUploadService){}
 
   goToLink(url: string){
     window.open(url, "_blank");
@@ -63,6 +65,9 @@ export class UploadfilesComponent implements OnInit {
     }
   }
 
+  loadTransform(){
+    this.router.navigate(['transform']);
+  }
   resetFiles(){ 
     this.selectedFiles.splice(0,this.selectedFiles.length);
 
@@ -113,11 +118,24 @@ export class UploadfilesComponent implements OnInit {
       )
   }
 
-  uploadFiles(){
-    this.selectedFiles.forEach(file => {
-      if(file.uploadedPercent < 100)
-        this.resumeUpload(file);
-    })
+ uploadFiles(){
+ 
+      //  console.log(element.selectedFile);
+        this.fileService.uploadFileToServer(this.selectedFiles).subscribe(
+          data => {
+            console.log(data);
+            alert(data.length+" Files Uploaded Successfully !!");
+            this.selectedFiles.splice(0,this.selectedFiles.length);
+          },
+          error => {
+            alert("Not Able To Upload File");
+            alert(error.status);
+          }
+        );
+     
+      // if(file.uploadedPercent < 100)
+      //   this.resumeUpload(file);
+
   }
 
   resumeUpload(file){

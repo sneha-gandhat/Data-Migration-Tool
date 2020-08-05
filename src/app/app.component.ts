@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+declare const openSidebar:any;
+declare const closeSidebar:any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MyDataMigration';
+  OpenSideBar(){
+    openSidebar();
+  }
+  CloseSideBar(){
+    closeSidebar();
+  }
+
 }

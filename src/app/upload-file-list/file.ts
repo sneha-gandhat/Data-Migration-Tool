@@ -1,13 +1,9 @@
 export class File {
     constructor(public fileName: string,
-        public uploadedDate: string,
+        public fileDownloadUri: string,
         public fileType: string,
-        public fileSize: number,
-        public fileAction: string) {        
-    }
-    
-
-
-
-    
+        public size: string,
+        public modified: string,
+        public fileDeleteUri:string) {        
+    } 
 }

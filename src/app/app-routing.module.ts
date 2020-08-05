@@ -1,7 +1,9 @@
+import { LoginComponent } from './auth/components/login/login.component';
 import { UploadFileListComponent } from './upload-file-list/upload-file-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UploadfilesComponent } from './uploadfiles/uploadfiles.component';
+import { ProfileComponent } from './auth/components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,16 @@ const routes: Routes = [
     path:'transform',
     component:UploadFileListComponent
   },
+  { 
+    //to load the login Component as default landing page
+    path: '', 
+    component: LoginComponent    
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
+  },
+
 ];
 
 @NgModule({

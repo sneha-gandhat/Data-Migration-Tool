@@ -2,34 +2,14 @@
 
 h2 {
   color: #4b4276;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 /* custom styling for div  */
 
-.maindiv {
-  position: fixed;
-  top: 3.4em;
-  left: 15em;
-  width: 84.2vw;
-  bottom: 10px;
-}
-
 .table-container {
   overflow: auto;
-}
-/* custom styling for Search box  */
-
-.search-data {
-  margin-left: 65em;
-  color: #4b4276;
-}
-
-::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
-::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
-
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-    transform: translateY(-1.1em) scale(.75);
-    width: 133.33333%;
 }
 
 /* custom styling for table  */
@@ -39,8 +19,8 @@ table {
 }
 
 .data-table {
-  max-height: 23.4em;
-  min-height: 23.4em;
+  max-height: 22.5em;
+  min-height: 22.5em;
   width: 84.2vw;
 }
 
@@ -56,11 +36,6 @@ table {
 
 :host ::ng-deep .mat-sort-header-container {
   display: flex;
-  justify-content: center;
-}
-
-th.mat-header-cell, td.mat-cell {
-  text-align: center;
 }
 
 tr.mat-header-row, tr.mat-row {
@@ -74,7 +49,6 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
   background-color: #ffffff;
 }
-
 
 /* custom styling for paginator  */
 
@@ -92,5 +66,55 @@ table tr:nth-child(even) {
 }
 
 .fa-arrow-alt-circle-down {
-  color: #67679b;
+  color: #4b4276;
+}
+
+.fa-filter {
+  color: #4b4276;
+}
+
+.fa-times {
+  color: red;
+}
+
+/* custom styling for Form */
+
+.date-block {
+  display: flex;
+}
+
+.date-block__list {
+  flex-basis: 150px;
+  margin-left: 15px;
+}
+
+.primary {
+  background: #4b4276;
+  color: white;
+  height: 37px;
+  margin-left: 20px;
+  text-align: center;
+  margin-top: 3px;
+}
+
+mat-datepicker-toggle {
+  color: #4b4276 !important;
+}
+
+.search-data {
+  margin-left: 35%;
+  color: #4b4276;
+}
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(.75);
+  width: 130.33333%;
 }

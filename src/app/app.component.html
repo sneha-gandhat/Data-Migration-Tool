@@ -8,36 +8,58 @@
 <body>
   <header>
     <div class="topheader">
-      <div class="brandlogo">
-        Data Migration tool
+      <div class="brandlogo" >
+        <a href="#" style="color:antiquewhite">Data Migration Tool</a>
       </div>
       <div>
-        <span class="menulines" onclick="javascript:document.getElementById('MysideNav').style.width='18%';">&nabla;</span>
+        <!--<span class="menulines" (click)=OpenSideBar()>&nabla;</span>-->
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle" aria-hidden="true"></i></a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" routerLink='profile'>Profile</a>
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Logout</a>
+            <!--<a class="dropdown-item" onclick="javascript:document.getElementById('MysideNav').style.width='15%'; document.getElementById('content').style.left='16%';document.getElementById('content').style.width='84%';">Open Sidebar</a>-->
+          </div>
+        </div>
+        
       </div>
     </div>
+  </header>
+<div>
+  <a id="show-sidebar" class="hamburger" herf="javascript:void(0)" onclick="javascript:document.getElementById('MysideNav').style.width='15%'; document.getElementById('content').style.left='16%';document.getElementById('content').style.width='84%';">
+    <i class="fas fa-bars"></i>
+  </a>
   <div class="sidenav" id="MysideNav">
-    <a href="javascript:void(0)" class="closebtn" onclick="javascript:document.getElementById('MysideNav').style.width='0%';">&#9776;</a>
+    <!--<a href="javascript:void(0)" class="sidebarClose" (click)=CloseSideBar()>&#9776;</a>-->
+    <a href="javascript:void(0)" class="sidebarClose" onclick="javascript:document.getElementById('MysideNav').style.width='0%';document.getElementById('content').style.left='5%';document.getElementById('content').style.width='96%';document.getElementById('content').style.bottom='9%';document.getElementById('content').style.transition='all 0.5s'">&times;</a>
     <a routerLink="upload"><i class="fas fa-upload" id ="upload"></i>Upload</a>
-    <a routerLink="transform"><i class="fas fa-exchange-alt">></i>Transform</a>
+    <a routerLink="transform"><i class="fas fa-exchange-alt"></i>Transform</a>
     <a href="#"><i class="fas fa-download"></i>Load</a>
     <a href="#"><i class="fas fa-chart-line"></i>Dashboard</a>
 
   </div>
-  </header>
+  <div  class="content" id="content"> 
+    <router-outlet></router-outlet>
+  </div>
+  
+</div>
+
 <footer class="footer">
 <ul>
   <div class="social_media">
+    <ul> 
+      <ul> <a href="https://www.persistent.com/privacy-notice/" target="_blank" style ="color:antiquewhite">Privacy Notice | </a>
+        <a href="https://www.persistent.com/terms-of-use/" target="_blank" style ="color:antiquewhite">Terms of Use © 2020 Persistent Systems</a>
+        
+      </ul>
+    
+    </ul>
     <a href="https://www.facebook.com/PersistentSystems" target="_blank"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.linkedin.com/company/persistent-systems/" target="_blank"><i class="fab fa-twitter"></i></a>
     <a href="https://twitter.com/Persistentsys" target="_blank"><i class="fab fa-instagram"></i></a>
 </div>
-</ul>
-<ul> 
-  <ul> <a href="https://www.persistent.com/privacy-notice/" target="_blank">Privacy Notice | </a>
-    <a href="https://www.persistent.com/terms-of-use/" target="_blank">Terms of Use © 2020 Persistent Systems</a>
-    
-  </ul>
-
 </ul>
 
 
@@ -47,4 +69,3 @@
 
 
 
-<router-outlet></router-outlet>

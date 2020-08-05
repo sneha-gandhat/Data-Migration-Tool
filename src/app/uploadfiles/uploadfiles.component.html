@@ -29,8 +29,8 @@
   </div>
     <button mat-raised-button  style='margin-right:16px' (click)="uploadFiles()">Upload</button>
     <button mat-raised-button style='margin-right:260px' (click)="resetFiles()">Reset</button>
-    <button mat-raised-button  routerLink='transform'>Uploaded File's List</button>
-    <router-outlet> </router-outlet>
+    <button mat-raised-button  (click)="loadTransform()">Uploaded File's List</button>
+    <router-outlet> </router-outlet> 
     <i class="fas fa-arrow-right fa-3x" hidden></i>
   </mat-card>
 </div>  
