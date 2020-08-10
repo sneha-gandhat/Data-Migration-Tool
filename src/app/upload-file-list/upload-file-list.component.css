@@ -2,14 +2,13 @@
 
 h2 {
   color: #4b4276;
-  margin-left: 10px;
   margin-top: 10px;
 }
 
 /* custom styling for div  */
 
 .table-container {
-  overflow: auto;
+overflow-x: hidden;
 }
 
 /* custom styling for table  */
@@ -19,9 +18,10 @@ table {
 }
 
 .data-table {
-  max-height: 22.5em;
-  min-height: 22.5em;
-  width: 84.2vw;
+  margin-top: 40px;
+  max-height: 25em;
+  /* width: 90.5vw; */
+  overflow: auto;
 }
 
 .mat-header-cell {
@@ -53,7 +53,7 @@ table tr:nth-child(even) {
 /* custom styling for paginator  */
 
 .mat-paginator-sticky {
-  position: sticky;
+  /* position: sticky; */
   color: #4b4276;
   font-size: 13px;
   font-weight: 500;
@@ -69,52 +69,9 @@ table tr:nth-child(even) {
   color: #4b4276;
 }
 
-.fa-filter {
-  color: #4b4276;
-}
+/* custom styling for tooltip  */
 
-.fa-times {
-  color: red;
-}
-
-/* custom styling for Form */
-
-.date-block {
-  display: flex;
-}
-
-.date-block__list {
-  flex-basis: 150px;
-  margin-left: 15px;
-}
-
-.primary {
-  background: #4b4276;
-  color: white;
-  height: 37px;
-  margin-left: 20px;
-  text-align: center;
-  margin-top: 3px;
-}
-
-mat-datepicker-toggle {
-  color: #4b4276 !important;
-}
-
-.search-data {
-  margin-left: 35%;
-  color: #4b4276;
-}
-
-::ng-deep .mat-form-field-flex>.mat-form-field-infix {
-  padding: 0.4em 0px !important;
-}
-
-::ng-deep .mat-form-field-label-wrapper {
-  top: -1.5em;
-}
-
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-  transform: translateY(-1.1em) scale(.75);
-  width: 130.33333%;
+.custom-tooltip {
+  background-color: #4b4276;
+  font-size: 11px;
 }
