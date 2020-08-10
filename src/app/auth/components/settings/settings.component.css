@@ -10,22 +10,32 @@
 	color:#fff;
 }
 .settings{
-  width: 70%;
-  border:1px solid #4b4276;
+  width: 98%;
+  
 }
 .settingheader{
   background-color: #736c9b;
   color:antiquewhite;
   text-align: center;
 }
+.btn-default{
+  background-color:#4b4276 !important;
+  color:antiquewhite !important;
+}
+.form-control{
+  width: 50% !important;
+}
 
 /* Toggle Slider  CSS */
 .switch {
-    float:right;
-    position: relative;
     
+    position: relative;
     width: 40px;
     height: 20px;
+  }
+  .space{
+    padding-left:400px;
+    
   }
   
   .switch input { 
