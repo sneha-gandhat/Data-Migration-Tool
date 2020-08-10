@@ -1,15 +1,19 @@
 import { Router } from '@angular/router';
-import { Component, OnInit,ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from "@angular/common/http";
+import { Component, OnInit,ViewChild,ViewEncapsulation } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpResponse } from "@angular/common/http";
 import { summaryFileName } from '@angular/compiler/src/aot/util';
 import {UploadFileListComponent} from '../upload-file-list/upload-file-list.component'
-import { FileUploadService } from '../services/file-upload.service';														
+import { FileUploadService } from '../services/file-upload.service';
+
 @Component({
   selector: 'app-uploadfiles',
   templateUrl: './uploadfiles.component.html',
-  styleUrls: ['./uploadfiles.component.css']
+  styleUrls: ['./uploadfiles.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UploadfilesComponent implements OnInit { 
+	 progress = 0;
+     message = '';		   
 
   navLinks =[    
     {path: 'transform', lable: 'Uploaded File List'}
@@ -118,24 +122,29 @@ export class UploadfilesComponent implements OnInit {
       )
   }
 
- uploadFiles(){
- 
-      //  console.log(element.selectedFile);
-        this.fileService.uploadFileToServer(this.selectedFiles).subscribe(
-          data => {
-            console.log(data);
-            alert(data.length+" Files Uploaded Successfully !!");
-            this.selectedFiles.splice(0,this.selectedFiles.length);
-          },
-          error => {
-            alert("Not Able To Upload File");
-            alert(error.status);
-          }
-        );
-     
-      // if(file.uploadedPercent < 100)
-      //   this.resumeUpload(file);
-
+   uploadFiles(){
+    this.progress = 0;
+  
+    this.selectedFiles.forEach(element => {
+     this.fileService.uploadFileToServer(element.selectedFile).subscribe(
+       event => {
+         if (event.type === HttpEventType.UploadProgress) {
+          element.uploadedPercent = Math.round(100 * event.loaded / event.total);
+          element.uploadCompleted = true;
+         } else if (event instanceof HttpResponse) {
+           this.message = event.body.message;
+          // console.log("Message : "+this.message);
+           // this.fileInfos = this.fileService.getFiles();
+         }
+       },
+       err => {
+         this.progress = 0;
+         this.message = 'Could not upload the file!';
+         element = undefined;
+       });
+   });
+    //alert("File Upload Completed!!");
+   // this.selectedFiles = undefined;
   }
 
   resumeUpload(file){

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { File } from '../upload-file-list/file';
 // import { FileService } from 'file.service';
@@ -28,20 +28,16 @@ export class FileUploadService {
         return this.httpclient.delete(fileDeleteUri);
       }
 
-      public uploadFileToServer(files:any) :any{
+        public uploadFileToServer(file:any) : Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();
-         
-        files.forEach(element => {
-          console.log(element.selectedFile);
-          formData.append('files', element.selectedFile);
+    
+        formData.append('file', file);
+    
+        const req = new HttpRequest('POST', "http://localhost:8080/ETLfileservice/uploadFile", formData, {
+          reportProgress: true,
+          responseType: 'json'
         });
-          console.log("In a Fileservice..");
-        // upload(file: File): Observable<HttpEvent<any>> {
-         
-           console.log("Sending File..");
-          // console.log(formData.get('file'));
-         return this.httpclient.post("http://localhost:8080/ETLfileservice/uploadFiles",formData);
-         
-      }
-
+    
+        return this.httpclient.request(req);
+  }														
 }

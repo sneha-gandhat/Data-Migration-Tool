@@ -3,15 +3,14 @@
   height: 140px;
 }
 
-.main{
-  position: fixed;
-  top: 5em;
-  left: 20em;
-  max-height: 390px;  
-  overflow-y: scroll;
-  overflow-x: hidden;
-  width: 78vw; 
+.main{  
+  width: 60vw; 
+  margin: auto;
 }
+.custom-tooltip {
+  background-color: #4b4276;
+  font-size: 11px;
+  }
 
 .filelists{
   overflow-y: scroll;
