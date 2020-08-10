@@ -1,15 +1,15 @@
 <body>
-<div class="main_content">
+<!-- <div class="main_content">
     <div class="header">Data Migration Tool</div>  
     <div class="info">
       <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
       <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
       <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
   </div>
-</div>
+</div> -->
 
 
-<div id="id01" class="modal">
+<div id="id01" class="modal" style="display: block;">
   <!--action="/action_page.php" method="post"-->
   <form class="modal-content animate" action="http://localhost:4200/transform" >
     <div class="imgcontainer">
@@ -31,9 +31,9 @@
       </label> -->
     </div>
 
-    <div class="container" style="background-color:#f1f1f1;text-align: center;color:#4b4276;">
+    <div class="container" style="background-color:#f1f1f1;text-align: center;color:red;font-weight: 700">
       <!--<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>-->
-      A Proprietory Product of © 2020 Persistent Systems
+      Disclaimer: You are about to use a Proprietory Product of © 2020 Persistent Systems.
     </div>
   </form>
 </div>
@@ -48,6 +48,16 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+</script>
+<script>
+  $(document).ready(function(){
+alert("Hey");
+("#id01").hover(function(){
+  $('id01').modal({show:true});
+});
+// jQuery methods go here...
+
+});
 </script>
 
 </body>
