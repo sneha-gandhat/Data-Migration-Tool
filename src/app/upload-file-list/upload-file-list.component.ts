@@ -29,8 +29,6 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
   pipe: DatePipe;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
-  //disabled = new FormControl(false);
 
   constructor(private fileService: FileUploadService) {
   }

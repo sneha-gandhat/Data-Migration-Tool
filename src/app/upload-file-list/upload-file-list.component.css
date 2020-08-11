@@ -7,9 +7,10 @@ h2 {
 
 /* custom styling for div  */
 
-/* .table-container {
-overflow-x: hidden;
-} */
+.parent {
+  /* margin-left: 5px; */
+  margin-right: 75px;
+}
 
 /* custom styling for table  */
 
@@ -57,6 +58,7 @@ table tr:nth-child(even) {
   color: #4b4276;
   font-size: 13px;
   font-weight: 500;
+  margin-top: 15px;
 }
 
 /* custom styling for specific icons  */

@@ -1,67 +1,61 @@
-<div>
+<div class="parent">
     <h2>Uploaded Files</h2>
-    <!-- <mat-checkbox [formControl]="disabled" class="example-disabled-checkbox">
-        Tooltip disabled
-    </mat-checkbox> -->
-    
-    <div class="table-container">
-        <div class="mat-elevation-z8 data-table">
-            <table mat-table matSort [dataSource]="filelistdataSource">
+    <div class="mat-elevation-z8 data-table">
+        <table mat-table matSort [dataSource]="filelistdataSource">
 
-                <!-- File Name Column -->
-                <ng-container matColumnDef="fileName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> File Name </th>
-                    <td mat-cell *matCellDef="let element" style="width: 40%;"> {{element.fileName}} </td>
-                </ng-container>
+            <!-- File Name Column -->
+            <ng-container matColumnDef="fileName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> File Name </th>
+                <td mat-cell *matCellDef="let element" style="width: 40%;"> {{element.fileName}} </td>
+            </ng-container>
 
-                <!-- File Location Column -->
-                <!-- <ng-container matColumnDef="fileDownloadUri">
+            <!-- File Location Column -->
+            <!-- <ng-container matColumnDef="fileDownloadUri">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> File Location </th>
                     <td mat-cell *matCellDef="let element"> {{element.fileDownloadUri}} </td>
                 </ng-container> -->
 
-                <!-- File Type Column -->
-                <ng-container matColumnDef="fileType">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> File Type </th>
-                    <td mat-cell *matCellDef="let element"> {{element.fileType}} </td>
-                </ng-container>
+            <!-- File Type Column -->
+            <ng-container matColumnDef="fileType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> File Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.fileType}} </td>
+            </ng-container>
 
-                <!-- File Size Column -->
-                <ng-container matColumnDef="size">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> File Size </th>
-                    <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.size}} KB </td>
-                </ng-container>
+            <!-- File Size Column -->
+            <ng-container matColumnDef="size">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> File Size </th>
+                <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.size}} KB </td>
+            </ng-container>
 
-                <!-- Uploaded On Column -->
-                <ng-container matColumnDef="modified">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Uploaded On </th>
-                    <td mat-cell *matCellDef="let element"> {{element.modified}} </td>
-                </ng-container>
+            <!-- Uploaded On Column -->
+            <ng-container matColumnDef="modified">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Uploaded On </th>
+                <td mat-cell *matCellDef="let element"> {{element.modified}} </td>
+            </ng-container>
 
-                <!-- File Actions Column -->
-                <ng-container matColumnDef="fileAction">
-                    <th mat-header-cell *matHeaderCellDef> Actions </th>
-                    <td mat-cell *matCellDef="let element" style="width: 10%;">
-                        <!-- Delete Button -->
-                        <button mat-icon-button matTooltip="File will be deleted from table as well as from directory"
-                            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-                            (click)="deleteFile(element)">
-                            <mat-icon><i class="far fa-trash-alt fa-xs"></i></mat-icon>
-                        </button>
-                        <!-- Download Button -->
-                        <button mat-icon-button matTooltip="File will get download on your system"
-                            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-                            (click)="downloadFile(element)">
-                            <mat-icon><i class="fas fa-arrow-alt-circle-down fa-xs"></i></mat-icon>
-                        </button>
-                    </td>
-                </ng-container>
+            <!-- File Actions Column -->
+            <ng-container matColumnDef="fileAction">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element" style="width: 10%;">
+                    <!-- Delete Button -->
+                    <button mat-icon-button matTooltip="File will be deleted from table as well as from directory"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                        (click)="deleteFile(element)">
+                        <mat-icon><i class="far fa-trash-alt fa-xs"></i></mat-icon>
+                    </button>
+                    <!-- Download Button -->
+                    <button mat-icon-button matTooltip="File will get download on your system"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                        (click)="downloadFile(element)">
+                        <mat-icon><i class="fas fa-arrow-alt-circle-down fa-xs"></i></mat-icon>
+                    </button>
+                </td>
+            </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 
-            </table>
-        </div>
+        </table>
     </div>
     <!--Table Paginator-->
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25,50,75,100]" class="mat-paginator-sticky">
