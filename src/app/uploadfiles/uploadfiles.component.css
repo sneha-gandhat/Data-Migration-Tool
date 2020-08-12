@@ -6,6 +6,7 @@
 .main{  
   width: 60vw; 
   margin: auto;
+
 }
 .custom-tooltip {
   background-color: #4b4276;
@@ -13,6 +14,8 @@
   }
 
 .filelists{
+  max-height: 7em; 
+  margin: auto;  
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -22,7 +25,7 @@
 }
 
 p {
-  text-align: center;
+  text-align: center; 
 }
 .fa-trash-alt {
   color: red;
@@ -38,19 +41,8 @@ p {
   display: inline-block;
   font-size: 16px;
 }
-
-
-.fa-upload {
-  color: #4b4276; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .center {
-  
-  transform: translate(+40%, -50%);
+  transform: translate(+43%, -50%);
 }
 
 .fa-arrow-right{

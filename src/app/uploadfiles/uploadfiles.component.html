@@ -6,16 +6,19 @@
     matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
     id="drop_zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
       <p>Drag and Drop File here...</p>
-      <i class="fas fa-upload fa-5x"></i>
-    </div>
-    <br>
+      <i class="fas fa-upload fa-5x" style ="color: #4b4276; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;"></i>
+    </div>    
     <div class="choose">
-      <p>or</p><br>
+      <p>or</p>
       <div class="center">
-       <button 
+       <button
        matTooltip="Select files to upload"
        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-       style='margin-right:16px' #buttonElem mat-raised-button (blur)="onBlur()" multiple (click)="openDialog()">Choose a file</button>
+       style='margin-right:16px ;margin-top: 1em' #buttonElem mat-raised-button (blur)="onBlur()" multiple (click)="openDialog()">Choose a file</button>
        <input #inputFile type="file" hidden multiple (click)="loading = true" accept=".json,.xml" (change)="onChange($event)">
 
        <button #buttonElem mat-raised-button hidden (blur)="onBlur()" multiple (click)="openDialog1()">Choose a Folder</button>      
@@ -24,8 +27,8 @@
     </div>
       <mat-card-header>
       <mat-card-title>File Upload</mat-card-title>  
+      <br>
     </mat-card-header>
-
     <div class= "filelists">
       <div *ngFor="let file of selectedFiles" class="file-list">
       <h4 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h4>
@@ -35,6 +38,7 @@
     </div>
    
   </div>
+  <br>
     <button
     matTooltip="Upload all the selected files"
     matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
