@@ -1,0 +1,95 @@
+/* custom styling for heading  */
+
+h2 {
+    color: #4b4276;
+    margin-top: 10px;
+}
+
+/* custom styling for div  */
+
+.main {
+    width: 65vw;
+    margin-left: 9em;
+    height: 120px;
+}
+
+.footer-block {
+    display: flex;
+}
+
+.footerbtn-block {
+    margin-top: 40px;
+    margin-left: 55px;
+}
+
+.filelists {
+    max-height: 4em;
+    width: 55em;
+    margin-left: 160px;
+    margin: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 10px;
+}
+
+.file-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr 0.5fr;
+}
+
+/* custom styling for Paragraph  */
+
+.or {
+    color: brown;
+    margin-top: 10px;
+    margin-left: 42.3vw;
+    font-weight: 500;
+}
+
+
+/* custom styling for icon  */
+
+.fas {
+    color: brown;
+}
+
+.fa-paperclip {
+    color: brown;
+    margin-left: -15px;
+}
+
+.fa-trash-alt {
+    color: red;
+    margin-top: 6px;
+    margin-left: 30px;
+}
+
+.fa-check {
+    color: green;
+    margin-top: 3px;
+    margin-left: 30px;
+}
+
+/* custom styling for button  */
+
+#uploadfilebtn {
+    background-color: #4b4276;
+    color: white;
+    height: 35px;
+    margin-top: 8px;
+}
+
+/* custom styling for label  */
+
+label {
+    color: #4b4276;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+/* custom styling for form  */
+
+.uploadFile-block {
+    display: flex;
+    margin-bottom: 10px;
+}

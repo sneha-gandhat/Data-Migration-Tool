@@ -1,0 +1,89 @@
+<div class="parent">
+    <form class="header-block">
+        <h2>Data Mapping Preview</h2>
+
+        <!-- Search Filter -->
+        <div class="search-data">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true" matTooltip="Search for Mapping"
+                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
+                </mat-icon>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="mat-elevation-z8 data-table">
+        <table mat-table matSort [dataSource]="dataMappingListDataSource">
+
+            <!-- Admin Type Column -->
+            <ng-container matColumnDef="adminType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin Type </th>
+                <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.adminType}} </td>
+            </ng-container>
+
+            <!-- Source Value Column -->
+            <ng-container matColumnDef="srcValue">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Source Value </th>
+                <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.srcValue}} </td>
+            </ng-container>
+
+            <!-- Target Value Column -->
+            <ng-container matColumnDef="dstValue">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Target Value </th>
+                <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.dstValue}} </td>
+            </ng-container>
+
+            <!-- File Actions Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element" style="width: 10%;">
+
+                    <!-- Modify Button -->
+                    <button mat-icon-button (click)="openModifyMappingDialog()" matTooltip="Click to modify the Mapping"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                        <mat-icon><i class="fas fa-edit fa-xs"></i></mat-icon>
+                    </button>
+
+                    <!-- Delete Button -->
+                    <button mat-icon-button matTooltip="Delete the mapping from table as well as from Database"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                        (click)="deleteMapping()">
+                        <mat-icon><i class="far fa-trash-alt fa-xs"></i></mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        </table>
+    </div>
+
+    <!-- Table Paginator -->
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25,50,75,100]" class="mat-paginator-sticky">
+    </mat-paginator>
+
+        <!-- Footer buttons -->
+    <div class="footerbtn-block">
+        <form class="footer-block">
+
+            <!-- Back to Mapping Arrow button -->
+            <button mat-icon-button routerLink="gotoDataMapping" (click)="loadMappingPage()"
+                matTooltip="Go to Mapping window" matTooltipPosition="below" matTooltipHideDelay="100"
+                matTooltipClass="custom-tooltip">
+                <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
+            </button>
+
+            <label style="margin-left: 10px;"> Back to Mapping</label>
+            <label style="margin-left: 53vw;"> Proceed to Transform</label>
+                  
+            <!-- Proceed for Transformation Arrow button -->
+            <button mat-icon-button matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
+                matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+            </button>
+            
+        </form>
+    </div>
+</div>

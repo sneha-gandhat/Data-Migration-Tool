@@ -1,0 +1,53 @@
+<div>
+    <mat-card class="main" style="background-color: #faf6f6">
+        <div class="data-mapping">
+
+            <!-- Admin Type form field -->
+            <form class="adminType-block">
+                <mat-label> Admin Type</mat-label>
+                <!-- Admin Type dropdown -->
+                <div class="adminType-list">
+                    <mat-form-field style="width: 500px;">
+                        <mat-select [(ngModel)]="selectedValue" name="adminType">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let adminType of adminTypeList" [value]="adminType">{{adminType}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </form>
+
+            <!-- Src-Dest values form field -->
+            <form class="src-dst-value-block">
+                <mat-label> Source Value</mat-label>
+                <!-- Source value dropdown -->
+                <div class="src-dst-value-list">
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="selectedValue" name="srcValue">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let srcValue of srcValueList" [value]="srcValue">{{srcValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-label> Target Value</mat-label>
+                <!-- Target value dropdown -->
+                <div class="src-dst-value-list">
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="selectedValue" name="dstValue">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let dstValue of dstValueList" [value]="dstValue">{{dstValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </form>
+
+            <!-- Add button -->
+            <button mat-raised-button matTooltip="Add mapping into Database" matTooltipPosition="below"
+            matTooltipHideDelay="100" matTooltipClass="custom-tooltip" (click)="addMapping()">Add</button>
+          
+            <p>Please Check Mapping Preview</p>
+        </div>
+    </mat-card>
+</div>

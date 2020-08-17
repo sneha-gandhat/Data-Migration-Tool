@@ -1,61 +1,57 @@
 <div>
   <h1 style="text-align: center">Drag or Browse your file's to upload</h1>
-  <mat-card class ="main">
-  
-    <div 
-    matTooltip="Drag you file and drop it here to upload"
-    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-    id="drop_zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
+  <mat-card class="main">
+
+    <div matTooltip="Drag you file and drop it here to upload" matTooltipPosition="below" matTooltipHideDelay="100"
+      matTooltipClass="custom-tooltip" id="drop_zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
       <p>Drag and Drop File here...</p>
-      <i class="fas fa-upload fa-5x" style ="color: #4b4276; 
+      <i class="fas fa-upload fa-5x" style="color: #4b4276; 
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;"></i>
-    </div>    
+    </div>
     <div class="choose">
       <p>or</p>
       <div class="center">
-       <button
-       matTooltip="Select files to upload"
-       matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-       style='margin-right:16px ;margin-top: 1em' #buttonElem mat-raised-button (blur)="onBlur()" multiple (click)="openDialog()">Choose a file</button>
-       <input #inputFile type="file" hidden multiple (click)="loading = true" accept=".json,.xml" (change)="onChange($event)">
+        <button matTooltip="Select files to upload" matTooltipPosition="below" matTooltipHideDelay="100"
+          matTooltipClass="custom-tooltip" style='margin-right:16px ;margin-top: 1em' #buttonElem mat-raised-button
+          (blur)="onBlur()" multiple (click)="openDialog()">Choose a file</button>
+        <input #inputFile type="file" hidden multiple (click)="loading = true" accept=".json,.xml"
+          (change)="onChange($event)">
 
-       <button #buttonElem mat-raised-button hidden (blur)="onBlur()" multiple (click)="openDialog1()">Choose a Folder</button>      
-       <input #folderInput type="file"hidden (change)="filesPicked(folderInput.files)"webkitDirectory>
+        <button #buttonElem mat-raised-button hidden (blur)="onBlur()" multiple (click)="openDialog1()">Choose a
+          Folder</button>
+        <input #folderInput type="file" hidden (change)="filesPicked(folderInput.files)" webkitDirectory>
+      </div>
     </div>
-    </div>
-      <mat-card-header>
-      <mat-card-title>File Upload</mat-card-title>  
+    <mat-card-header>
+      <mat-card-title>File Upload</mat-card-title>
       <br>
     </mat-card-header>
-    <div class= "filelists">
+    <div class="filelists">
       <div *ngFor="let file of selectedFiles" class="file-list">
-      <h4 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h4>
-      <mat-progress-bar style="margin-top: 30px" mode="determinate" [value]="file?.uploadedPercent"></mat-progress-bar>
-     <i *ngIf="file?.uploadCompleted != true" class="fas fa-trash-alt fa-lg" (click)="deleteFile(file)"></i>  
-      <span *ngIf="file?.uploadCompleted == true" style="color: green;">Uploaded</span>  																			 
+        <h4 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h4>
+        <mat-progress-bar style="margin-top: 30px" mode="determinate" [value]="file?.uploadedPercent">
+        </mat-progress-bar>
+        <i *ngIf="file?.uploadCompleted != true" class="fas fa-trash-alt fa-lg" (click)="deleteFile(file)"></i>
+        <span *ngIf="file?.uploadCompleted == true" style="color: green;">Uploaded</span>
+      </div>
+
     </div>
-   
-  </div>
-  <br>
-    <button
-    matTooltip="Upload all the selected files"
-    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-    mat-raised-button  style='margin-right:16px' (click)="uploadFiles()">Upload</button>
+    <br>
+    <button matTooltip="Upload all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
+      matTooltipClass="custom-tooltip" mat-raised-button style='margin-right:16px'
+      (click)="uploadFiles()">Upload</button>
 
-    <button 
-    matTooltip="Remove all the selected files"
-    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-    mat-raised-button style='margin-right:400px' (click)="resetFiles()">Reset</button>
+    <button matTooltip="Remove all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
+      matTooltipClass="custom-tooltip" mat-raised-button style='margin-right:400px'
+      (click)="resetFiles()">Reset</button>
 
-    <button
-    matTooltip="Upload all the selected files"
-    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-    mat-raised-button  (click)="loadTransform()">Uploaded File's List</button>
+    <button matTooltip="Upload all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
+      matTooltipClass="custom-tooltip" mat-raised-button (click)="loadTransform()">Uploaded File's List</button>
 
-    <router-outlet> </router-outlet> 
+    <router-outlet> </router-outlet>
     <i class="fas fa-arrow-right fa-3x" hidden></i>
   </mat-card>
-</div>  
+</div>

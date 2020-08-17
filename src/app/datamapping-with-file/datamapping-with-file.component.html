@@ -1,0 +1,60 @@
+<div>
+    <h2>Data Mapping</h2>
+
+    <!-- Load Mapping Component -->
+    <app-datamapping></app-datamapping>
+    <p class="or">OR</p>
+
+    <mat-card class="main" style="background-color: #faf6f6;">
+        <form class="uploadFile-block">
+            <mat-label style="margin-top: 15px; margin-left: 300px;">Choose Mapping File</mat-label>
+
+            <!-- Choose File button -->
+            <button mat-icon-button matTooltip="Select files to upload" matTooltipPosition="below"
+                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" #buttonElem multiple (click)="openDialog()">
+                <mat-icon><i class="fas fa-paperclip fa-xs"></i></mat-icon>
+            </button>
+            <input #inputFile type="file" hidden multiple (click)="loading = true" (change)="onChange($event)">
+
+            <!-- Upload button -->
+            <button id="uploadfilebtn" matTooltip="Upload all the selected files" matTooltipPosition="below"
+                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" mat-raised-button
+                (click)="uploadFiles()">Upload</button>
+        </form>
+
+        <!-- Upload File List Div -->
+        <div class="filelists">
+            <div *ngFor="let file of selectedFiles" class="file-list">
+                <h5 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h5>
+                <mat-progress-bar mode="determinate" [value]="file?.uploadedPercent"
+                    style="width: 320px; margin-top:10px; margin-left: 10px;">
+                </mat-progress-bar>
+                <i *ngIf="file?.uploadCompleted != true" class="fas fa-trash-alt fa-lg" (click)="deleteFile(file)"></i>
+                <span *ngIf="file?.uploadCompleted == true"><i class="fas fa-check fa-2x"></i></span>
+            </div>
+        </div>
+    </mat-card>
+
+    <!-- Footer buttons -->
+    <div class="footerbtn-block">
+        <form class="footer-block">
+
+            <!-- Previous Arrow button -->
+            <button mat-icon-button matTooltip="Go to Previous window" matTooltipPosition="below"
+                matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
+            </button>
+
+            <label style="margin-left: 10px;"> Previous</label>
+            <label style="margin-left: 58vw;"> Mapping Preview</label>
+
+            <!-- Mapping Preview Arrow button -->
+            <button mat-icon-button routerLink="gotoMappingPreview" (click)="loadMappingPreview()"
+                matTooltip="Click to view Mapping Preview" matTooltipPosition="below" matTooltipHideDelay="100"
+                matTooltipClass="custom-tooltip">
+                <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+            </button>
+
+        </form>
+    </div>
+</div>

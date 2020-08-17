@@ -9,7 +9,6 @@ import { FileUploadService } from '../services/file-upload.service';
   selector: 'app-uploadfiles',
   templateUrl: './uploadfiles.component.html',
   styleUrls: ['./uploadfiles.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class UploadfilesComponent implements OnInit { 
 	 progress = 0;

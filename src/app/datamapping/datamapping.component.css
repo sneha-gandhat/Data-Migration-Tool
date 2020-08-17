@@ -1,0 +1,70 @@
+/* custom styling for heading  */
+
+h2 {
+    color: #4b4276;
+    margin-top: 10px;
+}
+
+/* custom styling for Label */
+
+mat-label {
+    margin-top: 16px;
+}
+
+/* custom styling for Form */
+
+.adminType-block {
+    display: flex;
+}
+
+.adminType-list {
+    margin-left: 10px;
+}
+
+.mat-option.mat-active {
+    background: #bfbccf !important;
+}
+
+::ng-deep .mat-select-value-text {
+    color: brown;
+}
+
+.src-dst-value-block {
+    display: flex;
+}
+
+.src-dst-value-list {
+    margin-left: 10px;
+    margin-right: 35px;
+}
+
+/* custom styling for Button */
+
+button {
+    color: white;
+    background-color: #4b4276;
+    padding: 0px 30px;
+    margin-left: 35%;
+}
+
+
+/* custom styling for paragraph  */
+
+p {
+    color: brown;
+    font-size: small;
+    padding-left: 28%;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* custom styling for div  */
+
+.main {
+    width: 65vw;
+    margin-left: 9em;
+}
+
+.data-mapping {
+    margin-left: 7em;
+}

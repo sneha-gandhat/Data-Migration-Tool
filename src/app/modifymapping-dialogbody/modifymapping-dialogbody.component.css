@@ -1,0 +1,13 @@
+/* custom styling for heading  */
+
+h2 {
+    color: #4b4276;
+}
+
+/* custom styling for button  */
+
+.mat-raised-button {
+    background-color: #4b4276;
+    color: white;
+    margin-left: 60.2vw;
+}

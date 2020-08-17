@@ -15,7 +15,6 @@ import * as fileSaver from 'file-saver';
   selector: 'app-upload-file-list',
   templateUrl: './upload-file-list.component.html',
   styleUrls: ['./upload-file-list.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 
 export class UploadFileListComponent implements OnInit, AfterViewInit {
@@ -26,7 +25,6 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
   //filelistdataSource = new MatTableDataSource(filelist);
   fromSelected: string;
   toSelected: string;
-  pipe: DatePipe;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
