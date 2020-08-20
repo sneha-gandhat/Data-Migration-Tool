@@ -1,3 +1,4 @@
+import { SegregatorComponent } from './segregator/segregator.component';
 import { DatamappingWithFileComponent } from './datamapping-with-file/datamapping-with-file.component';
 import { DatamappingComponent } from './datamapping/datamapping.component';
 import { UploadFileListComponent } from './upload-file-list/upload-file-list.component';
@@ -11,37 +12,41 @@ import { MappingPreviewComponent } from './mapping-preview/mapping-preview.compo
 
 const routes: Routes = [
   {
-    path:'upload',
-    component:UploadfilesComponent
+    path: 'upload',
+    component: UploadfilesComponent
   },
   {
-    path:'transform',
-    component:UploadFileListComponent
+    path: 'transform',
+    component: SegregatorComponent
   },
-  { 
+  {
     //to load the login Component as default landing page
-    path: '', 
-    component: LoginComponent    
+    path: '',
+    component: LoginComponent
   },
   {
-    path:'profile',
-    component:ProfileComponent
+    path: 'profile',
+    component: ProfileComponent
   },
   {
-    path:'settings',
-    component:SettingsComponent
+    path: 'settings',
+    component: SettingsComponent
   },
   {
-    path:'load',
-    component:DatamappingWithFileComponent
+    path: 'load',
+    component: DatamappingWithFileComponent
   },
   {
-    path:'gotoDataMapping',
-    component:DatamappingWithFileComponent
+    path: 'gotoDataMapping',
+    component: DatamappingWithFileComponent
   },
   {
-    path:'gotoMappingPreview',
-    component:MappingPreviewComponent
+    path: 'gotoMappingPreview',
+    component: MappingPreviewComponent
+  },
+  {
+    path: 'gotoSegregationWindow',
+    component: SegregatorComponent
   },
 
 ];

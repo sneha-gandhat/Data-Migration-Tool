@@ -1,0 +1,63 @@
+/* custom styling for heading  */
+
+h4 {
+    color: #4b4276;
+    font-weight: 500;
+}
+
+/* custom styling for div  */
+
+.parent {
+    height: 35em;
+    width: 50em;
+}
+
+.gridList {
+    max-height: 29em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.footer-block {
+    position: fixed;
+    top:37.5em
+}
+
+/* custom styling for button  */
+
+.submitbtn {
+    background-color: #4b4276;
+    color: white;
+    margin-left: 23vw;
+    margin-top: 20px;
+}
+
+.valuebtn {
+    background: rgb(238, 228, 228);
+    font-weight: 400;
+    font-size: small;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 132px;
+    height: 40px;
+}
+
+.valuebtn:focus {
+    background-color: rgb(187, 103, 103);
+    color: white;
+}
+
+/* custom styling for form  */
+
+.header-block {
+    display: flex;
+}
+
+/* custom styling for search filter  */
+
+.search-data {
+    margin-left: 24em;
+    margin-top: -15px;
+    color: #4b4276;
+}

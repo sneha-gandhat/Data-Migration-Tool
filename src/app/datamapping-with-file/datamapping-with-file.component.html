@@ -40,13 +40,14 @@
         <form class="footer-block">
 
             <!-- Previous Arrow button -->
-            <button mat-icon-button matTooltip="Go to Previous window" matTooltipPosition="below"
-                matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+            <button mat-icon-button routerLink="gotoSegregationWindow" (click)="loadSegregationWindow()"
+                matTooltip="Move to Segregation window" matTooltipPosition="below" matTooltipHideDelay="100"
+                matTooltipClass="custom-tooltip">
                 <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
             </button>
 
-            <label style="margin-left: 10px;"> Previous</label>
-            <label style="margin-left: 58vw;"> Mapping Preview</label>
+            <label style="margin-left: 10px;"> Segregation Window</label>
+            <label style="margin-left: 50vw;"> Mapping Preview</label>
 
             <!-- Mapping Preview Arrow button -->
             <button mat-icon-button routerLink="gotoMappingPreview" (click)="loadMappingPreview()"

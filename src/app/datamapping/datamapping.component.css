@@ -18,7 +18,7 @@ mat-label {
 }
 
 .adminType-list {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .mat-option.mat-active {
@@ -40,13 +40,12 @@ mat-label {
 
 /* custom styling for Button */
 
-button {
+.addbtn {
     color: white;
     background-color: #4b4276;
     padding: 0px 30px;
     margin-left: 35%;
 }
-
 
 /* custom styling for paragraph  */
 
@@ -67,4 +66,11 @@ p {
 
 .data-mapping {
     margin-left: 7em;
+}
+
+/* custom styling for Chooser Icon  */
+
+.chooserIcon {
+    color: brown;
+    transform: scale(1.3);
 }

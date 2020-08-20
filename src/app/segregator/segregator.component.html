@@ -1,0 +1,59 @@
+<body>
+
+    <div class="list">
+        <p>Unique Tags from source File</p>
+        <div class="wrapper">
+            <!-- <mat-grid-list cols="3" *ngFor="let item of taglist">
+                <mat-grid-tile class="cell" >
+                    {{item.tagname}} </mat-grid-tile>
+              </mat-grid-list>  -->
+
+            <div class="taglist" *ngFor="let item of taglist">
+                {{item}}
+            </div>
+        </div>
+    </div>
+    <div class="separator">
+    </div>
+
+    <div class="tags">
+        <br>
+        <div class="dropdown">
+            <mat-form-field appearance="fill">
+                <mat-label>Select Admin Type</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let type of adminTypeDropdownList" [value]="type.value">
+                        {{type.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <br>
+
+        <div class="tagswrapper">
+            <div class="tagstest" *ngFor="let type of typelist">
+                {{type}}
+            </div>
+        </div>
+    </div>
+
+    <div class="footerbutton">
+        <!-- Apply button -->
+        <button mat-icon-button matTooltip="Create Admin Type List" matTooltipPosition="below" matTooltipHideDelay="100"
+            matTooltipClass="custom-tooltip">
+            <mat-icon><i class="fas fa-check-circle fa-lg" style="color:green"></i></mat-icon>
+        </button>
+
+        <label style="margin-left: 1vw;"> Apply</label>
+        <label style="margin-left: 5vw;"> Mapping</label>
+
+        <!-- Mapping button -->
+        <button mat-icon-button routerLink="gotoDataMapping" (click)="loadMappingPage()"
+            matTooltip="Move to Data Mapping" matTooltipPosition="below" matTooltipHideDelay="100"
+            matTooltipClass="custom-tooltip">
+            <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+        </button>
+    </div>
+
+
+</body>

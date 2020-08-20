@@ -1,3 +1,6 @@
+import { SegregatorComponent } from './segregator/segregator.component';
+import { SelectValueService } from './services/select-value.service';
+import { SortListPipe } from './pipes/sort-list.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { UploadfilesComponent } from './uploadfiles/uploadfiles.component';
@@ -16,6 +19,7 @@ import { DatamappingComponent } from './datamapping/datamapping.component';
 import { DatamappingWithFileComponent } from './datamapping-with-file/datamapping-with-file.component';
 import { MappingPreviewComponent } from './mapping-preview/mapping-preview.component';
 import { ModifymappingDialogbodyComponent } from './modifymapping-dialogbody/modifymapping-dialogbody.component';
+import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dialogbody/targetvalue-chooser-dialogbody.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import { ModifymappingDialogbodyComponent } from './modifymapping-dialogbody/mod
     DatamappingWithFileComponent,
     MappingPreviewComponent,
     ModifymappingDialogbodyComponent,
+    TargetvalueChooserDialogbodyComponent,
+    SegregatorComponent,
+    SortListPipe,
 
   ],
   imports: [
@@ -40,7 +47,7 @@ import { ModifymappingDialogbodyComponent } from './modifymapping-dialogbody/mod
     AuthModule,
     MatTooltipModule
   ],
-  providers: [FileUploadService],
+  providers: [FileUploadService,SelectValueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
