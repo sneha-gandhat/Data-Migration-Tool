@@ -7,7 +7,7 @@
             <mat-form-field>
                 <input matInput (keyup)="applyFilter($event.target.value)">
                 <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true" matTooltip="Search for Mapping"
-                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
                 </mat-icon>
             </mat-form-field>
         </div>
@@ -64,26 +64,25 @@
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25,50,75,100]" class="mat-paginator-sticky">
     </mat-paginator>
 
-        <!-- Footer buttons -->
+    <!-- Footer buttons -->
     <div class="footerbtn-block">
         <form class="footer-block">
 
             <!-- Back to Mapping Arrow button -->
-            <button mat-icon-button routerLink="gotoDataMapping" (click)="loadMappingPage()"
-                matTooltip="Go to Mapping window" matTooltipPosition="below" matTooltipHideDelay="100"
-                matTooltipClass="custom-tooltip">
+            <button mat-icon-button (click)="loadMappingPage()" matTooltip="Go to Mapping window"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
                 <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
             </button>
 
             <label style="margin-left: 10px;"> Back to Mapping</label>
             <label style="margin-left: 53vw;"> Proceed to Transform</label>
-                  
+
             <!-- Proceed for Transformation Arrow button -->
             <button mat-icon-button matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
                 matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
                 <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
             </button>
-            
+
         </form>
     </div>
 </div>

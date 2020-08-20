@@ -16,6 +16,10 @@ const routes: Routes = [
     component: UploadfilesComponent
   },
   {
+    path: 'gotoUploadFileList',
+    component: UploadFileListComponent
+  },
+  {
     path: 'transform',
     component: SegregatorComponent
   },
@@ -31,10 +35,6 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent
-  },
-  {
-    path: 'load',
-    component: DatamappingWithFileComponent
   },
   {
     path: 'gotoDataMapping',
