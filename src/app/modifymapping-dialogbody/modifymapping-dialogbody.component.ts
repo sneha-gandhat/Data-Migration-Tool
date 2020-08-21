@@ -16,7 +16,7 @@ export class ModifymappingDialogbodyComponent implements OnInit {
   }
 
   //Close Data Mapping Dialog window
-  modifyMapping() {
+  closeDialog() {
     this.dialogRef.close("Modified Mapping Successfully");
   }
 

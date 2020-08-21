@@ -16,7 +16,7 @@ export class DatamappingComponent implements OnInit {
 
   @Input()
   isParent: boolean;
- 
+
   // Temporary list of values passed
   adminTypeList = ['Type', 'Attribute', 'Policy', 'Relationship'];
   srcValueList = ['products', 'product_id', 'product_name', 'brand_id', 'category_id', 'product_name', 'brand_id', 'category_id', 'product_name', 'brand_id', 'category_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'product_name', 'brand_id', 'category_id', 'model_year', 'list_price', 'brand_id', 'category_id', 'model_year', 'list_price', 'model_year', 'list_price'];
@@ -41,6 +41,10 @@ export class DatamappingComponent implements OnInit {
 
   }
 
+  // Modify Mapping and save into DB
+  modifyMapping() {
+
+  }
   //Open Dialog to choose Source value
   openValueChooserSource() {
     const dialogConfig = new MatDialogConfig();
