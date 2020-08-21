@@ -1,3 +1,4 @@
+import { TransformService } from './services/transform.service';
 import { SegregatorComponent } from './segregator/segregator.component';
 import { SelectValueService } from './services/select-value.service';
 import { SortListPipe } from './pipes/sort-list.pipe';
@@ -47,7 +48,7 @@ import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dia
     AuthModule,
     MatTooltipModule
   ],
-  providers: [FileUploadService,SelectValueService],
+  providers: [FileUploadService,SelectValueService,TransformService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
