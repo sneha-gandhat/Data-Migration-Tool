@@ -10,34 +10,34 @@ import { File } from '../upload-file-list/file';
   providedIn: 'root'
 })
 export class FileUploadService {
-  fileList : File[]=[];
-   
-  constructor(private httpclient : HttpClient) { }
+  fileList: File[] = [];
 
-  public getUploadedFilesDeatils() :Observable<File[]>{
+  constructor(private httpclient: HttpClient) { }
+
+  public getUploadedFilesDeatils(): Observable<File[]> {
     return this.httpclient.get<File[]>("http://localhost:8080/ETLfileservice/files/details");
   }
 
-  public downloadFile(fileDownloadUri:string): any {
+  public downloadFile(fileDownloadUri: string): any {
     console.log("In Service..");
-      return this.httpclient.get(fileDownloadUri, {responseType: 'blob'});
-    }
+    return this.httpclient.get(fileDownloadUri, { responseType: 'blob' });
+  }
 
-    public deleteFile(fileDeleteUri:string): any {
-      console.log("In delete Service..");
-        return this.httpclient.delete(fileDeleteUri);
-      }
+  public deleteFile(fileDeleteUri: string): any {
+    console.log("In delete Service..");
+    return this.httpclient.delete(fileDeleteUri);
+  }
 
-        public uploadFileToServer(file:any) : Observable<HttpEvent<any>> {
-        const formData: FormData = new FormData();
-    
-        formData.append('file', file);
-    
-        const req = new HttpRequest('POST', "http://localhost:8080/ETLfileservice/uploadFile", formData, {
-          reportProgress: true,
-          responseType: 'json'
-        });
-    
-        return this.httpclient.request(req);
-  }														
+  public uploadFileToServer(file: any): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', "http://localhost:8080/ETLfileservice/uploadFile", formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.httpclient.request(req);
+  }
 }
