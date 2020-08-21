@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 @Component({
   selector: 'app-modifymapping-dialogbody',
@@ -7,13 +7,16 @@ import { MatDialogRef } from "@angular/material/dialog";
 })
 export class ModifymappingDialogbodyComponent implements OnInit {
 
+  @Output()
+  isParent: boolean = false;
+  
   constructor(public dialogRef: MatDialogRef<ModifymappingDialogbodyComponent>) { }
 
   ngOnInit(): void {
   }
 
   //Close Data Mapping Dialog window
-  closeDialog() {
+  modifyMapping() {
     this.dialogRef.close("Modified Mapping Successfully");
   }
 

@@ -1,5 +1,5 @@
 import { TargetvalueChooserDialogbodyComponent } from './../targetvalue-chooser-dialogbody/targetvalue-chooser-dialogbody.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SelectValueService } from '../services/select-value.service';
 
@@ -14,9 +14,12 @@ export class DatamappingComponent implements OnInit {
   selectedSourceValue: string;
   selectedTargetValue: string;
 
+  @Input()
+  isParent: boolean;
+ 
   // Temporary list of values passed
   adminTypeList = ['Type', 'Attribute', 'Policy', 'Relationship'];
-  srcValueList = ['products', 'product_id', 'product_name', 'brand_id', 'category_id', 'product_name', 'brand_id', 'category_id','product_name', 'brand_id', 'category_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'products', 'product_id', 'product_name', 'products', 'product_id','products', 'product_id', 'product_name', 'products', 'product_id', 'product_name', 'brand_id', 'category_id', 'model_year', 'list_price', 'brand_id', 'category_id', 'model_year', 'list_price', 'model_year', 'list_price'];
+  srcValueList = ['products', 'product_id', 'product_name', 'brand_id', 'category_id', 'product_name', 'brand_id', 'category_id', 'product_name', 'brand_id', 'category_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'product_name', 'brand_id', 'category_id', 'model_year', 'list_price', 'brand_id', 'category_id', 'model_year', 'list_price', 'model_year', 'list_price'];
   dstValueList = ['Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Quality Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action'];
 
   constructor(private selectvalueService: SelectValueService, private dialog: MatDialog) { }
@@ -48,7 +51,7 @@ export class DatamappingComponent implements OnInit {
     this.selectvalueService.invokeEvent.next(this.srcValueList);
     this.selectvalueService.isSource = true;
   }
-  
+
   //Open Dialog to choose Target value
   openValueChooserTarget() {
     const dialogConfig = new MatDialogConfig();

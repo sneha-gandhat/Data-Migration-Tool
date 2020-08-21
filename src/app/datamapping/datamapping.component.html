@@ -1,7 +1,7 @@
 <div>
     <mat-card class="main" style="background-color: #faf6f6">
         <div class="data-mapping">
-
+            
             <!-- Admin Type form field -->
             <form class="adminType-block">
                 <mat-label> Admin Type</mat-label>
@@ -48,8 +48,9 @@
             </form>
 
             <!-- Add button -->
-            <button class="addbtn" mat-raised-button matTooltip="Add mapping into Database" matTooltipPosition="below"
-                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" (click)="addMapping()">Add</button>
+            <button *ngIf="isParent != false" class="addbtn" mat-raised-button matTooltip="Add mapping into Database"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                (click)="addMapping()">Add</button>
 
             <p>Please Check Mapping Preview</p>
         </div>
