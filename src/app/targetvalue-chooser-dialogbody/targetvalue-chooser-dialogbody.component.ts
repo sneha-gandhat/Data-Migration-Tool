@@ -46,4 +46,9 @@ export class TargetvalueChooserDialogbodyComponent implements OnInit {
     //Close Dialog
     this.dialogRef.close("Selected value submitted successfully");
   }
+
+  //Cancel value selection for Mapping and close the window
+  cancel() {
+    this.dialogRef.close("Close the window");
+  }
 }

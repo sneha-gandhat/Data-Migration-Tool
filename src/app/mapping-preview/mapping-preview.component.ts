@@ -1,6 +1,7 @@
+import { GetMappingIdService } from './../services/get-mapping-id.service';
+import { TransformService } from './../services/transform.service';
 import { ModifymappingDialogbodyComponent } from './../modifymapping-dialogbody/modifymapping-dialogbody.component';
-import { DatamappingComponent } from './../datamapping/datamapping.component';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Mapping } from './mapping';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,36 +16,28 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   entryComponents: [ModifymappingDialogbodyComponent],  //to open the component in Dialog
 })
 export class MappingPreviewComponent implements OnInit, AfterViewInit {
-  columnsToDisplay = ['adminType', 'srcValue', 'dstValue', 'action'];
+  columnsToDisplay = ['adminType', 'sourceValue', 'destinationValue', 'action'];
   dataMappingListDataSource: any;
-  dataMappingList: Array<Mapping>;
+  dataMappingList: Mapping[] = [];
 
-  constructor(private router: Router, private dialog: MatDialog) {
-    this.dataMappingList = new Array<Mapping>();
-    this.dataMappingList.push(new Mapping('Type', 'products', 'Part'));
-    this.dataMappingList.push(new Mapping('Attribute', 'product_id', 'Part Id'));
-    this.dataMappingList.push(new Mapping('Policy', 'product policy', 'EC Part'));
-    this.dataMappingList.push(new Mapping('Attribute', 'product_name', 'Part Name'));
-    this.dataMappingList.push(new Mapping('Type', 'products', 'Part'));
-    this.dataMappingList.push(new Mapping('Attribute', 'model_year', 'Modified Date'));
-    this.dataMappingList.push(new Mapping('Type', 'products', 'Part'));
-    this.dataMappingList.push(new Mapping('Attribute', 'product_id', 'Part Id'));
-    this.dataMappingList.push(new Mapping('Policy', 'product policy', 'EC Part'));
-    this.dataMappingList.push(new Mapping('Attribute', 'product_name', 'Part Name'));
-    this.dataMappingList.push(new Mapping('Type', 'products', 'Part'));
-    this.dataMappingList.push(new Mapping('Attribute', 'model_year', 'Modified Date'));
-    this.dataMappingListDataSource = new MatTableDataSource(this.dataMappingList);
+  constructor(private transformservice: TransformService, private mappingIdService: GetMappingIdService, private router: Router, private dialog: MatDialog) {
+    //Send getAllMappingDetails() method to DataMappingComponent
+    this.mappingIdService.invokeEvent.subscribe(value => {
+      if (value === 'loadMapping') {
+        this.getAllMappingDetails();
+      }
+    });
   }
 
   ngOnInit(): void {
+    //Load All Mapping Data
+    this.getAllMappingDetails();
   }
 
   //Pagination & Sorting
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   ngAfterViewInit(): void {
-    this.dataMappingListDataSource.paginator = this.paginator;
-    this.dataMappingListDataSource.sort = this.sort;
   }
 
   //Search Filter
@@ -60,16 +53,42 @@ export class MappingPreviewComponent implements OnInit, AfterViewInit {
   }
 
   //Open Dialog to modify the Data Mapping
-  openModifyMappingDialog() {
+  openModifyMappingDialog(mapping: Mapping) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     this.dialog.open(ModifymappingDialogbodyComponent, dialogConfig);
+    //Send Mapping
+    this.mappingIdService.invokeEvent.next(mapping);
   }
-  
-  // Delete Mapping form table as well as from DB
-  deleteMapping() {
 
+  //Render all Mapping data in table
+  getAllMappingDetails() {
+    this.transformservice.getMappingDetails().subscribe(
+      data => {
+        this.dataMappingList = data;
+        this.dataMappingListDataSource = new MatTableDataSource(this.dataMappingList);
+        this.dataMappingListDataSource.paginator = this.paginator;
+        this.dataMappingListDataSource.sort = this.sort;
+      },
+      () => {
+        alert("Problem in getting Mapping data!!");
+      }
+    );
+  }
+
+  // Delete Mapping form table as well as from DB
+  deleteMapping(id: number) {
+    if (window.confirm('Are you sure want to delete this mapping ?')) {
+      this.transformservice.deleteMapping(id).subscribe(
+        () => {
+          this.getAllMappingDetails();
+        },
+        () => { }
+      );
+    } else {
+      console.log("EVENT CANCELLED!!");
+    }
   }
 
 }

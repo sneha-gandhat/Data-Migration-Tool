@@ -1,3 +1,4 @@
+import { GetMappingIdService } from './services/get-mapping-id.service';
 import { TransformService } from './services/transform.service';
 import { SegregatorComponent } from './segregator/segregator.component';
 import { SelectValueService } from './services/select-value.service';
@@ -48,7 +49,7 @@ import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dia
     AuthModule,
     MatTooltipModule
   ],
-  providers: [FileUploadService,SelectValueService,TransformService],
+  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

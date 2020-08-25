@@ -42,7 +42,7 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
 
   //Delete File
   deleteFile(item: any) {
-    if (window.confirm('Are sure you want to delete this item ?')) {
+    if (window.confirm('Are you sure want to delete this item ?')) {
       this.fileService.deleteFile(item.fileDeleteUri).subscribe(
         data => {
           console.log("In Delete File Component!!");

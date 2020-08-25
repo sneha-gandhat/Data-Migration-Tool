@@ -20,7 +20,7 @@ h4 {
 
 .footer-block {
     position: fixed;
-    top:37.5em
+    top: 37.5em
 }
 
 /* custom styling for button  */
@@ -28,7 +28,14 @@ h4 {
 .submitbtn {
     background-color: #4b4276;
     color: white;
-    margin-left: 23vw;
+    margin-left: 19vw;
+    margin-top: 20px;
+}
+
+.cancelbtn {
+    background-color: rgb(172, 71, 71);
+    color: white;
+    margin-left: 20px;
     margin-top: 20px;
 }
 
