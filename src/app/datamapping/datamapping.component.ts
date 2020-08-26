@@ -31,6 +31,11 @@ export class DatamappingComponent implements OnInit {
     //Get Mapping
     this.mappingIdService.invokeEvent.subscribe(data => {
       this.mapping = data;
+      //Set existing mapping values to modify mapping
+      this.mappingId = this.mapping.id;
+      this.selectedAdminValue = this.mapping.adminType;
+      this.selectedSourceValue = this.mapping.sourceValue;
+      this.selectedTargetValue = this.mapping.destinationValue;
     });
   }
 
@@ -44,12 +49,6 @@ export class DatamappingComponent implements OnInit {
         this.selectedTargetValue = newValue;
       }
     });
-
-    //Set existing mapping values to modify mapping
-    this.mappingId = this.mapping.id;
-    this.selectedAdminValue = this.mapping.adminType;
-    this.selectedSourceValue = this.mapping.sourceValue;
-    this.selectedTargetValue = this.mapping.destinationValue;
   }
 
   // Add Mapping to DB
