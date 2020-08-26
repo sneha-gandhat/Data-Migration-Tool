@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { Mapping } from './../mapping-preview/mapping';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TransformService {
-  mappingURI: string = "http://localhost:8082/mappings";
+  mappingURI: string = environment.transformationURI;
 
   constructor(private httpclient: HttpClient) { }
 

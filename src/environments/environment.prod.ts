@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  transformationURI: "http://localhost:8082/mappings"
 };
