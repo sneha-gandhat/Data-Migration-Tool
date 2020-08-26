@@ -85,7 +85,7 @@
             <label style="margin-left: 53vw;"> Proceed to Transform</label>
 
             <!-- Proceed for Transformation Arrow button -->
-            <button mat-icon-button matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
+            <button mat-icon-button (click)="openTranformProgressView()" matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
                 matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
                 <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
             </button>

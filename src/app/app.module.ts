@@ -1,3 +1,4 @@
+import { TransformProgressbarComponent } from './transform-progressbar/transform-progressbar.component';
 import { GetMappingIdService } from './services/get-mapping-id.service';
 import { TransformService } from './services/transform.service';
 import { SegregatorComponent } from './segregator/segregator.component';
@@ -34,6 +35,7 @@ import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dia
     ModifymappingDialogbodyComponent,
     TargetvalueChooserDialogbodyComponent,
     SegregatorComponent,
+    TransformProgressbarComponent,
     SortListPipe,
 
   ],

@@ -1,0 +1,29 @@
+<body>
+
+
+  <div id="progresswindow" class="modal" style="display: block;">
+    <form class="modal-content animate">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('progresswindow').style.display='none'" class="close"
+          title="Close">&times;</span>
+        <h3 style="color:#4b4276;">Transformation is in Process...</h3>
+
+      </div>
+
+      <div class="container">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+      </div>
+      <br>
+      <br>
+
+      <button onclick="document.getElementById('progresswindow').style.display='none'" mat-raised-button
+        matTooltip="Run the transformation Process in background" matTooltipPosition="below" matTooltipHideDelay="100"
+        matTooltipClass="custom-tooltip"> Run in Background</button>
+
+    </form>
+  </div>
+
+
+
+</body>

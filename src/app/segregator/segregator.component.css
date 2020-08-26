@@ -46,7 +46,8 @@ mat-label, mat-select,mat-option,mat-form-field{
 }
 .taglist:hover{ 
     font-weight: 800;
-    box-shadow: 0 0 10px #4b4276;
+    /* box-shadow: 0 0 10px #4b4276; */
+    box-shadow: 0 0 10px green;
     
  
 }

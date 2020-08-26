@@ -7,8 +7,8 @@
                 <mat-grid-tile class="cell" >
                     {{item.tagname}} </mat-grid-tile>
               </mat-grid-list>  -->
-
-            <div class="taglist" *ngFor="let item of taglist">
+            <div class="taglist" matTooltip="Add to list" matTooltipPosition="below" matTooltipHideDelay="100"
+                matTooltipClass="custom-tooltip" *ngFor="let item of taglist">
                 {{item}}
             </div>
         </div>
@@ -31,7 +31,9 @@
         <br>
 
         <div class="tagswrapper">
-            <div class="tagstest" *ngFor="let type of typelist">
+
+            <div matTooltip="Move back to Tags" matTooltipPosition="below" matTooltipHideDelay="100"
+                matTooltipClass="custom-tooltip" class="tagstest" *ngFor="let type of typelist">
                 {{type}}
             </div>
         </div>

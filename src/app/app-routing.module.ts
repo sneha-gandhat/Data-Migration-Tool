@@ -9,6 +9,7 @@ import { SettingsComponent } from './auth/components/settings/settings.component
 import { LoginComponent } from './auth/components/login/login.component';
 import { ProfileComponent } from './auth/components/profile/profile.component';
 import { MappingPreviewComponent } from './mapping-preview/mapping-preview.component';
+import { TransformProgressbarComponent } from './transform-progressbar/transform-progressbar.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,10 @@ const routes: Routes = [
     path: 'gotoSegregationWindow',
     component: SegregatorComponent
   },
-
+  {
+    path: 'gotoTransformationProgressBar',
+    component: TransformProgressbarComponent
+  },
 ];
 
 @NgModule({

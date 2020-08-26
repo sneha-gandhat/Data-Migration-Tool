@@ -52,6 +52,11 @@ export class MappingPreviewComponent implements OnInit, AfterViewInit {
     this.router.navigate(['gotoDataMapping']);
   }
 
+  //Navigate to Transformation Progress 
+  openTranformProgressView() {
+    this.router.navigate(['gotoTransformationProgressBar']);
+  }
+
   //Open Dialog to modify the Data Mapping
   openModifyMappingDialog(mapping: Mapping) {
     const dialogConfig = new MatDialogConfig();
