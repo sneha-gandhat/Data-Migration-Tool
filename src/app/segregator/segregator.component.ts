@@ -2,7 +2,9 @@ import { Component, OnInit, TestabilityRegistry } from '@angular/core';
 import * as $ from 'jquery';
 import { tag, adminType } from './tagfile';
 import { Router } from '@angular/router';
-
+import {TransformService} from '../services/transform.service';
+import { ViewChild, AfterViewInit } from '@angular/core';
+import {MatSelectModule, MatSelect} from '@angular/material/select';
 //declare var $: any;
 
 interface TypeDropdown {
@@ -29,11 +31,10 @@ export class SegregatorComponent implements OnInit {
 
   // ]
 
-  public taglist: String[] = ['Product', 'Season', 'Seasonal Plan', 'Brand', 'Vendor', 'Supplier', 'FOB', 'OBS Date', 'Freight Cost', 'Shipping Cost',
-    'Merchandize', 'Product Name', 'Supplier ID', 'Concept', 'COB', 'PricePoint', 'Assortment', 'Bundle Price', 'VendorID',
-    'Port', 'Budget', 'HTS Code', 'AssortmentId', 'Program', 'Slot', 'BoxSize', 'BrandName', 'Production', 'Developmet', 'Company',
-    'Title', 'Year', 'Plan', 'Joint', 'Mould', 'Placeholder', 'ItemSetup', 'Width', 'Height', 'Volume', 'Colors', 'Swatch', 'Batch',]
-  public typelist: String[] = []
+  public taglist: String[] = [];
+  public typelist: String[] = [];
+  public adminSelect:string;
+@ViewChild('matSelect') matSelect: MatSelect;						  
   adminTypeDropdownList: TypeDropdown[] = [
     { value: 'Type', viewValue: 'Type' },
     { value: 'Relationship', viewValue: 'Relationship' },
@@ -42,9 +43,15 @@ export class SegregatorComponent implements OnInit {
   ];
 
 
-  constructor(private router: Router) { }
-
+  constructor(private router: Router,private transformservice:TransformService) { }
+  
+  ngAfterViewInit() {
+    this.matSelect.valueChange.subscribe(value1 => {
+      this.adminSelect=value1;
+    });    
+}
   ngOnInit(): void {
+	this.getAllUniqueTags();							   
     let typeListinstance = this;
     let taglistinstance = this;
 
@@ -97,4 +104,20 @@ export class SegregatorComponent implements OnInit {
   loadMappingPage() {
     this.router.navigate(['gotoDataMapping']);
   }
+	getAllUniqueTags() {
+    this.transformservice.getAllUniqueTagList().subscribe(
+      data => {
+        this.taglist = data;
+      },
+      err => {
+        alert("Problem in getting tag data!!");
+      }
+    );
+  }
+
+  updateTypeNameDB(){
+   // console.log("hi"+this.adminSelect);
+    //console.log(this.typelist);
+    this.transformservice.updateType(this.adminSelect,this.typelist);
+  }		 
 }

@@ -21,7 +21,7 @@
         <div class="dropdown">
             <mat-form-field appearance="fill">
                 <mat-label>Select Admin Type</mat-label>
-                <mat-select>
+                <mat-select #matSelect required> 
                     <mat-option *ngFor="let type of adminTypeDropdownList" [value]="type.value">
                         {{type.viewValue}}
                     </mat-option>
@@ -41,7 +41,9 @@
 
     <div class="footerbutton">
         <!-- Apply button -->
-        <button mat-icon-button matTooltip="Create Admin Type List" matTooltipPosition="below" matTooltipHideDelay="100"
+        <button 
+		 (click)="updateTypeNameDB()"
+		mat-icon-button matTooltip="Create Admin Type List" matTooltipPosition="below" matTooltipHideDelay="100"
             matTooltipClass="custom-tooltip">
             <mat-icon><i class="fas fa-check-circle fa-lg" style="color:green"></i></mat-icon>
         </button>

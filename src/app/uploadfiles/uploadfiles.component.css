@@ -2,11 +2,17 @@
   border: 3px #46b6d8 dotted;
   height: 140px;
 }
+button {
+  background-color: #4b4276;
+  color: white;
+  height: 35px;
+  margin-top: 8px;
+}						
 
 .main{  
   width: 60vw; 
   margin: auto;
-
+ background-color: rgb(243, 239, 233);
 
 }
 

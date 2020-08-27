@@ -4,6 +4,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SelectValueService } from '../services/select-value.service';
 import { TransformService } from '../services/transform.service';
+import { ViewChild, AfterViewInit } from '@angular/core';
+import {MatSelectModule, MatSelect} from '@angular/material/select';																									  
 import { GetMappingIdService } from '../services/get-mapping-id.service';
 
 @Component({
@@ -21,10 +23,11 @@ export class DatamappingComponent implements OnInit {
 
   @Input()
   isParent: boolean;
+@ViewChild('matSelect') matSelect: MatSelect;										   
 
   // Temporary list of values passed
   adminTypeList = ['Type', 'Attribute', 'Policy', 'Relationship'];
-  srcValueList = ['products', 'product_id', 'product_name', 'brand_id', 'category_id', 'product_name', 'brand_id', 'category_id', 'product_name', 'brand_id', 'category_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'products', 'product_id', 'product_name', 'products', 'product_id', 'product_name', 'brand_id', 'category_id', 'model_year', 'list_price', 'brand_id', 'category_id', 'model_year', 'list_price', 'model_year', 'list_price'];
+  srcValueList = [];
   dstValueList = ['Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Quality Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action'];
 
   constructor(private selectvalueService: SelectValueService, private transformservice: TransformService, private mappingIdService: GetMappingIdService, private dialog: MatDialog) {
@@ -39,7 +42,17 @@ export class DatamappingComponent implements OnInit {
     });
   }
 
+ngAfterViewInit() {
+				 
+    this.matSelect.valueChange.subscribe(value => {
+      this.selectedAdminValue=value;
+      this.getSourceValues();
+															   
+    });
+
+  }
   ngOnInit() {
+	  
     //Get selected Value
     this.selectvalueService.getValue().subscribe(newValue => {
       if (this.selectvalueService.isSource) {
@@ -93,5 +106,15 @@ export class DatamappingComponent implements OnInit {
     this.selectvalueService.invokeEvent.next(this.dstValueList);
     this.selectvalueService.isSource = false;
   }
+	 getSourceValues() {    
+    this.transformservice.getSourceValue(this.selectedAdminValue).subscribe(
+      data => {
+        this.srcValueList = data;
+      },
+      err => {
+        alert("Problem in getting Source Value data!!");
+      }
+    );
+  }					 
 
 }

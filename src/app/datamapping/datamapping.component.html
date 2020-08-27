@@ -8,7 +8,7 @@
                 <!-- Admin Type dropdown -->
                 <div class="adminType-list">
                     <mat-form-field style="width: 490px;">
-                        <mat-select [(ngModel)]="selectedAdminValue" name="adminType">
+                        <mat-select [(ngModel)]="selectedAdminValue" #matSelect name="adminType">
                             <mat-option>None</mat-option>
                             <mat-option *ngFor="let adminType of adminTypeList" [value]="adminType">{{adminType}}
                             </mat-option>

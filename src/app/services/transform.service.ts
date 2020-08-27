@@ -1,8 +1,11 @@
 import { environment } from './../../environments/environment.prod';
 import { Mapping } from './../mapping-preview/mapping';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpHeaders,HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError ,EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { File } from '../upload-file-list/file';
+import { data } from 'jquery';	
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,6 @@ export class TransformService {
   public getMappingDetails(): Observable<Mapping[]> {
     return this.httpclient.get<Mapping[]>(this.mappingURI);
   }
-
   //Delete mapping
   public deleteMapping(id): any {
     return this.httpclient.delete(this.mappingURI + "/" + id);
@@ -28,4 +30,32 @@ export class TransformService {
   }
 
 
+//get all unique tag to sisplay on sagerigation window
+ public getAllUniqueTagList() :Observable<any>{
+    return this.httpclient.get("http://localhost:8080/xmlTags");
+  }
+
+//Read  the xml and write tag,file and type name in DB
+ public writeXMLToDB(file:String){    
+         return this.httpclient.post("http://localhost:8080/uploadMapping?file="+file,file);
+  }  
+
+//get type name from sagerigation window and update on DB
+  public updateType(typeName1:string,tagList1:String[]){
+    this.httpclient.post("http://localhost:8080/updateType?typeName="+typeName1+"&tagList="+tagList1,typeName1).subscribe(response => {
+      console.log (response);
+    }, err => {
+      console.log(err.message);
+    }, () => {
+      console.log('completed');
+    }
+     );
+ 
+  }
+
+// read tag name based on admin type select on data mapping window
+ public getSourceValue(adminType:string) :Observable<any>{
+    return this.httpclient.get("http://localhost:8080/sourceValue?adminType="+adminType);
+								  
+  }
 }

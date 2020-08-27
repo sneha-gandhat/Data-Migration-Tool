@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpResponse } fro
 import { summaryFileName } from '@angular/compiler/src/aot/util';
 import { UploadFileListComponent } from '../upload-file-list/upload-file-list.component'
 import { FileUploadService } from '../services/file-upload.service';
+import {TransformService} from '../services/transform.service';															   
 
 @Component({
   selector: 'app-uploadfiles',
@@ -24,7 +25,8 @@ export class UploadfilesComponent implements OnInit {
   canDropFolder = typeof DataTransferItem.prototype.webkitGetAsEntry === 'function';
   uploadPaths = [];
 
-  constructor(private http: HttpClient, private router: Router, private fileService: FileUploadService) { }
+  constructor(private http: HttpClient, private router: Router, private fileService: FileUploadService
+   ,private transformservice:TransformService ) { }
 
   goToLink(url: string) {
     window.open(url, "_blank");
@@ -126,6 +128,17 @@ export class UploadfilesComponent implements OnInit {
           if (event.type === HttpEventType.UploadProgress) {
             element.uploadedPercent = Math.round(100 * event.loaded / event.total);
             element.uploadCompleted = true;
+			if(element.uploadCompleted){
+              console.log("for writeXMLToDB"+element.selectedFile.name);
+        this.transformservice.writeXMLToDB(element.selectedFile.name).subscribe(response => {
+          console.log (response);
+        }, err => {
+          console.log(err.message);
+        }, () => {
+          console.log('completed');
+        }
+         );
+            }												 
           } else if (event instanceof HttpResponse) {
             this.message = event.body.message;
             // console.log("Message : "+this.message);
