@@ -20,7 +20,7 @@ export class DatamappingComponent implements OnInit {
   selectedTargetValue: string;
   mapping = new Mapping(0, "", "", "");
   mappingId: number;
-
+  message:any;
   @Input()
   isParent: boolean;
 @ViewChild('matSelect') matSelect: MatSelect;										   
@@ -66,9 +66,11 @@ ngAfterViewInit() {
 
   // Add Mapping to DB
   addMapping() {
+    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue);
+    let resp=this.transformservice.addMappingRule(modifiedMapping);
+    resp.subscribe((data)=>this.message=data)
 
   }
-
   // Modify Mapping and save into DB
   modifyMapping() {
     const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue);

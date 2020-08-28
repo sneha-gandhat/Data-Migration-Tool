@@ -58,4 +58,23 @@ export class TransformService {
     return this.httpclient.get("http://localhost:8080/sourceValue?adminType="+adminType);
 								  
   }
+
+  //adding file mapping to database
+  public uploadFileToServer(file: any): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', "http://localhost:8080/uploadMapping", formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.httpclient.request(req);
+  }
+
+  //adding mapping to database
+  public addMappingRule(mapping: Mapping){
+    return this.httpclient.post("http://localhost:8082/mappings",mapping);
+  }
 }

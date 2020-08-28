@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { FileUploadService } from '../services/file-upload.service';
+import { TransformService } from '../services/transform.service';
 
 @Component({
   selector: 'app-datamapping-with-file',
@@ -16,7 +17,7 @@ export class DatamappingWithFileComponent implements OnInit {
   progress = 0;
   message = '';
 
-  constructor(private router: Router, private fileService: FileUploadService) { }
+  constructor(private router: Router, private fileService: TransformService) { }
 
   ngOnInit(): void {
   }
