@@ -1,3 +1,4 @@
+import { TransformDashboardComponent } from './dashboard/transform-dashboard/transform-dashboard.component';
 import { MainDashboardComponent } from './dashboard/main-dashboard/main-dashboard.component';
 import { TransformDrilldownComponent } from './dashboard/transform-drilldown/transform-drilldown.component';
 import { SegregatorComponent } from './segregator/segregator.component';
@@ -61,8 +62,8 @@ const routes: Routes = [
     component: MainDashboardComponent
   },
   {
-    path: 'transform-monitor',
-    component: TransformDrilldownComponent
+    path: 'transform-dashboard',
+    component: TransformDashboardComponent
   },
 ];
 

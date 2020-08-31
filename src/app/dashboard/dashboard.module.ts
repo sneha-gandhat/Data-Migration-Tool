@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FusionChartsModule } from "angular-fusioncharts";
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { TransformDashboardComponent } from './transform-dashboard/transform-dashboard.component';
 
 // Import FusionCharts library and chart modules
 import * as FusionCharts from "fusioncharts";
@@ -17,6 +18,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
   declarations: [
     MainDashboardComponent,
     TransformDrilldownComponent,
+    TransformDashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -24,8 +26,10 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MaterialModule,
     FusionChartsModule
   ],
-  exports:[
-    MainDashboardComponent, TransformDrilldownComponent,
+  exports: [
+    MainDashboardComponent, 
+    TransformDrilldownComponent, 
+    TransformDashboardComponent,
   ]
 })
 export class DashboardModule { }

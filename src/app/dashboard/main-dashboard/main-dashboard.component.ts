@@ -14,7 +14,7 @@ export class MainDashboardComponent implements OnInit {
   }
 
   // Navigate to Transform-monitor dashboard
-  loadTransformMonitor() {
-    this.router.navigate(['transform-monitor']);
+  loadTransformDashboard() {
+    this.router.navigate(['transform-dashboard']);
   }
 }
