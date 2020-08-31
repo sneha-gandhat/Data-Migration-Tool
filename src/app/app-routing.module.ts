@@ -1,3 +1,5 @@
+import { MainDashboardComponent } from './dashboard/main-dashboard/main-dashboard.component';
+import { TransformDrilldownComponent } from './dashboard/transform-drilldown/transform-drilldown.component';
 import { SegregatorComponent } from './segregator/segregator.component';
 import { DatamappingWithFileComponent } from './datamapping-with-file/datamapping-with-file.component';
 import { DatamappingComponent } from './datamapping/datamapping.component';
@@ -10,6 +12,7 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { ProfileComponent } from './auth/components/profile/profile.component';
 import { MappingPreviewComponent } from './mapping-preview/mapping-preview.component';
 import { TransformProgressbarComponent } from './transform-progressbar/transform-progressbar.component';
+import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 
 const routes: Routes = [
   {
@@ -52,6 +55,14 @@ const routes: Routes = [
   {
     path: 'gotoTransformationProgressBar',
     component: TransformProgressbarComponent
+  },
+  {
+    path: 'dashboard',
+    component: MainDashboardComponent
+  },
+  {
+    path: 'transform-monitor',
+    component: TransformDrilldownComponent
   },
 ];
 
