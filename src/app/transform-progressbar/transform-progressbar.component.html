@@ -1,29 +1,152 @@
 <body>
+<div id ="checkFilesToBeTransformed">
+  <div class="parent">
+    <form class="header-block">
+        <h2>Select Files For Transformation</h2>
+
+        <!-- Search Filter -->
+        <div class="search-data">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true" matTooltip="Search for Mapping"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
+                </mat-icon>
+            </mat-form-field>
+        </div>
+    </form>
+  </div>
+ <div class="mat-elevation-z8 data-table">
+    <table mat-table matSort [dataSource]="PartialTransformFileListDataSource">
+
+        <!-- Admin Type Column -->
+        <ng-container matColumnDef="adminType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>FileName</th>
+            <td mat-cell *matCellDef="let element" style="width: 30%;"><mat-checkbox color='primary'>{{element.fileName}}</mat-checkbox></td>
+        </ng-container>
+
+        <!-- Source Value Column -->
+        <ng-container matColumnDef="srcValue">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>File Type </th>
+            <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.fileType}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+</div>
+<!-- Table Paginator -->
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25,50,75,100]" class="mat-paginator-sticky">
+</mat-paginator>
 
 
-  <div id="progresswindow" class="modal" style="display: block;">
-    <form class="modal-content animate">
+<!-- Footer buttons -->
+<div class="footerbtn-block">
+  <form class="footer-block">
+
+      <!-- Back to Mapping Arrow button -->
+      <button mat-icon-button  (click)="loadMappingPreview()" matTooltip="Go back to Data Mapping Preview"
+          matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+          <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
+      </button>
+
+      <label style="margin-left: 10px;"> Mapping Preview</label>
+      <label style="margin-left: 53vw;"> Proceed to Transform</label>
+
+      <!-- Proceed for Transformation Arrow button -->
+      <button mat-icon-button onclick="javascript:document.getElementById('checkFilesToBeTransformed').style.display='none';document.getElementById('progresswindow').style.display='block';document.getElementById('informationForm').style.display='none'"
+      matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
+          matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+          <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+      </button>
+
+  </form>
+</div>
+  
+          </div>
+
+            <div id="progresswindow" class="modal" style="display:none;">  
+    <form class="modal-content animate" >
       <div class="imgcontainer">
-        <span onclick="document.getElementById('progresswindow').style.display='none'" class="close"
-          title="Close">&times;</span>
+        <span onclick="javascript:document.getElementById('progresswindow').style.display='none';document.getElementById('informationForm').style.display='block'" class="close" title="Close">&times;</span>
         <h3 style="color:#4b4276;">Transformation is in Process...</h3>
-
+        
       </div>
-
+  
       <div class="container">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-
-      </div>
-      <br>
-      <br>
-
-      <button onclick="document.getElementById('progresswindow').style.display='none'" mat-raised-button
-        matTooltip="Run the transformation Process in background" matTooltipPosition="below" matTooltipHideDelay="100"
-        matTooltipClass="custom-tooltip"> Run in Background</button>
-
+        
+    </div>
+    <br>
+    <br>
+  
+            <button onclick="javascript:document.getElementById('progresswindow').style.display='none';document.getElementById('informationForm').style.display='block';" mat-raised-button matTooltip="Run the transformation Process in background"
+                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"> Done</button>
+      
     </form>
   </div>
 
+    
+    
+           
+    <div id="informationForm" class="informationForm" style="display:none;" >
+      <h2 style="color:#4b4276">Transformation Statistics</h2>
+      
+      <div class="displayform">
+           <mat-list>
+            <mat-list-item class="even">
+              <dt class="col-sm-5">Result For </dt>
+            <dd class="col-sm-7">D://Uploads/Product.xml</dd>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item class="odd">
+              <dt class="col-sm-5">Log Location</dt>
+              <dd class="col-sm-7">D://Project/TransformedFiles</dd>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item class="even" >
+              <dt class="col-sm-5">Objects Processed</dt>
+            <dd class="col-sm-7">46</dd>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item class="odd">
+              <dt class="col-sm-5">Objects Successful</dt>
+            <dd class="col-sm-7">46</dd>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item class="even">
+              <dt class="col-sm-5">Objects Failed</dt>
+            <dd class="col-sm-7">0</dd>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+         </mat-list>  
+        </div>
+          <!-- Footer buttons -->
+<div class="footerbtn-block">
+  <form class="footer-block">
 
+      <!-- Back to Mapping Arrow button -->
+      <button mat-icon-button  onclick="javascript:document.getElementById('checkFilesToBeTransformed').style.display='block';document.getElementById('progresswindow').style.display='none';document.getElementById('informationForm').style.display='none';"
+         matTooltip="Go back to Data Mapping Preview"
+          matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+          <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
+      </button>
 
-</body>
+      <label style="margin-left: 10px;"> Select Files</label>
+      <label style="margin-left: 53vw;">Initate Load</label>
+
+      <!-- Proceed for Transformation Arrow button -->
+      <button mat-icon-button matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
+          matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+          <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+      </button>
+
+  </form>
+</div>
+
+          </div>
+
+  
+  
+  </body>
+  
+  
