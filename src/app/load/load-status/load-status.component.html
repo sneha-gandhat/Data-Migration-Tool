@@ -1,0 +1,80 @@
+    
+<!-- Main Table -->
+<div id ="checkFilesToBeTransformed">
+    <div class="parent">
+      <form class="header-block">
+          <h2>Data Load Status</h2>
+  
+          <!-- Search Filter -->
+          <div class="search-data">
+              <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)">
+                  <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true" matTooltip="Search for Record"
+                          matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
+                  </mat-icon>
+              </mat-form-field>
+          </div>
+      </form>
+    </div>
+   <div class="mat-elevation-z8 data-table">
+      <table mat-table matSort [dataSource]="LoadStatusDataSource">
+  
+          <!-- Related Type Column -->
+          <ng-container matColumnDef="RelatedType">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Related Type</th>
+              <td mat-cell *matCellDef="let element" style="width: 30%;">{{element.relatedType}}</td>
+          </ng-container>
+  
+          <!-- File Name Column -->
+          <ng-container matColumnDef="FileName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>File Name </th>
+              <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.fileName}} </td>
+          </ng-container>
+
+          <!-- Processing Status Column -->
+          <ng-container matColumnDef="ProcessingStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Processing Status </th>
+            <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.processingStatus}} </td>
+        </ng-container>
+
+        <!-- Objects Processed Column -->
+        <ng-container matColumnDef="ObjectsProcessed">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Objects Processed </th>
+            <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.noOfObjectsProcessed}} </td>
+        </ng-container>
+
+        <!-- Logger File Path Column -->
+        <ng-container matColumnDef="LogFilePath">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Logger File Path </th>
+            <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.logFilePath}} </td>
+        </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+          <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+      </table>
+  </div>
+  <!-- Table Paginator -->
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25,50,75,100]" class="mat-paginator-sticky">
+  </mat-paginator>
+ 
+  <!-- Footer buttons -->
+<div class="footerbtn-block">
+    <form class="footer-block">
+  
+        <!-- Back to Mapping Arrow button -->
+        <button mat-icon-button  (click)="loadSelectFile()" matTooltip="Go back to Select Files Page"
+            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+            <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
+        </button>
+  
+        <label style="margin-left: 10px;"> Select Files</label>
+        <label style="margin-left: 53vw;"> Go To Dashboard</label>
+  
+        <!-- Proceed for Transformation Arrow button -->
+        <button mat-icon-button (click)="moveToDashboard()" matTooltip="See Dashboard" matTooltipPosition="below"
+            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+            <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+        </button>
+  
+    </form>
+  </div>

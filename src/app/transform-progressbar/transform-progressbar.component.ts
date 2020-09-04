@@ -13,7 +13,7 @@ import { MatSort } from '@angular/material/sort';
 
 
 export class TransformProgressbarComponent implements OnInit {
-   columnsToDisplay = ['adminType', 'srcValue'];
+   columnsToDisplay = ['FileType', 'FileName'];
   PartialTransformFileListDataSource: any;
   PartialTransformFileList: Array<FileList>;
   constructor(private router: Router) { 

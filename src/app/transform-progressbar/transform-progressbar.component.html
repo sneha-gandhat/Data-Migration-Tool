@@ -19,13 +19,13 @@
     <table mat-table matSort [dataSource]="PartialTransformFileListDataSource">
 
         <!-- Admin Type Column -->
-        <ng-container matColumnDef="adminType">
+        <ng-container matColumnDef="FileName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>FileName</th>
             <td mat-cell *matCellDef="let element" style="width: 30%;"><mat-checkbox color='primary'>{{element.fileName}}</mat-checkbox></td>
         </ng-container>
 
         <!-- Source Value Column -->
-        <ng-container matColumnDef="srcValue">
+        <ng-container matColumnDef="FileType">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>File Type </th>
             <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.fileType}} </td>
         </ng-container>

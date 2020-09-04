@@ -1,3 +1,4 @@
+import { LoadModule } from './load/load.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TransformProgressbarComponent } from './transform-progressbar/transform-progressbar.component';
 import { GetMappingIdService } from './services/get-mapping-id.service';
@@ -51,7 +52,9 @@ import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dia
     ReactiveFormsModule,
     AuthModule,
     MatTooltipModule,
-    DashboardModule
+    DashboardModule,
+    LoadModule
+    
   ],
   providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService],
   bootstrap: [AppComponent]

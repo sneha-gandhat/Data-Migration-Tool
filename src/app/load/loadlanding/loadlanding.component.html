@@ -1,0 +1,44 @@
+
+
+<br>
+<br>
+<form class="urltestform">
+    
+    <h2>ENOVIA Connection Verification</h2>
+    <br>
+    <br>
+    <div class="urlrow">
+    <div class="form-group row">
+        <label for="Enoviaurl" class="col-sm-3 col-form-label">ENOVIA URL</label>
+        <div class="col-sm-9 ">
+          <input type="text" disabled class="urlfield" id="EnoviaURL" value="machineName:port/url">
+        </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <button class="verifybtn" mat-raised-button matTooltip="Click to Verify Connection"
+            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+            >Verify</button>
+</form>
+<!-- Footer buttons -->
+<div class="footerbtn-block">
+    <form class="footer-block">
+  
+        <!-- Back to Mapping Arrow button -->
+        <!-- <button mat-icon-button  (click)="loadMappingPreview()" matTooltip="Go back to Data Mapping Preview"
+            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+            <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
+        </button>
+  
+        <label style="margin-left: 10px;"> Mapping Preview</label> -->
+        <label style="margin-left: 65vw;"> Proceed to Load</label>
+  
+        <!-- Proceed for Transformation Arrow button -->
+        <button mat-icon-button  (click)="loadSelectFile()" matTooltip="Click to Proceed" matTooltipPosition="below"
+            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+            <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+        </button>
+  
+    </form>
+  </div>

@@ -1,3 +1,9 @@
+import { LoadStatusComponent } from './load/load-status/load-status.component';
+import { LoadSelectFilesComponent } from './load/load-select-files/load-select-files.component';
+import { LoadlandingComponent } from './load/loadlanding/loadlanding.component';
+import { ErrorTableComponent } from './dashboard/error-table/error-table.component';
+import { LoadDrilldownComponent } from './dashboard/load-drilldown/load-drilldown.component';
+import { MigrationStatusGaugeComponent } from './dashboard/migration-status-gauge/migration-status-gauge.component';
 import { TransformDashboardComponent } from './dashboard/transform-dashboard/transform-dashboard.component';
 import { MainDashboardComponent } from './dashboard/main-dashboard/main-dashboard.component';
 import { TransformDrilldownComponent } from './dashboard/transform-drilldown/transform-drilldown.component';
@@ -14,6 +20,7 @@ import { ProfileComponent } from './auth/components/profile/profile.component';
 import { MappingPreviewComponent } from './mapping-preview/mapping-preview.component';
 import { TransformProgressbarComponent } from './transform-progressbar/transform-progressbar.component';
 import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
+import { LoadDashboardComponent } from './dashboard/load-dashboard/load-dashboard.component';
 
 const routes: Routes = [
   {
@@ -64,6 +71,19 @@ const routes: Routes = [
   {
     path: 'transform-dashboard',
     component: TransformDashboardComponent
+  },
+  {
+    path: 'load-landing',
+    component: LoadlandingComponent
+  },
+  {
+    path: 'load-selectFiles',
+    component: LoadSelectFilesComponent
+  },
+  {
+    path: 'load-status',
+    component: LoadStatusComponent
+    
   },
 ];
 
