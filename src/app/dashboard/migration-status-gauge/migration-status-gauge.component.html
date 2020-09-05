@@ -1,0 +1,16 @@
+<mat-card class="guage-card" style="background-color: #e8e8ec">
+
+    <!-- Migration-status-gauge chart -->
+    <div>
+        <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat"
+            [dataSource]="dataSource">
+        </fusioncharts>
+    </div>
+
+    <!-- Legends for - Migration-status-gauge chart   -->
+    <form class="legend">
+        <i class="fas fa-upload"><label>Upload</label></i>
+        <i class="fas fa-exchange-alt"><label>Transform</label></i>
+        <i class="fas fa-download"><label>Load</label></i>
+    </form>
+</mat-card>

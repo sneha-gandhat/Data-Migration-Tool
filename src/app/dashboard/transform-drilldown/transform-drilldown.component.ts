@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Input } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 @Component({
     selector: 'app-transform-drilldown',
@@ -18,26 +18,29 @@ export class TransformDrilldownComponent implements OnInit {
 
         // Configure Drilldown attributes 
         // See this : https://www.fusioncharts.com/dev/api/fusioncharts/fusioncharts-methods#configureLink
-        this.chartInstance.configureLink({
-            type: "doughnut2d",
-            overlayButton: {
-                message: 'close',
-                fontColor: '880000',
-                bgColor: 'FFEEEE',
-                borderColor: '660000'
-            }
-        }, 0)
+        this.chartInstance.configureLink([
+            {
+                type: "column3d",
+                overlayButton: {
+                    message: 'Back',
+                    fontColor: '880000',
+                    bgColor: 'FFEEEE',
+                    borderColor: '660000'
+                }
+            }, { type: 'bar3d' }
+        ]);
     }
     dataSource = {
         "chart": {
             "caption": "Transformed Objects",
-            // "subcaption": "",
-            // "xaxisname": "",
-            // "yaxisname": "",
-            // "numberprefix": "",
+            "captionFontColor": "#4b4276",
+            "captionFont": "Callibri",
+            "subcaption": "",
+            "xaxisname": "",
+            "yaxisname": "",
+            "numberprefix": "",
             "theme": "fusion",
-            paletteColors: "#0dd63f,#c73535",
-
+            "paletteColors": "#0dd63f,#c73535",
             "rotateValues": "0"
         },
         "data": [{
@@ -48,7 +51,7 @@ export class TransformDrilldownComponent implements OnInit {
         {
             "label": "Failed Objects",
             "value": "400",
-            "link": "newchart-xml-failedObjects"
+            "link": "newchart-xml-failedObjectsTypes"
         }
         ],
         "linkeddata": [{
@@ -56,11 +59,14 @@ export class TransformDrilldownComponent implements OnInit {
             "linkedchart": {
                 "chart": {
                     "caption": "Type specific Transformed Objects",
+                    "captionFontColor": "#4b4276",
+                    "captionFont": "Callibri",
                     "subcaption": "",
                     "numberprefix": "",
                     "theme": "fusion",
                     "rotateValues": "0",
-                    "plottooltext": "$label, $dataValue,  $percentValue"
+                    "plottooltext": "$label, $dataValue",
+                    "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
                 },
                 "data": [{
                     "label": "Part",
@@ -78,27 +84,67 @@ export class TransformDrilldownComponent implements OnInit {
             }
         },
         {
-            "id": "failedObjects",
+            "id": "failedObjectsTypes",
             "linkedchart": {
                 "chart": {
-                    "caption": "Error/Exceptions",
+                    "caption": "Type specific failed Transformed Objects",
                     "subcaption": "",
+                    "captionFontColor": "#4b4276",
+                    "captionFont": "Callibri",
                     "numberprefix": "",
                     "theme": "fusion",
-                    "plottooltext": "$label, $dataValue,  $percentValue"
+                    "plottooltext": "$label, $dataValue",
+                    "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
                 },
                 "data": [{
-                    "label": "Internal Server Error",
-                    "value": "102"
+                    "label": "Part",
+                    "value": "157",
+                    "link": "newchart-xml-failedObjects"
                 },
                 {
-                    "label": "Bad Record Exception",
-                    "value": "142"
+                    "label": "Procedure",
+                    "value": "172",
+                    "link": "newchart-xml-failedObjects"
                 },
                 {
-                    "label": "Null Value Exception",
-                    "value": "187"
-                }
+                    "label": "Tool",
+                    "value": "206",
+                    "link": "newchart-xml-failedObjects"
+                },
+                {
+                    "label": "Nut",
+                    "value": "275",
+                    "link": "newchart-xml-failedObjects"
+                }],
+                "linkeddata": [
+                    {
+                        "id": "failedObjects",
+                        "linkedchart": {
+                            "chart": {
+                                "caption": "Error/Exceptions",
+                                "subcaption": "",
+                                "captionFontColor": "#4b4276",
+                                "captionFont": "Callibri",
+                                "numberprefix": "",
+                                "theme": "fusion",
+                                "plottooltext": "$label, $dataValue",
+                                "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
+                            },
+                            "data": [{
+                                "label": "Internal Server Error",
+                                "value": "102"
+                            },
+                            {
+                                "label": "Bad Record Exception",
+                                "value": "142"
+                            },
+                            {
+                                "label": "Null Value Exception",
+                                "value": "187"
+                            }
+                            ]
+                        }
+                    }
                 ]
             }
         }

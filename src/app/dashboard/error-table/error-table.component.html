@@ -1,0 +1,54 @@
+<div class="parent">
+
+    <div class="mat-elevation-z8 data-table">
+        <table mat-table matSort [dataSource]="errorListDataSource">
+
+            <!-- Type Column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.type}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Revision Column -->
+            <ng-container matColumnDef="revision">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Revision</th>
+                <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.revision}} </td>
+            </ng-container>
+
+            <!-- File Name Column -->
+            <ng-container matColumnDef="fileName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>File Name</th>
+                <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.fileName}} </td>
+            </ng-container>
+
+            <!-- Error Column -->
+            <ng-container matColumnDef="error">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Error/Exception</th>
+                <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.error}} </td>
+            </ng-container>
+
+            <!-- Reprocess Failure Column -->
+            <ng-container matColumnDef="reprocessFailure">
+                <th mat-header-cell *matHeaderCellDef>Re-Process Failure</th>
+                <td mat-cell *matCellDef="let element" style="width: 13%; text-align: center;">
+
+                    <!-- Re-process Button -->
+                    <button mat-icon-button (click)="reProcess()" matTooltip="Click to Re-process the Object"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                        <mat-icon><i class="fas fa-sync-alt fa-xs"></i></mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+        </table>
+    </div>
+</div>

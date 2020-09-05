@@ -1,17 +1,50 @@
-<div class="main">
-    <div class="tabs">
-        <form class="main-tabs">
-            <button class="btn" mat-raised-button matTooltip="Click to view Upload Dashboard" matTooltipPosition="below"
-                matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Upload
-            </button>
-            <button class="btn" mat-raised-button matTooltip="Click to view Transform Dashboard"
-                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-                (click)="loadTransformDashboard()" style="margin-left: 120px;">Transform
-            </button>
-            <button class="btn" mat-raised-button matTooltip="Click to view Load Dashboard" matTooltipPosition="below"
-                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" style="margin-left: 120px;">Load
-            </button>
-        </form>
-        <hr style="border: 1px dashed brown; width: 757px; margin-left: -5px;" />
+<div class="parent">
+    <div class="main">
+
+        <!-- Load - Migration Status Guage Chart component-->
+        <div>
+            <app-migration-status-gauge></app-migration-status-gauge>
+        </div>
+
+        <div class="tabs">
+            <form class="main-tabs">
+
+                <!-- Upload Button -->
+                <button type="button" class="btn" mat-raised-button matTooltip="Click to view Upload Dashboard"
+                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                    (click)="onTabClick(0)">Upload
+                </button>
+
+                <!-- Transform Button -->
+                <button type="button" class="btn" mat-raised-button matTooltip="Click to view Transform Dashboard"
+                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                    (click)="onTabClick(1)" style="margin-left: 100px;">Transform
+                </button>
+
+                <!-- Load Button -->
+                <button type="button" class="btn" mat-raised-button matTooltip="Click to view Load Dashboard"
+                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                    (click)="onTabClick(2)" style="margin-left: 100px;">Load
+                </button>
+            </form>
+
+            <!-- Dashed Line -->
+            <hr style="border: 1px dashed brown; width: 778px; margin-left: -5px;" />
+        </div>
+    </div>
+
+    <!-- Load - Upload dashboard component -->
+    <div *ngIf="tabIndex === 0" class="child">
+        <!-- Add Upload Dashboard component here -->
+    </div>
+
+    <!-- Load - Transform dashboard component -->
+    <div *ngIf="tabIndex === 1" class="child">
+        <app-transform-dashboard></app-transform-dashboard>
+    </div>
+
+    <!-- Load - Load dashboard component -->
+    <div *ngIf="tabIndex === 2" class="child">
+        <app-load-dashboard></app-load-dashboard>
     </div>
 </div>

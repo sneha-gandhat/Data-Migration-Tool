@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -7,14 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-dashboard.component.css']
 })
 export class MainDashboardComponent implements OnInit {
+  tabIndex: number;
 
   constructor(private router: Router) { }
-
   ngOnInit(): void {
   }
 
-  // Navigate to Transform-monitor dashboard
-  loadTransformDashboard() {
-    this.router.navigate(['transform-dashboard']);
+  onTabClick(index) {
+    this.tabIndex = index;
   }
+
 }

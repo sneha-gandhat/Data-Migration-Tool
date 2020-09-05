@@ -1,35 +1,52 @@
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from './../material/material.module';
-import { TransformDrilldownComponent } from './transform-drilldown/transform-drilldown.component';
-import { NgModule } from '@angular/core';
+import { NgModule, enableProdMode } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FusionChartsModule } from "angular-fusioncharts";
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { TransformDrilldownComponent } from './transform-drilldown/transform-drilldown.component';
 import { TransformDashboardComponent } from './transform-dashboard/transform-dashboard.component';
+import { MigrationStatusGaugeComponent } from './migration-status-gauge/migration-status-gauge.component';
+import { LoadDrilldownComponent } from './load-drilldown/load-drilldown.component';
+import { ErrorTableComponent } from './error-table/error-table.component';
+import { LoadDashboardComponent } from './load-dashboard/load-dashboard.component'
 
 // Import FusionCharts library and chart modules
 import * as FusionCharts from "fusioncharts";
 import * as charts from "fusioncharts/fusioncharts.charts";
 import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 // Pass the fusioncharts library and chart modules
-FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
+FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
 
 @NgModule({
   declarations: [
     MainDashboardComponent,
     TransformDrilldownComponent,
     TransformDashboardComponent,
+    MigrationStatusGaugeComponent,
+    LoadDrilldownComponent,
+    LoadDashboardComponent,
+    ErrorTableComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     MaterialModule,
-    FusionChartsModule
+    FusionChartsModule,
+    MatTableModule,
+    MatSortModule
   ],
   exports: [
-    MainDashboardComponent, 
-    TransformDrilldownComponent, 
+    MainDashboardComponent,
+    TransformDrilldownComponent,
     TransformDashboardComponent,
+    MigrationStatusGaugeComponent,
+    LoadDrilldownComponent,
+    LoadDashboardComponent,
+    ErrorTableComponent,
   ]
 })
 export class DashboardModule { }

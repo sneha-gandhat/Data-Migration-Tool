@@ -69,10 +69,6 @@ const routes: Routes = [
     component: MainDashboardComponent
   },
   {
-    path: 'transform-dashboard',
-    component: TransformDashboardComponent
-  },
-  {
     path: 'load-landing',
     component: LoadlandingComponent
   },
@@ -83,7 +79,7 @@ const routes: Routes = [
   {
     path: 'load-status',
     component: LoadStatusComponent
-    
+
   },
 ];
 
