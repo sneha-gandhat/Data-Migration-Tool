@@ -1,3 +1,4 @@
+import { MonitorService } from './services/monitor.service';
 import { LoadModule } from './load/load.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TransformProgressbarComponent } from './transform-progressbar/transform-progressbar.component';
@@ -56,7 +57,7 @@ import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dia
     LoadModule
     
   ],
-  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService],
+  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService,MonitorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
