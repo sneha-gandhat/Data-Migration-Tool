@@ -1,3 +1,5 @@
+import { data } from 'jquery';
+import { MonitorService } from './../../services/monitor.service';
 import { ErrorDetailsService } from './../../services/error-details.service';
 import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
 
@@ -7,10 +9,15 @@ import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./transform-drilldown.component.css']
 })
 export class TransformDrilldownComponent implements OnInit {
+    successCount: number;
+    failCount: number = 20;
+    constructor(private zone: NgZone, private monitorservice: MonitorService) {
 
-    constructor(private zone: NgZone) { }
+    }
 
     ngOnInit(): void {
+        this.getTransformSuccessCount();
+
     }
 
     chartInstance: any = {};
@@ -49,12 +56,12 @@ export class TransformDrilldownComponent implements OnInit {
         },
         "data": [{
             "label": "Successed Objects",
-            "value": "1000",
+            "value": this.successCount,
             "link": "newchart-xml-transformedObjects"
         },
         {
             "label": "Failed Objects",
-            "value": "400",
+            "value": this.failCount,
             "link": "newchart-xml-failedObjectsTypes"
         }
         ],
@@ -154,4 +161,12 @@ export class TransformDrilldownComponent implements OnInit {
         }
         ]
     };
+
+    getTransformSuccessCount() {
+        this.monitorservice.getSuccessObjectCount().subscribe(data => {
+            console.log("data.." + data);
+            this.successCount = data
+        });
+        console.log("this.successCount.." + this.successCount);
+    }
 }
