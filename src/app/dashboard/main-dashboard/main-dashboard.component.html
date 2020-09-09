@@ -40,11 +40,11 @@
 
     <!-- Load - Transform dashboard component -->
     <div *ngIf="tabIndex === 1" class="child">
-        <app-transform-dashboard></app-transform-dashboard>
+        <app-transform-dashboard [errorCategory]="transformError"></app-transform-dashboard>
     </div>
 
     <!-- Load - Load dashboard component -->
     <div *ngIf="tabIndex === 2" class="child">
-        <app-load-dashboard></app-load-dashboard>
+        <app-load-dashboard [errorCategory]="loadError"></app-load-dashboard>
     </div>
 </div>

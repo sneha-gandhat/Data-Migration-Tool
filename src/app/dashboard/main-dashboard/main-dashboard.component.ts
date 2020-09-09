@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 
@@ -9,6 +9,9 @@ import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 })
 export class MainDashboardComponent implements OnInit {
   tabIndex: number;
+  errorCategory: string;
+  transformError: string = "transformError";
+  loadError: string = "loadError";
 
   constructor(private router: Router) { }
   ngOnInit(): void {
@@ -17,5 +20,4 @@ export class MainDashboardComponent implements OnInit {
   onTabClick(index) {
     this.tabIndex = index;
   }
-
 }

@@ -1,3 +1,4 @@
+import { ErrorDetailsService } from './services/error-details.service';
 import { MonitorService } from './services/monitor.service';
 import { LoadModule } from './load/load.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -57,7 +58,7 @@ import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dia
     LoadModule
     
   ],
-  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService,MonitorService],
+  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService,MonitorService,ErrorDetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

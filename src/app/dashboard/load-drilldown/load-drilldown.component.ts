@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-load-drilldown',
@@ -43,7 +43,7 @@ export class LoadDrilldownComponent implements OnInit {
       "numberprefix": "",
       "theme": "fusion",
       "plottooltext": "$label, $dataValue",
-      "paletteColors": "#21f30d,#bb2431",
+      "paletteColors": "#0dd63f,#bb2431",
 
       "rotateValues": "0"
     },

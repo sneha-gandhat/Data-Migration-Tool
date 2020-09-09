@@ -12,6 +12,7 @@ import { MigrationStatusGaugeComponent } from './migration-status-gauge/migratio
 import { LoadDrilldownComponent } from './load-drilldown/load-drilldown.component';
 import { ErrorTableComponent } from './error-table/error-table.component';
 import { LoadDashboardComponent } from './load-dashboard/load-dashboard.component'
+import { ErrorPreviewDialogbodyComponent } from './error-preview-dialogbody/error-preview-dialogbody.component';
 
 // Import FusionCharts library and chart modules
 import * as FusionCharts from "fusioncharts";
@@ -30,6 +31,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     LoadDrilldownComponent,
     LoadDashboardComponent,
     ErrorTableComponent,
+    ErrorPreviewDialogbodyComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     LoadDrilldownComponent,
     LoadDashboardComponent,
     ErrorTableComponent,
+    ErrorPreviewDialogbodyComponent,
   ]
 })
 export class DashboardModule { }

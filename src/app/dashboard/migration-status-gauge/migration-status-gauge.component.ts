@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./migration-status-gauge.component.css']
 })
 export class MigrationStatusGaugeComponent implements OnInit {
-  width = 270;
+  width = 280;
   height = 200;
   type = "angulargauge";
   dataFormat = "json";

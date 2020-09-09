@@ -1,4 +1,5 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { ErrorDetailsService } from './../../services/error-details.service';
+import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-transform-drilldown',
@@ -6,10 +7,12 @@ import { Component, OnInit, NgZone } from '@angular/core';
     styleUrls: ['./transform-drilldown.component.css']
 })
 export class TransformDrilldownComponent implements OnInit {
+
     constructor(private zone: NgZone) { }
 
     ngOnInit(): void {
     }
+
     chartInstance: any = {};
 
     // Callback to get chart instance
@@ -30,6 +33,7 @@ export class TransformDrilldownComponent implements OnInit {
             }, { type: 'bar3d' }
         ]);
     }
+
     dataSource = {
         "chart": {
             "caption": "Transformed Objects",
@@ -132,7 +136,7 @@ export class TransformDrilldownComponent implements OnInit {
                             },
                             "data": [{
                                 "label": "Internal Server Error",
-                                "value": "102"
+                                "value": "102",
                             },
                             {
                                 "label": "Bad Record Exception",
@@ -150,6 +154,4 @@ export class TransformDrilldownComponent implements OnInit {
         }
         ]
     };
-
-
 }

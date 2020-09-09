@@ -5,8 +5,8 @@
         <app-transform-drilldown></app-transform-drilldown>
     </div>
 
-    <!-- Load - error-table component -->
-    <div class="error-table">
-        <app-error-table></app-error-table>
-    </div>
+    <!-- Error Preview Button -->
+    <button class="errorBtn" mat-raised-button matTooltip="Click to view Error Preview" matTooltipPosition="below"
+        matTooltipHideDelay="100" matTooltipClass="custom-tooltip" (click)="loadErrorPreview()">Error Preview
+    </button>
 </div>

@@ -2,7 +2,7 @@
 
 .guage-card {
     margin-top: 20px;
-    width: 301px;
+    width: 310px;
     height: 250px;
     border-radius:  0px 40px 0px 40px ;
 }
@@ -34,7 +34,7 @@ mat-card:hover {
 label {
     color: rgb(77, 74, 74);
     padding-right: 20px;
-    padding-left: 5px;
+    padding-left: 6px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: 600;
     font-size: small;
@@ -43,6 +43,6 @@ label {
 /* custom styling for form  */
 
 .legend {
-    margin-left: 9px;
+    margin-left: 15px;
     margin-top: 5px;
 }
