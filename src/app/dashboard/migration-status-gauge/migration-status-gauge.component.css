@@ -18,7 +18,7 @@ mat-card:hover {
 /* custom styling for icon  */
 
 .fa-upload {
-    color: #5AA454;
+    color: #da4350;
 }
 
 .fa-exchange-alt {
@@ -26,7 +26,7 @@ mat-card:hover {
 }
 
 .fa-download {
-    color: #a8385d;
+    color: #5AA454;
 }
 
 /* custom styling for label  */

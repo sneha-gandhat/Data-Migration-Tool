@@ -1,8 +1,6 @@
-import { element } from 'protractor';
 import { MonitorService } from './../../services/monitor.service';
-import { data } from 'jquery';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Error } from './error';
 import { MatSort } from '@angular/material/sort';
 import { ErrorDetailsService } from 'src/app/services/error-details.service';
@@ -20,11 +18,6 @@ export class ErrorTableComponent implements OnInit, AfterViewInit {
   errorListDataSource: any;
   errObj = new Error("", "", "", "", "", "", "");
 
-
-  //Send Error Data Source to Parent Component (ErrorPreviewDialogbodyComponent)
-  @Output()
-  sendErrorDataSource = new EventEmitter<any>();
-
   constructor(private errordetailsService: ErrorDetailsService, private monitorservice: MonitorService) {
     //Get Error Category sent from component (TransformDashboardComponent/LoadDashboardComponent)
     this.errordetailsService.invokeEvent.subscribe(value => {
@@ -33,9 +26,6 @@ export class ErrorTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    //Emit the ErrorListDataSource to Parent Component (ErrorPreviewDialogbodyComponent)
-    this.sendErrorDataSource.emit(this.errorListDataSource);
-    
     if ("transformError" == this.errorCategory) {
       //Load All failed transform object Details
       this.getAllFailedTransformObjectDetails();
@@ -44,13 +34,19 @@ export class ErrorTableComponent implements OnInit, AfterViewInit {
       //Load All failed load object Details
       this.getAllFailedLoadObjectDetails();
     }
-
   }
 
   //Pagination & Sorting
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   ngAfterViewInit(): void {
+  }
+
+  //Search Filter
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.errorListDataSource.filter = filterValue;
   }
 
   //Render all failed transform object Details

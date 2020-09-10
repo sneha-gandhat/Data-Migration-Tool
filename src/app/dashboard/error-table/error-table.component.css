@@ -1,7 +1,26 @@
+/* custom styling for heading  */
+
+h3 {
+    color: #4b4276;
+    font-weight: 500;
+}
+
 /* custom styling for div  */
 
 .parent {
     margin-right: 75px;
+}
+
+.search-data {
+    margin-left: 25em;
+    margin-top: -10px;
+    color: #4b4276;
+}
+
+/* custom styling for form  */
+
+.header-block {
+    display: flex;
 }
 
 /* custom styling for table  */

@@ -1,4 +1,5 @@
-import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MonitorService } from 'src/app/services/monitor.service';
 
 @Component({
   selector: 'app-load-drilldown',
@@ -6,12 +7,84 @@ import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./load-drilldown.component.css']
 })
 export class LoadDrilldownComponent implements OnInit {
+  successTypeDataArray: { label: string, value: any }[] = [];
+  failedTypeDataArray: { label: string, value: any }[] = [];
+  chartInstance: any = {};
+  dataSource = {
+    "chart": {
+      "caption": "Objects loaded into Enovia",
+      "captionFontColor": "#4b4276",
+      "captionFont": "Callibri",
+      "subcaption": "",
+      "xaxisname": "",
+      "yaxisname": "",
+      "numberprefix": "",
+      "theme": "fusion",
+      "plottooltext": "$label, $dataValue",
+      "paletteColors": "#0dd63f,#c73535",
+      "rotateValues": "0"
+    },
+    "data": [{
+      "label": "Successful Objects",
+      "value": 0,
+      "link": "newchart-xml-transformedObjects"
+    },
+    {
+      "label": "Failed Objects",
+      "value": 0,
+      "link": "newchart-xml-failedObjectsTypes"
+    }
+    ],
+    "linkeddata": [{
+      "id": "transformedObjects",
+      "linkedchart": {
+        "chart": {
+          "caption": "Type specific successfully Loaded Objects",
+          "captionFontColor": "#4b4276",
+          "captionFont": "Callibri",
+          "subcaption": "",
+          "numberprefix": "",
+          "theme": "fusion",
+          "rotateValues": "0",
+          "plottooltext": "$label, $dataValue",
+          "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
 
-  constructor(private zone: NgZone) { }
+        },
+        "data": this.successTypeDataArray
+      }
+    },
+    {
+      "id": "failedObjectsTypes",
+      "linkedchart": {
+        "chart": {
+          "caption": "Type specific failed Loaded Objects",
+          "subcaption": "",
+          "captionFontColor": "#4b4276",
+          "captionFont": "Callibri",
+          "numberprefix": "",
+          "theme": "fusion",
+          "plottooltext": "$label, $dataValue",
+          "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
+        },
+        "data": this.failedTypeDataArray
+      }
+    }
+    ]
+  };
+
+  constructor(private monitorservice: MonitorService) {
+    //Render Load Successful Object Count
+    this.getSuccessfulObjectCount();
+    //Render Load Failed Object Count
+    this.getFailedObjectCount();
+    //Render Load Successed Type Count
+    this.getSuccessedTypeCount();
+    //Render Load Failed Type Count
+    this.getFailedTypeCount();
+  }
 
   ngOnInit(): void {
   }
-  chartInstance: any = {};
 
   // Callback to get chart instance
   initialized(e) {
@@ -32,127 +105,52 @@ export class LoadDrilldownComponent implements OnInit {
     ]);
   }
 
-  dataSource = {
-    "chart": {
-      "caption": "Objects loaded into Enovia",
-      "captionFontColor": "#4b4276",
-      "captionFont": "Callibri",
-      "subcaption": "",
-      "xaxisname": "",
-      "yaxisname": "",
-      "numberprefix": "",
-      "theme": "fusion",
-      "plottooltext": "$label, $dataValue",
-      "paletteColors": "#0dd63f,#bb2431",
-
-      "rotateValues": "0"
-    },
-    "data": [{
-      "label": "Successed Objects",
-      "value": "800",
-      "link": "newchart-xml-transformedObjects"
-    },
-    {
-      "label": "Failed Objects",
-      "value": "400",
-      "link": "newchart-xml-failedObjectsTypes"
-    }
-    ],
-    "linkeddata": [{
-      "id": "transformedObjects",
-      "linkedchart": {
-        "chart": {
-          "caption": "Type specific successfully Loaded Objects",
-          "captionFontColor": "#4b4276",
-          "captionFont": "Callibri",
-          "subcaption": "",
-          "numberprefix": "",
-          "theme": "fusion",
-          "rotateValues": "0",
-          "plottooltext": "$label, $dataValue",
-          "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
-
-        },
-        "data": [{
-          "label": "Part",
-          "value": "157"
-        }, {
-          "label": "Procedure",
-          "value": "172"
-        }, {
-          "label": "Tool",
-          "value": "206"
-        }, {
-          "label": "Nut",
-          "value": "275"
-        }]
+  //Get Load Successful Object Count
+  getSuccessfulObjectCount() {
+    this.monitorservice.getLoadSuccessObjectCount().subscribe(
+      data => {
+        this.dataSource.data[0].value = data;
+      }, () => {
+        alert("Problem in getting Successful Load object count!!");
       }
-    },
-    {
-      "id": "failedObjectsTypes",
-      "linkedchart": {
-        "chart": {
-          "caption": "Type specific failed Loaded Objects",
-          "subcaption": "",
-          "captionFontColor": "#4b4276",
-          "captionFont": "Callibri",
-          "numberprefix": "",
-          "theme": "fusion",
-          "plottooltext": "$label, $dataValue",
-          "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
-        },
-        "data": [{
-          "label": "Part",
-          "value": "157",
-          "link": "newchart-xml-failedObjects"
-        },
-        {
-          "label": "Procedure",
-          "value": "172",
-          "link": "newchart-xml-failedObjects"
-        },
-        {
-          "label": "Tool",
-          "value": "206",
-          "link": "newchart-xml-failedObjects"
-        },
-        {
-          "label": "Nut",
-          "value": "275",
-          "link": "newchart-xml-failedObjects"
-        }],
-        "linkeddata": [
-          {
-            "id": "failedObjects",
-            "linkedchart": {
-              "chart": {
-                "caption": "Error/Exceptions",
-                "subcaption": "",
-                "captionFontColor": "#4b4276",
-                "captionFont": "Callibri",
-                "numberprefix": "",
-                "theme": "fusion",
-                "plottooltext": "$label, $dataValue",
-                "paletteColors": "#5AA454, #FFC533,#a8385d, #7aa3e5",
-              },
-              "data": [{
-                "label": "Internal Server Error",
-                "value": "102"
-              },
-              {
-                "label": "Bad Record Exception",
-                "value": "142"
-              },
-              {
-                "label": "Null Value Exception",
-                "value": "187"
-              }
-              ]
-            }
-          }
-        ]
+    );
+  }
+
+  //Get Load Failed Object Count
+  getFailedObjectCount() {
+    this.monitorservice.getLoadFailedObjectCount().subscribe(
+      data => {
+        this.dataSource.data[1].value = data;
+      }, () => {
+        alert("Problem in getting Failed Load object count!!");
       }
-    }
-    ]
-  };
+    );
+  }
+
+  //Get Load Successed Type Count
+  getSuccessedTypeCount() {
+    this.monitorservice.getLoadSuccessTypeCount().subscribe(
+      data => {
+        Array.from(Object.entries(data)).forEach(entry => {
+          this.successTypeDataArray.push({ label: entry[0], value: entry[1] });
+        });
+      }, () => {
+        alert("Problem in getting Load Successed Type count!!");
+      }
+    );
+  }
+
+  //Get Load Failed Type Count
+  getFailedTypeCount() {
+    this.monitorservice.getLoadFailedTypeCount().subscribe(
+      data => {
+        Array.from(Object.entries(data)).forEach(entry => {
+          this.failedTypeDataArray.push({ label: entry[0], value: entry[1] });
+        });
+      }, () => {
+        alert("Problem in getting Load Failed Type count!!");
+      }
+    );
+  }
+
 }

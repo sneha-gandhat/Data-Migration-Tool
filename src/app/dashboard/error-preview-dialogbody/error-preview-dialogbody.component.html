@@ -1,21 +1,8 @@
 <div class="parent">
-    <form class="header-block">
-        <h3>Error Preview</h3>
-
-        <!-- Search Filter -->
-        <div class="search-data">
-            <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)">
-                <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true" matTooltip="Search for Error"
-                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
-                </mat-icon>
-            </mat-form-field>
-        </div>
-    </form>
 
     <!-- Load - error-table component -->
     <div class="error-table">
-        <app-error-table (sendErrorDataSource)="setErrorDataSource($event)"></app-error-table>
+        <app-error-table></app-error-table>
     </div>
 
     <!-- Close button -->

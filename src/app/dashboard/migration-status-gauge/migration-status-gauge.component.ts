@@ -32,7 +32,7 @@ export class MigrationStatusGaugeComponent implements OnInit {
         {
           minvalue: "0",
           maxvalue: "33.333",
-          code: "#5AA454",
+          code: "#da4350",
 
         },
         {
@@ -43,7 +43,7 @@ export class MigrationStatusGaugeComponent implements OnInit {
         {
           minvalue: "66.666",
           maxvalue: "100",
-          code: "#a8385d"
+          code: "#5AA454"
         }
       ]
     },
