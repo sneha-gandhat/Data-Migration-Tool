@@ -1,0 +1,27 @@
+/* custom styling for div  */
+
+.main {
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.upload-drill {
+    margin-left: 20px;
+}
+
+/* custom styling for button  */
+
+.errorBtn {
+    background-color: #b66911;
+    color: white;
+    width: 190px;
+    margin-top: 18px;
+    margin-left: 23em;
+}
+
+.errorBtn:focus {
+    background-color: #a03b43;
+    color: white;
+    font-weight: 700;
+    box-shadow: crimson;
+}

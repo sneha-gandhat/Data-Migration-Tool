@@ -19,6 +19,8 @@ import * as FusionCharts from "fusioncharts";
 import * as charts from "fusioncharts/fusioncharts.charts";
 import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
+import { UploadDashboardComponent } from './upload-dashboard/upload-dashboard.component';
+import { UploadDrilldownComponent } from './upload-drilldown/upload-drilldown.component';
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
 
@@ -32,6 +34,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     LoadDashboardComponent,
     ErrorTableComponent,
     ErrorPreviewDialogbodyComponent,
+	 UploadDashboardComponent,
+    UploadDrilldownComponent,						 
   ],
   imports: [
     CommonModule,
@@ -49,7 +53,9 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     LoadDrilldownComponent,
     LoadDashboardComponent,
     ErrorTableComponent,
-    ErrorPreviewDialogbodyComponent,
+    ErrorPreviewDialogbodyComponent,							 
+    UploadDashboardComponent,
+    UploadDrilldownComponent,						 
   ]
 })
 export class DashboardModule { }

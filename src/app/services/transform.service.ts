@@ -32,30 +32,29 @@ export class TransformService {
 
 //get all unique tag to sisplay on sagerigation window
  public getAllUniqueTagList() :Observable<any>{
-    return this.httpclient.get("http://localhost:8080/xmlTags");
+    return this.httpclient.get("http://localhost:8081/xmlTags");
   }
 
 //Read  the xml and write tag,file and type name in DB
  public writeXMLToDB(file:String){    
-         return this.httpclient.post("http://localhost:8080/uploadMapping?file="+file,file);
+         return this.httpclient.post("http://localhost:8081/uploadMapping?file="+file,file);
   }  
 
 //get type name from sagerigation window and update on DB
   public updateType(typeName1:string,tagList1:String[]){
-    this.httpclient.post("http://localhost:8080/updateType?typeName="+typeName1+"&tagList="+tagList1,typeName1).subscribe(response => {
+    this.httpclient.post("http://localhost:8081/updateType?typeName="+typeName1+"&tagList="+tagList1,typeName1).subscribe(response => {
       console.log (response);
     }, err => {
       console.log(err.message);
     }, () => {
       console.log('completed');
     }
-     );
- 
+     ); 
   }
 
 // read tag name based on admin type select on data mapping window
  public getSourceValue(adminType:string) :Observable<any>{
-    return this.httpclient.get("http://localhost:8080/sourceValue?adminType="+adminType);
+    return this.httpclient.get("http://localhost:8081/sourceValue?adminType="+adminType);
 								  
   }
 

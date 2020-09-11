@@ -1,0 +1,9 @@
+<mat-card class="drill-down-card" style="background-color: #e8e8ec">
+
+    <!-- Transform-drilldown chart -->
+    <div class="drillDownChart">
+        <fusioncharts type="doughnut2d" width="752" height="357" dataFormat="json" [dataSource]="dataSource"
+            (initialized)="initialized($event)">
+        </fusioncharts>
+    </div>
+</mat-card>

@@ -35,7 +35,7 @@
 
     <!-- Load - Upload dashboard component -->
     <div *ngIf="tabIndex === 0" class="child">
-        <!-- Add Upload Dashboard component here -->
+       <app-upload-dashboard [errorCategory]="uploadError"></app-upload-dashboard>
     </div>
 
     <!-- Load - Transform dashboard component -->

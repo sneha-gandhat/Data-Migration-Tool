@@ -65,4 +65,25 @@ export class MonitorService {
   public getLoadFailedTypeCount(): Observable<any> {
     return this.httpclient.get<any>(this.monitorURI + "load/getcountOfSuccessedType/failed");
   }
+  
+   
+  //to get the number of Parsed File
+public getParsedFileNumber():any{
+ return this.httpclient.get("http://localhost:8081/totalParsedFile");
+  }
+
+  //to get the number of Unparsed File
+  public getUnParsedFileNumber():any{
+    return this.httpclient.get("http://localhost:8081/totalUnparsedFile");
+     }
+   
+     //number of object in parsed file
+     public getNumOfObjinParsed():any{
+      return this.httpclient.get("http://localhost:8081/noOfObjectInparsedFile");
+       }
+ //number of object in Unparsed file
+ public getNumOfObjinUnParsed():any{
+  return this.httpclient.get("http://localhost:8081/noOfObjectInunparsedFile");
+   }
+  
 }
