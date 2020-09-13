@@ -28,7 +28,7 @@ export class DatamappingComponent implements OnInit {
   // Temporary list of values passed
   adminTypeList = ['Type', 'Attribute', 'Policy', 'Relationship'];
   srcValueList = [];
-  dstValueList = ['Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Quality Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action', 'Part', 'Procedure', 'Design Document', 'Tools', 'Nut', 'Screw', 'Quality Procedure', 'Change Order', 'Change Request', 'Change Action'];
+  dstValueList = [];
 
   constructor(private selectvalueService: SelectValueService, private transformservice: TransformService, private mappingIdService: GetMappingIdService, private dialog: MatDialog) {
     //Get Mapping
@@ -47,6 +47,7 @@ ngAfterViewInit() {
     this.matSelect.valueChange.subscribe(value => {
       this.selectedAdminValue=value;
       this.getSourceValues();
+      this.getTagetValues();
 															   
     });
 
@@ -117,6 +118,18 @@ ngAfterViewInit() {
         alert("Problem in getting Source Value data!!");
       }
     );
-  }					 
+  }	
+  
+  getTagetValues() {    
+    this.transformservice.getTargetValue(this.selectedAdminValue).subscribe(
+      data => {
+        console.log(this.selectedAdminValue);
+        this.dstValueList = data;
+      },
+      err => {
+        alert("Problem in getting Target Value data!!");
+      }
+    );
+  }
 
 }

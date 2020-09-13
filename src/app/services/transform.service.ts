@@ -57,6 +57,11 @@ export class TransformService {
     return this.httpclient.get("http://localhost:8081/sourceValue?adminType="+adminType);
 								  
   }
+  public getTargetValue(adminType:string) :Observable<any>{
+    return this.httpclient.get("http://localhost:8082/mappings/getEnoviaType/"+adminType);
+								  
+  }
+  
 
   //adding file mapping to database
   public uploadFileToServer(file: any): Observable<HttpEvent<any>> {
@@ -76,4 +81,5 @@ export class TransformService {
   public addMappingRule(mapping: Mapping){
     return this.httpclient.post("http://localhost:8082/mappings",mapping);
   }
+
 }
