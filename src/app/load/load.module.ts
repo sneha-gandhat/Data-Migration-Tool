@@ -4,11 +4,14 @@ import { CommonModule } from '@angular/common';
 import { LoadlandingComponent } from './loadlanding/loadlanding.component';
 import { LoadSelectFilesComponent } from './load-select-files/load-select-files.component';
 import { LoadStatusComponent } from './load-status/load-status.component';
+//import { DivloadStatusComponent } from './divload-status/divload-status.component';
 
 @NgModule({
   declarations: [LoadlandingComponent,
     LoadSelectFilesComponent,
-    LoadStatusComponent],
+    LoadStatusComponent,
+    //DivloadStatusComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule

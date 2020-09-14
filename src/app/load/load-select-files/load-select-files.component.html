@@ -18,15 +18,31 @@
     </div>
    <div class="mat-elevation-z8 data-table">
       <table mat-table matSort [dataSource]="PartialLoadFileListDataSource">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox  (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)" >
+                    <!-- (change)='onChange(row.filename)' -->
+                </mat-checkbox>
+    </td>
+  </ng-container>
   
           <!-- Admin Type Column -->
-          <ng-container matColumnDef="FileName">
+          <!-- <mat-checkbox color='primary'></mat-checkbox> -->
+          <ng-container matColumnDef="fileName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>FileName</th>
-              <td mat-cell *matCellDef="let element" style="width: 30%;"><mat-checkbox color='primary'>{{element.fileName}}</mat-checkbox></td>
+              <td mat-cell *matCellDef="let element" style="width: 30%;">{{element.fileName}}</td>
           </ng-container>
   
           <!-- Source Value Column -->
-          <ng-container matColumnDef="FileType">
+          <ng-container matColumnDef="fileType">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>File Type </th>
               <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.fileType}} </td>
           </ng-container>
@@ -42,7 +58,9 @@
   <br>
   <br>
 
-  <button class="loadbtn" mat-raised-button matTooltip="Click to Load Selected Files"
+  
+  <button class="loadbtn" mat-raised-button (click)="triggerLoad()"
+            matTooltip="Click to Load Selected Files"
             matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
             >Load</button>
   
@@ -63,10 +81,17 @@
         </button>
   
         <label style="margin-left: 10px;"> Back</label>
-        <label style="margin-left: 53vw;"> Check Status</label>
+        <!-- <label style="margin-left: 53vw;"> Check Status</label> -->
   
         <!-- Proceed for Transformation Arrow button -->
-        <button mat-icon-button (click)="loadStatus()" matTooltip="Click to Check Load Status" matTooltipPosition="below"
+        <!-- <button mat-icon-button (click)="loadStatus()" matTooltip="Click to Check Load Status" matTooltipPosition="below"
+            matTooltipHideDelay="100" matTooltipClass="custom-tooltip" [disabled]="isDisabled">
+            <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+        </button> -->
+        <label style="margin-left: 53vw;"> Go To Dashboard</label>
+  
+        <!-- Proceed for Transformation Arrow button -->
+        <button mat-icon-button (click)="moveToDashboard()" matTooltip="See Dashboard" matTooltipPosition="below"
             matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
             <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
         </button>

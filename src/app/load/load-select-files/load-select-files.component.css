@@ -93,3 +93,8 @@ table tr:nth-child(even) {
     font-weight: 600;
      margin-top: 12px; 
   }  
+
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #4b4276;
+  }
+ 
