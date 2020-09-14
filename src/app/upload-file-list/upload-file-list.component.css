@@ -2,7 +2,6 @@
 
 h2 {
   color: #4b4276;
-  margin-top: 10px;
 }
 
 /* custom styling for div  */
@@ -19,9 +18,8 @@ table {
 }
 
 .data-table {
-  margin-top: 40px;
-  max-height: 25em;
-  /* width: 90.5vw; */
+  max-height: 26.8em;
+  width: 52em;
   overflow: auto;
 }
 
@@ -59,7 +57,7 @@ table tr:nth-child(even) {
   font-size: 13px;
   font-weight: 500;
   margin-top: 15px;
-  margin-right: 300px;
+  margin-right: 100px;
 }
 
 /* custom styling for specific icons  */

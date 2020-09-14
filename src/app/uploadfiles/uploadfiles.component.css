@@ -1,9 +1,16 @@
+h2 {
+  text-align: center;
+  margin-top: 10px;
+  color: #4b4276;
+}
+
 #drop_zone {
   border: 3px #46b6d8 dotted;
   height: 140px;
+  border-radius: 20px 20px 20px 20px;
 }
 
-button {
+.btn {
   background-color: #4b4276;
   color: white;
   height: 35px;
@@ -17,7 +24,7 @@ button {
 }
 
 .filelists {
-  max-height: 7em;
+  max-height: 5em;
   margin: auto;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -26,6 +33,17 @@ button {
 .file-list {
   display: grid;
   grid-template-columns: 1fr 2fr 0.5fr;
+}
+
+.footerbtn-block {
+  position: absolute;
+  bottom: 0px;
+}
+
+label {
+  color: #4b4276;
+  font-weight: 500;
+  margin-top: 15px;
 }
 
 p {
@@ -55,4 +73,8 @@ p {
 .fa-arrow-right {
   color: #4b4276;
   transform: translate(+950%, -50%);
+}
+
+.fa-arrow-alt-circle-right {
+  color: brown;
 }

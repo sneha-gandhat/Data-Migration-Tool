@@ -1,13 +1,9 @@
-import { from } from 'rxjs';
 import { File } from './file';
-import { Component, OnInit, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FileUploadService } from '../services/file-upload.service';
-import { DatePipe } from '@angular/common';
-import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import * as fileSaver from 'file-saver';
 
 
@@ -49,7 +45,7 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
           console.log(data);
           this.getAllFileDetails();
         },
-        err => { }
+        () => { }
       );
     } else {
       console.log("EVENT CANCELLED!!");
@@ -61,9 +57,8 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
   downloadFile(item: any) {
     this.fileService.downloadFile(item.fileDownloadUri).subscribe(response => {
       let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
-      const url = window.URL.createObjectURL(blob);
       fileSaver.saveAs(blob, item.fileName);
-    }), error => console.log('Error downloading the file'),
+    }), () => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }
 
@@ -77,7 +72,7 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
         this.filelistdataSource.paginator = this.paginator;
         this.filelistdataSource.sort = this.sort;
       },
-      err => {
+      () => {
         alert("Problem in getting file data!!");
       }
     );

@@ -1,5 +1,5 @@
 <div>
-  <h1 style="text-align: center">Drag or Browse your file's to upload</h1>
+  <h2>Drag or Browse your file's to upload</h2>
   <mat-card class="main">
 
     <div matTooltip="Drag you file and drop it here to upload" matTooltipPosition="below" matTooltipHideDelay="100"
@@ -14,13 +14,14 @@
     <div class="choose">
       <p>or</p>
       <div class="center">
-        <button matTooltip="Select files to upload" matTooltipPosition="below" matTooltipHideDelay="100"
+        <button class="btn" matTooltip="Select files to upload" matTooltipPosition="below" matTooltipHideDelay="100"
           matTooltipClass="custom-tooltip" style='margin-right:16px ;margin-top: 1em' #buttonElem mat-raised-button
           (blur)="onBlur()" multiple (click)="openDialog()">Choose a file</button>
         <input #inputFile type="file" hidden multiple (click)="loading = true" accept=".json,.xml"
           (change)="onChange($event)">
 
-        <button #buttonElem mat-raised-button hidden (blur)="onBlur()" multiple (click)="openDialog1()">Choose a
+        <button class="btn" #buttonElem mat-raised-button hidden (blur)="onBlur()" multiple
+          (click)="openDialog1()">Choose a
           Folder</button>
         <input #folderInput type="file" hidden (change)="filesPicked(folderInput.files)" webkitDirectory>
       </div>
@@ -40,18 +41,29 @@
 
     </div>
     <br>
-    <button matTooltip="Upload all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
+    <button class="btn" matTooltip="Upload all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
       matTooltipClass="custom-tooltip" mat-raised-button style='margin-right:16px'
       (click)="uploadFiles()">Upload</button>
 
-    <button matTooltip="Remove all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
-      matTooltipClass="custom-tooltip" mat-raised-button style='margin-right:400px'
-      (click)="resetFiles()">Reset</button>
+    <button class="btn" matTooltip="Remove all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
+      matTooltipClass="custom-tooltip" mat-raised-button style='margin-right:400px' (click)="resetFiles()"
+      style="background-color: rgb(196, 149, 21);">Reset</button>
 
-    <button matTooltip="Upload all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
-      matTooltipClass="custom-tooltip" mat-raised-button (click)="loadTransform()">Uploaded File's List</button>
+    <button class="btn" matTooltip="Upload all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
+      matTooltipClass="custom-tooltip" mat-raised-button (click)="loadUploadFileListPreview()"
+      style="margin-left: 33.8em;">Uploaded File's List</button>
 
     <router-outlet> </router-outlet>
     <i class="fas fa-arrow-right fa-3x" hidden></i>
   </mat-card>
+</div>
+<!-- Footer buttons -->
+<div class="footerbtn-block">
+  <label style="margin-left: 68vw;"> Proceed to Transform</label>
+
+  <!-- Proceed for Transformation Arrow button -->
+  <button mat-icon-button (click)="loadTransform()" matTooltip="Click to Proceed for Transformation"
+    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+    <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+  </button>
 </div>

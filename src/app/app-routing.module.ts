@@ -20,11 +20,11 @@ const routes: Routes = [
     component: UploadfilesComponent
   },
   {
-    path: 'gotoUploadFileList',
-    component: UploadFileListComponent
+    path: 'transform',
+    component: SegregatorComponent
   },
   {
-    path: 'transform',
+    path: 'gotoTransformation',
     component: SegregatorComponent
   },
   {

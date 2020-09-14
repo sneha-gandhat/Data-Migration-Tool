@@ -4,12 +4,15 @@ import { HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpResponse } fro
 import { summaryFileName } from '@angular/compiler/src/aot/util';
 import { UploadFileListComponent } from '../upload-file-list/upload-file-list.component'
 import { FileUploadService } from '../services/file-upload.service';
-import {TransformService} from '../services/transform.service';															   
+import { TransformService } from '../services/transform.service';
+import { UploadFilelistPreviewDialogbodyComponent } from '../upload-filelist-preview-dialogbody/upload-filelist-preview-dialogbody.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-uploadfiles',
   templateUrl: './uploadfiles.component.html',
   styleUrls: ['./uploadfiles.component.css'],
+  entryComponents: [UploadFilelistPreviewDialogbodyComponent],//to open the Uploaded File List Preview component in Dialog
 })
 export class UploadfilesComponent implements OnInit {
   progress = 0;
@@ -26,13 +29,11 @@ export class UploadfilesComponent implements OnInit {
   uploadPaths = [];
 
   constructor(private http: HttpClient, private router: Router, private fileService: FileUploadService
-   ,private transformservice:TransformService ) { }
+    , private transformservice: TransformService, private dialog: MatDialog,) { }
 
   goToLink(url: string) {
     window.open(url, "_blank");
   }
-
-
 
   dropHandler(ev) {
     // Prevent default behavior(file from being opened)
@@ -66,9 +67,15 @@ export class UploadfilesComponent implements OnInit {
     }
   }
 
-  loadTransform() {
-    this.router.navigate(['gotoUploadFileList']);
+
+  //Open Dialog to view Uploaded File List Preview
+  loadUploadFileListPreview() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    this.dialog.open(UploadFilelistPreviewDialogbodyComponent, dialogConfig);
   }
+
   resetFiles() {
     this.selectedFiles.splice(0, this.selectedFiles.length);
 
@@ -128,17 +135,17 @@ export class UploadfilesComponent implements OnInit {
           if (event.type === HttpEventType.UploadProgress) {
             element.uploadedPercent = Math.round(100 * event.loaded / event.total);
             element.uploadCompleted = true;
-			if(element.uploadCompleted){
-              console.log("for writeXMLToDB"+element.selectedFile.name);
-        this.transformservice.writeXMLToDB(element.selectedFile.name).subscribe(response => {
-          console.log (response);
-        }, err => {
-          console.log(err.message);
-        }, () => {
-          console.log('completed');
-        }
-         );
-            }												 
+            if (element.uploadCompleted) {
+              console.log("for writeXMLToDB" + element.selectedFile.name);
+              this.transformservice.writeXMLToDB(element.selectedFile.name).subscribe(response => {
+                console.log(response);
+              }, err => {
+                console.log(err.message);
+              }, () => {
+                console.log('completed');
+              }
+              );
+            }
           } else if (event instanceof HttpResponse) {
             this.message = event.body.message;
             // console.log("Message : "+this.message);
@@ -267,5 +274,10 @@ export class UploadfilesComponent implements OnInit {
       this.selectedFiles.push(obj);
     });
 
+  }
+
+  //Navigate to Transformation - Segregator Component
+  loadTransform() {
+    this.router.navigate(['gotoTransformation']);
   }
 }
