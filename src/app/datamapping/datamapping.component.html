@@ -23,7 +23,7 @@
                 <!-- Source value chooser -->
                 <div class="src-dst-value-list">
                     <mat-form-field style="width: 180px;">
-                        <input matInput type="text" [(ngModel)]="selectedSourceValue" name="selectedSourceValue"
+                        <input [readonly]="true" matInput type="text" [(ngModel)]="selectedSourceValue" name="selectedSourceValue"
                             value="{{selectedSourceValue}}" style="color: brown;">
                         <button matSuffix mat-icon-button matTooltip="Click to choose Source value"
                             matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
@@ -36,7 +36,7 @@
                 <!-- Target value chooser -->
                 <div class="src-dst-value-list">
                     <mat-form-field style="width: 180px;">
-                        <input matInput type="text" [(ngModel)]="selectedTargetValue" name="selectedTargetValue"
+                        <input [readonly]="true" matInput type="text" [(ngModel)]="selectedTargetValue" name="selectedTargetValue"
                             value="{{selectedTargetValue}}" style="color: brown;">
                         <button matSuffix mat-icon-button matTooltip="Click to choose Target value"
                             matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
