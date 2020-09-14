@@ -15,6 +15,7 @@
     max-width: 51.5em;
     margin-left: 315px;
     margin-top:-200px;
+    position: absolute;
 }
 
 /* custom styling for button  */

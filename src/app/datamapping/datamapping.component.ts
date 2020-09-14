@@ -123,7 +123,6 @@ ngAfterViewInit() {
   getTagetValues() {    
     this.transformservice.getTargetValue(this.selectedAdminValue).subscribe(
       data => {
-        console.log(this.selectedAdminValue);
         this.dstValueList = data;
       },
       err => {

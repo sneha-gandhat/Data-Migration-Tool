@@ -2,37 +2,40 @@
   border: 3px #46b6d8 dotted;
   height: 140px;
 }
+
 button {
   background-color: #4b4276;
   color: white;
   height: 35px;
   margin-top: 8px;
-}						
-
-.main{  
-  width: 60vw; 
-  margin: auto;
- background-color: rgb(243, 239, 233);
-
 }
 
-.filelists{
-  max-height: 7em; 
-  margin: auto;  
+.main {
+  width: 60vw;
+  margin: auto;
+  background-color: #faf6f6;
+}
+
+.filelists {
+  max-height: 7em;
+  margin: auto;
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
 .file-list {
   display: grid;
-  grid-template-columns: 1fr 2fr 0.5fr;   
+  grid-template-columns: 1fr 2fr 0.5fr;
 }
 
 p {
-  text-align: center; 
+  text-align: center;
 }
+
 .fa-trash-alt {
   color: red;
 }
+
 #choose {
   background-color: #4CAF50;
   /* Green */
@@ -44,12 +47,12 @@ p {
   display: inline-block;
   font-size: 16px;
 }
+
 .center {
   transform: translate(+43%, -50%);
 }
 
-.fa-arrow-right{
+.fa-arrow-right {
   color: #4b4276;
   transform: translate(+950%, -50%);
-
 }

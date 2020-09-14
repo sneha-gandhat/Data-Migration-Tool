@@ -107,7 +107,7 @@ dataSource = {
         data => {
             this.dataSource.data[0].value = data;
         }, () => {
-            alert("Problem in getting Failed Transformed object count!!");
+            alert("Problem in getting Successfully parsed file's count!!");
         }
     );
 }
@@ -116,7 +116,7 @@ getUnarsedFileNumbers() {
         data => {
             this.dataSource.data[1].value = data;
         }, () => {
-            alert("Problem in getting Failed Transformed object count!!");
+            alert("Problem in getting Failed parsed files's count!!");
         }
     );
 }
@@ -130,7 +130,7 @@ getNumberOfObjectInParsedFile(){
                 this.noOfObjectInParsedFile.push({ label: entry[0], value: entry[1] });
             });
         }, () => {
-            alert("Problem in getting Transform Successed Type count!!");
+            alert("Problem in getting number of object from successfully parsed file's!!");
         }
     );
 }
@@ -143,7 +143,7 @@ getNumberOfObjectInUnParsedFile(){
                 this.noOfObjectInUnParsedFile.push({ label: entry[0], value: entry[1] });
             });
         }, () => {
-            alert("Problem in getting Transform Successed Type count!!");
+            alert("Problem in getting number of object from failed parsed file's!!");
         }
     );
 }
