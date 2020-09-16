@@ -11,6 +11,7 @@ h2 {
     width: 65vw;
     margin-left: 9em;
     height: 120px;
+    border-radius: 30px 30px 30px 30px;
 }
 
 .footer-block {

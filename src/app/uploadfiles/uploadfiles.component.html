@@ -4,7 +4,7 @@
 
     <div matTooltip="Drag you file and drop it here to upload" matTooltipPosition="below" matTooltipHideDelay="100"
       matTooltipClass="custom-tooltip" id="drop_zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
-      <p>Drag and Drop File here...</p>
+      <p style="color: gray;">Drag and Drop File's here...</p>
       <i class="fas fa-upload fa-5x" style="color: #4b4276; 
       display: flex;
       align-items: center;
@@ -27,7 +27,7 @@
       </div>
     </div>
     <mat-card-header>
-      <mat-card-title>File Upload</mat-card-title>
+      <mat-card-title style="color: #4b4276;">File Upload</mat-card-title>
       <br>
     </mat-card-header>
     <div class="filelists">
@@ -51,7 +51,7 @@
 
     <button class="btn" matTooltip="Upload all the selected files" matTooltipPosition="below" matTooltipHideDelay="100"
       matTooltipClass="custom-tooltip" mat-raised-button (click)="loadUploadFileListPreview()"
-      style="margin-left: 33.8em;">Uploaded File's List</button>
+      style="margin-left: 32em;">Uploaded File's Preview</button>
 
     <router-outlet> </router-outlet>
     <i class="fas fa-arrow-right fa-3x" hidden></i>

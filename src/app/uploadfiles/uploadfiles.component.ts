@@ -1,8 +1,6 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpResponse } from "@angular/common/http";
-import { summaryFileName } from '@angular/compiler/src/aot/util';
-import { UploadFileListComponent } from '../upload-file-list/upload-file-list.component'
 import { FileUploadService } from '../services/file-upload.service';
 import { TransformService } from '../services/transform.service';
 import { UploadFilelistPreviewDialogbodyComponent } from '../upload-filelist-preview-dialogbody/upload-filelist-preview-dialogbody.component';
@@ -278,6 +276,10 @@ export class UploadfilesComponent implements OnInit {
 
   //Navigate to Transformation - Segregator Component
   loadTransform() {
-    this.router.navigate(['gotoTransformation']);
+    if (confirm("Are you sure, you are done with file upload and want to proceed for transformation?")) {
+      //Set session value for upload
+      sessionStorage.setItem("upload", "true");
+      this.router.navigate(['gotoTransformation']);
+    }
   }
 }

@@ -10,10 +10,6 @@ export class MigrationStatusGaugeComponent implements OnInit {
   height = 200;
   type = "angulargauge";
   dataFormat = "json";
-  constructor() { }
-
-  ngOnInit(): void {
-  }
   dataSource = {
     chart: {
       caption: "Migration Status",
@@ -50,9 +46,35 @@ export class MigrationStatusGaugeComponent implements OnInit {
     dials: {
       dial: [
         {
-          value: "67"
+          value: "0"
         }
       ]
     }
   };
+
+  constructor() {
+    //Load Migration Status
+    this.setMigrationStatus();
+  }
+
+  ngOnInit(): void {
+  }
+
+  //Set Migration Status value
+  setMigrationStatus() {
+    //Get session value for upload/transform/load
+    let isUpload = sessionStorage.getItem("upload");
+    let isTransform = sessionStorage.getItem("transform");
+    let isLoad = sessionStorage.getItem("load");
+
+    if (isUpload) {
+      this.dataSource.dials.dial[0].value = this.dataSource.colorrange.color[0].maxvalue;
+    }
+    if (isTransform) {
+      this.dataSource.dials.dial[0].value = this.dataSource.colorrange.color[1].maxvalue;
+    }
+    if (isLoad) {
+      this.dataSource.dials.dial[0].value = this.dataSource.colorrange.color[2].maxvalue;
+    }
+  }
 }

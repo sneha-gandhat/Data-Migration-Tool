@@ -5,7 +5,7 @@ h2 {
 }
 
 #drop_zone {
-  border: 3px #46b6d8 dotted;
+  border: 3px brown dotted;
   height: 140px;
   border-radius: 20px 20px 20px 20px;
 }
