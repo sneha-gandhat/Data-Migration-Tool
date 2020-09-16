@@ -1,3 +1,4 @@
+import { UploadFilelistPreviewDialogbodyComponent } from './upload-filelist-preview-dialogbody/upload-filelist-preview-dialogbody.component';
 import { ErrorDetailsService } from './services/error-details.service';
 import { MonitorService } from './services/monitor.service';
 import { LoadModule } from './load/load.module';
@@ -42,6 +43,7 @@ import { LoadService } from './services/load.service';
     SegregatorComponent,
     TransformProgressbarComponent,
     SortListPipe,
+    UploadFilelistPreviewDialogbodyComponent
 
   ],
   imports: [
@@ -57,9 +59,17 @@ import { LoadService } from './services/load.service';
     MatTooltipModule,
     DashboardModule,
     LoadModule
-    
+
   ],
-  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService,MonitorService,ErrorDetailsService,LoadService],
+  providers: [
+    FileUploadService,
+    SelectValueService,
+    TransformService,
+    GetMappingIdService,
+    MonitorService,
+    ErrorDetailsService,
+    LoadService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
