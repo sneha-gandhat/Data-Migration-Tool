@@ -27,7 +27,7 @@ import { DatamappingWithFileComponent } from './datamapping-with-file/datamappin
 import { MappingPreviewComponent } from './mapping-preview/mapping-preview.component';
 import { ModifymappingDialogbodyComponent } from './modifymapping-dialogbody/modifymapping-dialogbody.component';
 import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dialogbody/targetvalue-chooser-dialogbody.component';
-import { UploadFilelistPreviewDialogbodyComponent } from './upload-filelist-preview-dialogbody/upload-filelist-preview-dialogbody.component';
+import { LoadService } from './services/load.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { UploadFilelistPreviewDialogbodyComponent } from './upload-filelist-prev
     SegregatorComponent,
     TransformProgressbarComponent,
     SortListPipe,
-    UploadFilelistPreviewDialogbodyComponent,
 
   ],
   imports: [
@@ -60,7 +59,7 @@ import { UploadFilelistPreviewDialogbodyComponent } from './upload-filelist-prev
     LoadModule
     
   ],
-  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService,MonitorService,ErrorDetailsService],
+  providers: [FileUploadService,SelectValueService,TransformService,GetMappingIdService,MonitorService,ErrorDetailsService,LoadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

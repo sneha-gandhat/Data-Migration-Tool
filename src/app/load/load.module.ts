@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LoadlandingComponent } from './loadlanding/loadlanding.component';
 import { LoadSelectFilesComponent } from './load-select-files/load-select-files.component';
 import { LoadStatusComponent } from './load-status/load-status.component';
+import { FormsModule } from '@angular/forms';
 //import { DivloadStatusComponent } from './divload-status/divload-status.component';
 
 @NgModule({
@@ -14,7 +15,9 @@ import { LoadStatusComponent } from './load-status/load-status.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
+
   ],  
   exports: [LoadlandingComponent,
     LoadSelectFilesComponent]
