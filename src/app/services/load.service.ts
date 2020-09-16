@@ -16,5 +16,8 @@ export class LoadService {
     let params = {"fileName":selectedFiles};
     return this.httpclient.post<TransformationResponse>("http://localhost:8091/load","",{params:params})
   }
-
+  public checkEnoiaConn():any{
+    return this.httpclient.get("http://localhost:8091/checkEnoviaConn/");
+    
+  }
 }

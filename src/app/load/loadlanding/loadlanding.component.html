@@ -9,7 +9,7 @@
     <div class="form-group row">
         <label for="Enoviaurl" class="col-sm-3 col-form-label">ENOVIA URL</label>
         <div class="col-sm-9 ">
-          <input type="text" disabled class="urlfield" id="EnoviaURL" value="http://10.55.55.4:8070/internal/">
+          <input name ="serviceURL" type="text"  class="urlfield" id="EnoviaURL" [(ngModel)]="serviceURL">
         </div>
     </div>
     </div>
@@ -17,7 +17,7 @@
     <br>
     <button class="verifybtn" mat-raised-button matTooltip="Click to Verify Connection"
             matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-            >Verify</button>
+            (click)="verifyEnoviaCon()">Verify</button>
 </form>
 <!-- Footer buttons -->
 <div class="footerbtn-block">
