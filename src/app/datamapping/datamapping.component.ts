@@ -26,7 +26,7 @@ export class DatamappingComponent implements OnInit {
   @ViewChild('matSelect') matSelect: MatSelect;
 
   // Temporary list of values passed
-  adminTypeList = ['Type', 'Attribute', 'Policy', 'Relationship'];
+  adminTypeList = ['Type', 'Name', 'Revision', 'Owner', 'Attribute', 'Policy', 'Relationship'];
   srcValueList = [];
   dstValueList = [];
 
