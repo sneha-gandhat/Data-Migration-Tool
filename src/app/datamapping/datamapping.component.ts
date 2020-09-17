@@ -5,7 +5,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SelectValueService } from '../services/select-value.service';
 import { TransformService } from '../services/transform.service';
 import { ViewChild, AfterViewInit } from '@angular/core';
-import {MatSelectModule, MatSelect} from '@angular/material/select';																									  
+import { MatSelectModule, MatSelect } from '@angular/material/select';
 import { GetMappingIdService } from '../services/get-mapping-id.service';
 
 @Component({
@@ -15,15 +15,15 @@ import { GetMappingIdService } from '../services/get-mapping-id.service';
   entryComponents: [TargetvalueChooserDialogbodyComponent],//to open the chooser component in Dialog
 })
 export class DatamappingComponent implements OnInit {
-  selectedAdminValue: string;
+  selectedAdminValue: string = " ";
   selectedSourceValue: string;
   selectedTargetValue: string;
   mapping = new Mapping(0, "", "", "");
   mappingId: number;
-  message:any;
+  message: any;
   @Input()
   isParent: boolean;
-@ViewChild('matSelect') matSelect: MatSelect;										   
+  @ViewChild('matSelect') matSelect: MatSelect;
 
   // Temporary list of values passed
   adminTypeList = ['Type', 'Attribute', 'Policy', 'Relationship'];
@@ -42,18 +42,18 @@ export class DatamappingComponent implements OnInit {
     });
   }
 
-ngAfterViewInit() {
-				 
+  ngAfterViewInit() {
+
     this.matSelect.valueChange.subscribe(value => {
-      this.selectedAdminValue=value;
+      this.selectedAdminValue = value;
       this.getSourceValues();
       this.getTagetValues();
-															   
+
     });
 
   }
   ngOnInit() {
-	  
+
     //Get selected Value
     this.selectvalueService.getValue().subscribe(newValue => {
       if (this.selectvalueService.isSource) {
@@ -68,8 +68,8 @@ ngAfterViewInit() {
   // Add Mapping to DB
   addMapping() {
     const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue);
-    let resp=this.transformservice.addMappingRule(modifiedMapping);
-    resp.subscribe((data)=>this.message=data)
+    let resp = this.transformservice.addMappingRule(modifiedMapping);
+    resp.subscribe((data) => this.message = data)
 
   }
   // Modify Mapping and save into DB
@@ -90,26 +90,35 @@ ngAfterViewInit() {
 
   //Open Dialog to choose Source value
   openValueChooserSource() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = false;
-    this.dialog.open(TargetvalueChooserDialogbodyComponent, dialogConfig);
-    //Send Source value List
-    this.selectvalueService.invokeEvent.next(this.srcValueList);
-    this.selectvalueService.isSource = true;
+    if (this.selectedAdminValue == " " || this.selectedAdminValue == undefined) {
+      alert("Please select Admin Type");
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = false;
+      this.dialog.open(TargetvalueChooserDialogbodyComponent, dialogConfig);
+      //Send Source value List
+      this.selectvalueService.invokeEvent.next(this.srcValueList);
+      this.selectvalueService.isSource = true;
+    }
   }
 
   //Open Dialog to choose Target value
   openValueChooserTarget() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = false;
-    this.dialog.open(TargetvalueChooserDialogbodyComponent, dialogConfig);
-    //Send Target value List
-    this.selectvalueService.invokeEvent.next(this.dstValueList);
-    this.selectvalueService.isSource = false;
+    if (this.selectedAdminValue == " " || this.selectedAdminValue == undefined) {
+      alert("Please select Admin Type");
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = false;
+      this.dialog.open(TargetvalueChooserDialogbodyComponent, dialogConfig);
+      //Send Target value List
+      this.selectvalueService.invokeEvent.next(this.dstValueList);
+      this.selectvalueService.isSource = false;
+    }
   }
-	 getSourceValues() {    
+
+  getSourceValues() {
     this.transformservice.getSourceValue(this.selectedAdminValue).subscribe(
       data => {
         this.srcValueList = data;
@@ -118,9 +127,9 @@ ngAfterViewInit() {
         alert("Problem in getting Source Value data!!");
       }
     );
-  }	
-  
-  getTagetValues() {    
+  }
+
+  getTagetValues() {
     this.transformservice.getTargetValue(this.selectedAdminValue).subscribe(
       data => {
         this.dstValueList = data;
