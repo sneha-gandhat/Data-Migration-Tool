@@ -1,5 +1,5 @@
 import { MonitorService } from './../../services/monitor.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-transform-drilldown',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./transform-drilldown.component.css']
 })
 export class TransformDrilldownComponent implements OnInit {
+    isErrorButtonEnable: boolean;
     successTypeDataArray: { label: string, value: any }[] = [];
     failedTypeDataArray: { label: string, value: any }[] = [];
     chartInstance: any = {};
@@ -150,6 +151,24 @@ export class TransformDrilldownComponent implements OnInit {
                 alert("Problem in getting Transform Failed Type count!!");
             }
         );
+    }
+
+    @Output()
+    isEnable = new EventEmitter<boolean>();
+
+    // Get data item label
+    getLabel(index) {
+        return this.dataSource.data[index].label;
+    }
+
+    // FusionCharts Component dataPlot click listener
+    dataplotClick($event) {
+        let dataIndex = $event.dataObj.dataIndex;
+        if ("1" == dataIndex && "failed objects" == this.getLabel(dataIndex).toLowerCase()) {
+            this.isErrorButtonEnable = false;
+            //Emits value to child component
+            this.isEnable.emit(this.isErrorButtonEnable);
+        }
     }
 
 }

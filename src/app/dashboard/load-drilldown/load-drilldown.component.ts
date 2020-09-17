@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MonitorService } from 'src/app/services/monitor.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { MonitorService } from 'src/app/services/monitor.service';
   styleUrls: ['./load-drilldown.component.css']
 })
 export class LoadDrilldownComponent implements OnInit {
+  isErrorButtonEnable: boolean;
   successTypeDataArray: { label: string, value: any }[] = [];
   failedTypeDataArray: { label: string, value: any }[] = [];
   chartInstance: any = {};
@@ -153,4 +154,21 @@ export class LoadDrilldownComponent implements OnInit {
     );
   }
 
+  @Output()
+    isEnable = new EventEmitter<boolean>();
+
+    // Get data item label
+    getLabel(index) {
+        return this.dataSource.data[index].label;
+    }
+
+    // FusionCharts Component dataPlot click listener
+    dataplotClick($event) {
+        let dataIndex = $event.dataObj.dataIndex;
+        if ("1" == dataIndex && "failed objects" == this.getLabel(dataIndex).toLowerCase()) {
+            this.isErrorButtonEnable = false;
+            //Emits value to child component
+            this.isEnable.emit(this.isErrorButtonEnable);
+        }
+    }
 }

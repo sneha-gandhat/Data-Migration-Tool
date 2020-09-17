@@ -2,14 +2,14 @@
 
     <!-- Load - load-drilldown component -->
     <div class="load-drill">
-        <app-load-drilldown></app-load-drilldown>
+        <app-load-drilldown (isEnable)="isEnable($event)"></app-load-drilldown>
     </div>
     <div class="btn-block">
         <i class="fas fa-hand-point-right fa-2x"></i>
     </div>
     <div class="btn-block">
         <!-- Error Preview Button -->
-        <button class="errorBtn" mat-raised-button matTooltip="Click to view Error Preview" matTooltipPosition="below"
+        <button [disabled]="isEnableButton" class="errorBtn" mat-raised-button matTooltip="Click to view Error Preview" matTooltipPosition="below"
             matTooltipHideDelay="100" matTooltipClass="custom-tooltip" (click)="loadErrorPreview()">Error Preview
         </button>
     </div>

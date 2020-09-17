@@ -12,12 +12,17 @@ import { ErrorDetailsService } from 'src/app/services/error-details.service';
 export class LoadDashboardComponent implements OnInit {
   @Input()
   errorCategory: string;
+  isEnableButton: boolean = true;
 
   constructor(private dialog: MatDialog, private errordetailsService: ErrorDetailsService) { }
 
   ngOnInit(): void {
   }
 
+  isEnable(value: boolean) {
+    this.isEnableButton = value;
+  }
+  
   //Open Dialog to view Error Preview
   loadErrorPreview() {
     const dialogConfig = new MatDialogConfig();
