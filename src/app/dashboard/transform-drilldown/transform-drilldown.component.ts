@@ -1,3 +1,4 @@
+import { ErrorDetailsService } from 'src/app/services/error-details.service';
 import { MonitorService } from './../../services/monitor.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -72,7 +73,7 @@ export class TransformDrilldownComponent implements OnInit {
         ]
     };
 
-    constructor(private monitorservice: MonitorService) {
+    constructor(private monitorservice: MonitorService, private errordetailsService: ErrorDetailsService) {
         //Render Transform Successful Object Count
         this.getSuccessfulObjectCount();
         //Render Transform Failed Object Count
@@ -166,9 +167,10 @@ export class TransformDrilldownComponent implements OnInit {
         let dataIndex = $event.dataObj.dataIndex;
         if ("1" == dataIndex && "failed objects" == this.getLabel(dataIndex).toLowerCase()) {
             this.isErrorButtonEnable = false;
-            //Emits value to child component
+            //Emits value to parent component - TransformDashboardComponent
             this.isEnable.emit(this.isErrorButtonEnable);
+            //Calling method refreshDashboard() from parent component - TransformDashboardComponent
+            this.errordetailsService.callMethodOfDashboardComponent();
         }
     }
-
 }

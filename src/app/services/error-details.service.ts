@@ -8,4 +8,9 @@ export class ErrorDetailsService {
   public invokeEvent: Subject<any> = new Subject();
 
   constructor() { }
+
+  //Call refreshDashboard() method of DashboardComponent - (TransformDashboardComponent/LoadDashboardComponent)
+  callMethodOfDashboardComponent() {
+    this.invokeEvent.next("loadDashboard");
+  }
 }
