@@ -1,3 +1,4 @@
+import { data } from 'jquery';
 import { Mapping } from './../mapping-preview/mapping';
 import { TargetvalueChooserDialogbodyComponent } from './../targetvalue-chooser-dialogbody/targetvalue-chooser-dialogbody.component';
 import { Component, OnInit, Input } from '@angular/core';
@@ -68,15 +69,22 @@ export class DatamappingComponent implements OnInit {
   // Add Mapping to DB
   addMapping() {
     const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue);
-    let resp = this.transformservice.addMappingRule(modifiedMapping);
-    resp.subscribe((data) => this.message = data)
-
+    this.transformservice.addMappingRule(modifiedMapping).subscribe(data => {
+      alert("Mapping successfully added into Database");
+      this.selectedAdminValue = " ";
+      this.selectedSourceValue = " ";
+      this.selectedTargetValue = " ";
+    }, err => {
+      alert("Problem in adding Mapping data into DB");
+    });
   }
+
   // Modify Mapping and save into DB
   modifyMapping() {
     const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue);
     this.transformservice.updateMapping(this.mappingId, modifiedMapping)
       .subscribe(data => {
+        alert("Mapping successfully modified and added into Database");
         //Calling method getAllMappingDetails() - from MappingPreviewComponent
         this.mappingIdService.callMethodOfMappingPreviewComponent();
         //Call closeDialog() method of ModifymappingDialogbodyComponent
