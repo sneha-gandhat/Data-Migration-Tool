@@ -53,11 +53,18 @@
             (click)="addMapping()">Add</button>
             
             <!-- Modify button -->
-                <button *ngIf="isParent == false" class="addbtn" mat-raised-button matTooltip="Modify selected Mapping"
+                <button *ngIf="isParent == false" class="modbtn" mat-raised-button matTooltip="Modify selected Mapping"
                     matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
                     (click)="modifyMapping()">Modify</button>
 
-            <p>Please Check Mapping Preview</p>
+		<!-- Cancel button -->
+        <button *ngIf="isParent == false" mat-raised-button class="cancelbtn" (click)="cancel()" matTooltip="Cancel" matTooltipPosition="below"
+        matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Cancel</button>
+
+
+            <p *ngIf="isParent != false">Please Check Mapping Preview</p>
+            
+            <p *ngIf="isParent == false" style="margin-left: 3%;">Please Check on Modify</p>
         </div>
     </mat-card>
 </div>

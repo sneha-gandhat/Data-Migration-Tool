@@ -147,5 +147,10 @@ export class DatamappingComponent implements OnInit {
       }
     );
   }
+ 
+ //Cancel value selection for Mapping and close the window
+  cancel() {
+    this.dialog.closeAll();
+  }
 
 }

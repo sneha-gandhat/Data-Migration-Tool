@@ -75,3 +75,18 @@ p {
     color: brown;
     transform: scale(1.3);
 }
+.cancelbtn {
+    background-color: rgb(172, 71, 71);
+    color: white;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.modbtn {
+    color: white;
+    background-color: #4b4276;
+    padding: 0px 30px;
+    margin-left: 27%;
+
+}  
+
