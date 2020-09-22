@@ -26,7 +26,7 @@ export class TransformDashboardComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;
     this.dialog.open(ErrorPreviewDialogbodyComponent, dialogConfig);
-    //Send Error Category received from child component (TransformDrilldownComponent -> ErrorTableComponent)
+    //Send Error Category received from parent component (MainDashboardComponent -> ErrorTableComponent)
     this.errordetailsService.invokeEvent.next(this.errorCategory);
   }
 }

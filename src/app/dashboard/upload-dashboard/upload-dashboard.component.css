@@ -9,14 +9,18 @@
     margin-left: 20px;
 }
 
+.btn-block {
+    display: inline;
+}
+
 /* custom styling for button  */
 
 .errorBtn {
-    background-color: #b66911;
+    background-color: #4b4276;
     color: white;
     width: 190px;
     margin-top: 18px;
-    margin-left: 23em;
+    margin-left: 5px;
 }
 
 .errorBtn:focus {
@@ -24,4 +28,11 @@
     color: white;
     font-weight: 700;
     box-shadow: crimson;
+}
+
+/* custom styling for icon  */
+
+.fa-hand-point-right {
+    color: #c73535;
+    margin-left: 9em;
 }

@@ -1,0 +1,79 @@
+/* custom styling for heading  */
+
+h3 {
+    color: #4b4276;
+    font-weight: 500;
+}
+
+/* custom styling for div  */
+
+.parent {
+    margin-right: 75px;
+}
+
+.search-data {
+    margin-left: 25em;
+    margin-top: -10px;
+    color: #4b4276;
+}
+
+/* custom styling for form  */
+
+.header-block {
+    display: flex;
+}
+
+/* custom styling for table  */
+
+table {
+    width: 100%;
+}
+
+.data-table {
+    max-height: 27em;
+    width: 52em;
+    overflow: auto;
+}
+
+.mat-header-cell {
+    background-color: #4b4276;
+    color: white;
+    font-weight: 500;
+}
+
+::ng-deep .mat-sort-header-arrow {
+    color: white;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+    display: flex;
+}
+
+tr.mat-header-row, tr.mat-row {
+    height: 25px !important;
+}
+
+table tr:nth-child(odd) {
+    background-color: #e8e8ec;
+}
+
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* custom styling for specific icons  */
+
+.fa-sync-alt {
+    color: #4b4276;
+}
+
+/* custom styling for paginator  */
+
+.mat-paginator-sticky {
+    /* position: sticky; */
+    color: #4b4276;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-right: 65px;
+}

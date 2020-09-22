@@ -1,19 +1,16 @@
-import { ErrorPreviewDialogbodyComponent } from './../error-preview-dialogbody/error-preview-dialogbody.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { ErrorDetailsService } from 'src/app/services/error-details.service';
+import { FileerrorPreviewDialogbodyComponent } from '../fileerror-preview-dialogbody/fileerror-preview-dialogbody.component';
 
 @Component({
   selector: 'app-upload-dashboard',
   templateUrl: './upload-dashboard.component.html',
   styleUrls: ['./upload-dashboard.component.css'],
-  entryComponents: [ErrorPreviewDialogbodyComponent],//to open the Error Preview component in Dialog
+  entryComponents: [FileerrorPreviewDialogbodyComponent],//to open the File Error Preview component in Dialog
 })
 export class UploadDashboardComponent implements OnInit {
-  @Input()
-  errorCategory: string;
 
-  constructor(private dialog: MatDialog, private errordetailsService: ErrorDetailsService) { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -23,9 +20,7 @@ export class UploadDashboardComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;
-    this.dialog.open(ErrorPreviewDialogbodyComponent, dialogConfig);
-    //Send Error Category received from child component (TransformDrilldownComponent -> ErrorTableComponent)
-    this.errordetailsService.invokeEvent.next(this.errorCategory);
+    this.dialog.open(FileerrorPreviewDialogbodyComponent, dialogConfig);
   }
 
 }

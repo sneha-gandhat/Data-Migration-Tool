@@ -13,14 +13,16 @@ import { LoadDrilldownComponent } from './load-drilldown/load-drilldown.componen
 import { ErrorTableComponent } from './error-table/error-table.component';
 import { LoadDashboardComponent } from './load-dashboard/load-dashboard.component'
 import { ErrorPreviewDialogbodyComponent } from './error-preview-dialogbody/error-preview-dialogbody.component';
+import { UploadDashboardComponent } from './upload-dashboard/upload-dashboard.component';
+import { UploadDrilldownComponent } from './upload-drilldown/upload-drilldown.component';
+import { FileErrorTableComponent } from './file-error-table/file-error-table.component';
+import { FileerrorPreviewDialogbodyComponent } from './fileerror-preview-dialogbody/fileerror-preview-dialogbody.component';
 
 // Import FusionCharts library and chart modules
 import * as FusionCharts from "fusioncharts";
 import * as charts from "fusioncharts/fusioncharts.charts";
 import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
-import { UploadDashboardComponent } from './upload-dashboard/upload-dashboard.component';
-import { UploadDrilldownComponent } from './upload-drilldown/upload-drilldown.component';
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
 
@@ -34,8 +36,10 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     LoadDashboardComponent,
     ErrorTableComponent,
     ErrorPreviewDialogbodyComponent,
-	 UploadDashboardComponent,
-    UploadDrilldownComponent,						 
+    UploadDashboardComponent,
+    UploadDrilldownComponent,
+    FileErrorTableComponent,
+    FileerrorPreviewDialogbodyComponent,
   ],
   imports: [
     CommonModule,
@@ -53,9 +57,11 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     LoadDrilldownComponent,
     LoadDashboardComponent,
     ErrorTableComponent,
-    ErrorPreviewDialogbodyComponent,							 
+    ErrorPreviewDialogbodyComponent,
     UploadDashboardComponent,
-    UploadDrilldownComponent,						 
+    UploadDrilldownComponent,
+    FileErrorTableComponent,
+    FileerrorPreviewDialogbodyComponent
   ]
 })
 export class DashboardModule { }
