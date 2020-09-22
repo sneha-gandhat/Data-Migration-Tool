@@ -1,6 +1,5 @@
-import { ErrorDetailsService } from 'src/app/services/error-details.service';
 import { MonitorService } from './../../services/monitor.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-transform-drilldown',
@@ -8,7 +7,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./transform-drilldown.component.css']
 })
 export class TransformDrilldownComponent implements OnInit {
-    isErrorButtonEnable: boolean;
     successTypeDataArray: { label: string, value: any }[] = [];
     failedTypeDataArray: { label: string, value: any }[] = [];
     chartInstance: any = {};
@@ -73,7 +71,7 @@ export class TransformDrilldownComponent implements OnInit {
         ]
     };
 
-    constructor(private monitorservice: MonitorService, private errordetailsService: ErrorDetailsService) {
+    constructor(private monitorservice: MonitorService) {
         //Render Transform Successful Object Count
         this.getSuccessfulObjectCount();
         //Render Transform Failed Object Count
@@ -154,23 +152,4 @@ export class TransformDrilldownComponent implements OnInit {
         );
     }
 
-    @Output()
-    isEnable = new EventEmitter<boolean>();
-
-    // Get data item label
-    getLabel(index) {
-        return this.dataSource.data[index].label;
-    }
-
-    // FusionCharts Component dataPlot click listener
-    dataplotClick($event) {
-        let dataIndex = $event.dataObj.dataIndex;
-        if ("1" == dataIndex && "failed objects" == this.getLabel(dataIndex).toLowerCase()) {
-            this.isErrorButtonEnable = false;
-            //Emits value to parent component - TransformDashboardComponent
-            this.isEnable.emit(this.isErrorButtonEnable);
-            //Calling method refreshDashboard() from parent component - TransformDashboardComponent
-            this.errordetailsService.callMethodOfDashboardComponent();
-        }
-    }
 }

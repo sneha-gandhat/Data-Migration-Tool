@@ -108,14 +108,9 @@
       <div class="displayform">
            <mat-list>
           <!-- <ng-template *ngFor="let response of responseArray"> -->
-         <mat-list-item class="even">
+         <mat-list-item class="odd">
            <dt class="col-sm-5">Result For </dt>
          <dd class="col-sm-7">{{responseArray.filesProcessed}}</dd>
-         </mat-list-item>
-         <mat-divider></mat-divider>
-         <mat-list-item class="odd">
-           <dt class="col-sm-5">Log Location</dt>
-           <dd class="col-sm-7">{{responseArray.loggerFilePath}}</dd>
          </mat-list-item>
          <mat-divider></mat-divider>
          <mat-list-item class="even" >
@@ -136,6 +131,11 @@
            <dt class="col-sm-5">Transformed Files Path</dt>
          <dd class="col-sm-7">{{responseArray.transformedFolderPath}}</dd>
          </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item class="even">
+          <dt class="col-sm-5">Log Location</dt>
+          <dd class="col-sm-7">{{responseArray.loggerFilePath}}</dd>
+        </mat-list-item>
          <mat-divider></mat-divider>
 
       </mat-list>  

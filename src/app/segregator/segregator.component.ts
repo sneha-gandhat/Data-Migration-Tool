@@ -122,7 +122,9 @@ export class SegregatorComponent implements OnInit {
 updateTypeNameDB(){
       console.log("hi"+this.adminSelect);
       console.log(this.typelist.length);
-       if((this.typelist.length == 0)){
+  if (this.adminSelect == undefined) {
+    alert("Please select Admin Type");
+  }else if((this.typelist.length == 0)){
         alert("Please select Values")
       }else{   
       

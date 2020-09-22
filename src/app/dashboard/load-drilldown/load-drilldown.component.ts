@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ErrorDetailsService } from 'src/app/services/error-details.service';
+import { Component, OnInit } from '@angular/core';
 import { MonitorService } from 'src/app/services/monitor.service';
 
 @Component({
@@ -8,7 +7,6 @@ import { MonitorService } from 'src/app/services/monitor.service';
   styleUrls: ['./load-drilldown.component.css']
 })
 export class LoadDrilldownComponent implements OnInit {
-  isErrorButtonEnable: boolean;
   successTypeDataArray: { label: string, value: any }[] = [];
   failedTypeDataArray: { label: string, value: any }[] = [];
   chartInstance: any = {};
@@ -74,7 +72,7 @@ export class LoadDrilldownComponent implements OnInit {
     ]
   };
 
-  constructor(private monitorservice: MonitorService, private errordetailsService: ErrorDetailsService) {
+  constructor(private monitorservice: MonitorService) {
     //Render Load Successful Object Count
     this.getSuccessfulObjectCount();
     //Render Load Failed Object Count
@@ -155,23 +153,4 @@ export class LoadDrilldownComponent implements OnInit {
     );
   }
 
-  @Output()
-  isEnable = new EventEmitter<boolean>();
-
-  // Get data item label
-  getLabel(index) {
-    return this.dataSource.data[index].label;
-  }
-
-  // FusionCharts Component dataPlot click listener
-  dataplotClick($event) {
-    let dataIndex = $event.dataObj.dataIndex;
-    if ("1" == dataIndex && "failed objects" == this.getLabel(dataIndex).toLowerCase()) {
-      this.isErrorButtonEnable = false;
-      //Emits value to parent component - LoadDashboardComponent
-      this.isEnable.emit(this.isErrorButtonEnable);
-      //Calling method refreshDashboard() from parent component - LoadDashboardComponent
-      this.errordetailsService.callMethodOfDashboardComponent();
-    }
-  }
 }
