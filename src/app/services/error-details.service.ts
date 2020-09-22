@@ -9,8 +9,4 @@ export class ErrorDetailsService {
 
   constructor() { }
 
-  //Call refreshDashboard() method of DashboardComponent - (TransformDashboardComponent/LoadDashboardComponent)
-  callMethodOfDashboardComponent() {
-    this.invokeEvent.next("loadDashboard");
-  }
 }
