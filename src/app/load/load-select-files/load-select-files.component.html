@@ -63,13 +63,74 @@
             matTooltip="Click to Load Selected Files"
             matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
             >Load</button>
+</div>
+
+<!-- ProgressBar -->
+
+<div id="progresswindow" class="modal" style="display:none;">  
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+        <span onclick="javascript:document.getElementById('progresswindow').style.display='none';document.getElementById('informationForm').style.display='block'" class="close" title="Close">&minus;</span>
+        <h3 style="color:#4b4276;">Load is in Progress...</h3>
+        
+      </div>
   
+      <div class="container">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        
+    </div>
+    <br>
+    <br>
+  
+            <!-- <button onclick="javascript:document.getElementById('progresswindow').style.display='none';document.getElementById('informationForm').style.display='block';" mat-raised-button matTooltip="Run the transformation Process in background"
+                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"> Done</button>
+       -->
+    </form>
+  </div>
 
+  <!-- Load Statistics -->
+  <div id="informationForm" class="informationForm" *ngIf = "showInfo" >
+    <h2 style="color:#4b4276;text-align: left;">Load Statistics</h2>
+    
+    <div class="displayform">
+         <mat-list>
+        <!-- <ng-template *ngFor="let response of responseArray"> -->
+       <mat-list-item class="odd">
+         <dt class="col-sm-5">Result For </dt>
+       <dd class="col-sm-7">{{responseArray.filesProcessed}}</dd>
+       </mat-list-item>
+       <mat-divider></mat-divider>
+       <mat-list-item class="even" >
+         <dt class="col-sm-5">Objects Processed</dt>
+       <dd class="col-sm-7">{{responseArray.totalObjectsToTransform}}</dd>
+       </mat-list-item>
+       <mat-divider></mat-divider>
+       <mat-list-item class="odd">
+         <dt class="col-sm-5">Objects Successful</dt>
+       <dd class="col-sm-7">{{responseArray.totalSuccessfulObjects}}</dd>
+       </mat-list-item>
+       <mat-divider></mat-divider>
+       <mat-list-item class="even">
+         <dt class="col-sm-5">Objects Failed</dt>
+       <dd class="col-sm-7">{{responseArray.totalFailedObjects}}</dd>
+       </mat-list-item>
+        <mat-divider></mat-divider>
+      <mat-list-item class="odd">
+        <dt class="col-sm-5">Log Location</dt>
+        <dd class="col-sm-7">{{responseArray.loggerFilePath}}</dd>
+      </mat-list-item>
+       <mat-divider></mat-divider>
+        <br>
+       <button class="loadbtn" mat-raised-button (click)="isLoadComplete()"
+      matTooltip="Mark Load Process as Completed"
+      matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+      >Mark Load Complete</button>
 
+    </mat-list>  
+    
+      </div>
 
-
-
-
+      
 <!-- Footer buttons -->
 <div class="footerbtn-block">
     <form class="footer-block">
@@ -81,17 +142,12 @@
         </button>
   
         <label style="margin-left: 10px;"> Back</label>
-        <!-- <label style="margin-left: 53vw;"> Check Status</label> -->
-  
-        <!-- Proceed for Transformation Arrow button -->
-        <!-- <button mat-icon-button (click)="loadStatus()" matTooltip="Click to Check Load Status" matTooltipPosition="below"
-            matTooltipHideDelay="100" matTooltipClass="custom-tooltip" [disabled]="isDisabled">
-            <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
-        </button> -->
+        
+        
         <label style="margin-left: 53vw;"> Go To Dashboard</label>
   
         <!-- Proceed for Transformation Arrow button -->
-        <button mat-icon-button (click)="moveToDashboard()" matTooltip="See Dashboard" matTooltipPosition="below"
+        <button mat-icon-button (click)="moveToDashboard()" matTooltip="View Dashboard" matTooltipPosition="below"
             matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
             <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
         </button>

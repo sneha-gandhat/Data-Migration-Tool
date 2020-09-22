@@ -55,7 +55,7 @@ export class LoadSelectFilesComponent implements OnInit {
     this.router.navigate(['load-status-div']);
   }
   moveToDashboard() {
-    this.router.navigate(['dashboard']);
+     this.router.navigate(['dashboard']);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -106,30 +106,36 @@ export class LoadSelectFilesComponent implements OnInit {
     if (this.selection.selected.length <= 0) {
       alert("Please select at least one file to proceed!!");
     } else {
-      alert("Starting Load Process");
+      //alert("Starting Load Process");
       let component = this;
       console.log("Files selected: " + this.selection.selected.length);
       console.log("Files selected: " + this.selection.selected.length);
       this.selection.selected.forEach(s => this.selectedFiles.push((s.fileName)));
       console.log("Files For LOAD" + this.selectedFiles);
+      $("#progresswindow").css("display", "block");
       this.loadService.startLoad(this.selectedFiles).subscribe(
         data => {
           component.responseArray = data;
           console.log(this.responseArray);
           this.isDisabled = false;//indicates load is completed and move to status
-          alert("Load is completed! Status check enabled!");
-          //after Load Is Completed :
-          alert("Result For " + this.responseArray.filesProcessed + "\n" +
-            "Log Location " + this.responseArray.loggerFilePath + "\n" +
-            "Objects Processed " + this.responseArray.totalObjectsToTransform + "\n" +
-            "Objects Successful " + this.responseArray.totalSuccessfulObjects + "\n" +
-            "Objects Failed " + this.responseArray.totalFailedObjects + "\n" +
-            "Load Files Path " + this.responseArray.transformedFolderPath
-          );
-          if (confirm("Are you sure, you are done with load?")) {
-            //Set session value for load
-            sessionStorage.setItem("load", "true");
-          }
+          component.showInfo = true;
+          $("#progresswindow").css("display", "none");
+          $("#checkFilesToBeTransformed").css("display", "none");
+          $("#informationForm").css("display", "block");
+          
+          // alert("Load is completed! Status check enabled!");
+          // //after Load Is Completed :
+          // alert("Result For " + this.responseArray.filesProcessed + "\n" +
+          //   "Log Location " + this.responseArray.loggerFilePath + "\n" +
+          //   "Objects Processed " + this.responseArray.totalObjectsToTransform + "\n" +
+          //   "Objects Successful " + this.responseArray.totalSuccessfulObjects + "\n" +
+          //   "Objects Failed " + this.responseArray.totalFailedObjects + "\n" +
+          //   "Load Files Path " + this.responseArray.transformedFolderPath
+          // );
+          // if (confirm("Are you sure, you are done with load?")) {
+          //   //Set session value for load
+          //   sessionStorage.setItem("load", "true");
+          // }
         },
         error => {
           alert("Error" + error);
@@ -137,6 +143,12 @@ export class LoadSelectFilesComponent implements OnInit {
       );
 
     }
+  }
+  isLoadComplete(){
+    if (confirm("Are you sure, you are done with load?")) {
+         //Set session value for load
+        sessionStorage.setItem("load", "true");
+       }
   }
 
 
