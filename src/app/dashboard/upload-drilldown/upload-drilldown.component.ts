@@ -141,7 +141,6 @@ export class UploadDrilldownComponent implements OnInit {
           this.noOfObjectInParsedFile.push({ label: entry[0], value: entry[1] });
         });
       }, () => {
-        alert("Problem in getting number of object from successfully parsed file's!!");
         swal.fire({
           title: 'Oops...',
           text: "Problem in getting number of object from successfully parsed file's",
