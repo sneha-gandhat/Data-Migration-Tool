@@ -2,9 +2,11 @@ import { Component, OnInit, TestabilityRegistry } from '@angular/core';
 import * as $ from 'jquery';
 import { tag, adminType } from './tagfile';
 import { Router } from '@angular/router';
-import {TransformService} from '../services/transform.service';
+import { TransformService } from '../services/transform.service';
 import { ViewChild, AfterViewInit } from '@angular/core';
-import {MatSelectModule, MatSelect} from '@angular/material/select';
+import { MatSelectModule, MatSelect } from '@angular/material/select';
+import swal from 'sweetalert2';
+
 //declare var $: any;
 
 interface TypeDropdown {
@@ -33,8 +35,8 @@ export class SegregatorComponent implements OnInit {
 
   public taglist: String[] = [];
   public typelist: String[] = [];
-  public adminSelect:string;
-@ViewChild('matSelect') matSelect: MatSelect;						  
+  public adminSelect: string;
+  @ViewChild('matSelect') matSelect: MatSelect;
   adminTypeDropdownList: TypeDropdown[] = [
     { value: 'Type', viewValue: 'Type' },
     { value: 'Name', viewValue: 'Name' },
@@ -46,15 +48,15 @@ export class SegregatorComponent implements OnInit {
   ];
 
 
-  constructor(private router: Router,private transformservice:TransformService) { }
-  
+  constructor(private router: Router, private transformservice: TransformService) { }
+
   ngAfterViewInit() {
     this.matSelect.valueChange.subscribe(value1 => {
-      this.adminSelect=value1;
-    });    
-}
+      this.adminSelect = value1;
+    });
+  }
   ngOnInit(): void {
-	this.getAllUniqueTags();							   
+    this.getAllUniqueTags();
     let typeListinstance = this;
     let taglistinstance = this;
 
@@ -97,43 +99,54 @@ export class SegregatorComponent implements OnInit {
       }
     }
 
-
-
-
-
-
   }
   //Navigate to Data Mapping
   loadMappingPage() {
     this.router.navigate(['gotoDataMapping']);
   }
-	getAllUniqueTags() {
+
+  getAllUniqueTags() {
     this.transformservice.getAllUniqueTagList().subscribe(
       data => {
         this.taglist = data;
       },
       err => {
-        alert("Problem in getting tag data!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting tag data",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
 
- 
-updateTypeNameDB(){
-      console.log("hi"+this.adminSelect);
-      console.log(this.typelist.length);
-  if (this.adminSelect == undefined) {
-    alert("Please select Admin Type");
-  }else if((this.typelist.length == 0)){
-        alert("Please select Values")
-      }else{   
-      
-      this.transformservice.updateType(this.adminSelect,this.typelist);
-      alert("Values Added!");
-      window.location.reload()
-      }
-  
-    }   
-  
-   
+
+  updateTypeNameDB() {
+    if (this.adminSelect == undefined) {
+      swal.fire({
+        text: "Please select Admin Type",
+        timer: 1000,
+        icon: 'warning',
+        showConfirmButton: false,
+      });
+    } else if ((this.typelist.length == 0)) {
+      swal.fire({
+        text: "Please select Values",
+        timer: 1000,
+        icon: 'warning',
+        showConfirmButton: false,
+      });
+    } else {
+      this.transformservice.updateType(this.adminSelect, this.typelist);
+      swal.fire({
+        text: "Values Added",
+        timer: 1000,
+        icon: 'success',
+        showConfirmButton: false,
+      });
+      window.location.reload()
+    }
+  }
+
 }

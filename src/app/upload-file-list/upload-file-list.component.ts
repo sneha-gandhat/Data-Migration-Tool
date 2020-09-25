@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FileUploadService } from '../services/file-upload.service';
 import * as fileSaver from 'file-saver';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -38,19 +39,33 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
 
   //Delete File
   deleteFile(item: any) {
-    if (window.confirm('Are you sure want to delete this item ?')) {
-      this.fileService.deleteFile(item.fileDeleteUri).subscribe(
-        data => {
-          console.log("In Delete File Component!!");
-          console.log(data);
-          this.getAllFileDetails();
-        },
-        () => { }
-      );
-    } else {
-      console.log("EVENT CANCELLED!!");
-    }
-
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete this file?",
+      showCancelButton: true,
+      confirmButtonColor: '#4b4276',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      imageUrl: "/assets/images/del.gif",
+      imageWidth: 100,
+      imageHeight: 100,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.fileService.deleteFile(item.fileDeleteUri).subscribe(
+          data => {
+            this.getAllFileDetails();
+          },
+          () => { }
+        );
+        swal.fire({
+          title: 'Deleted!',
+          text: 'Your file has been deleted.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1000
+        });
+      }
+    })
   }
 
   //Download File
@@ -73,7 +88,12 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
         this.filelistdataSource.sort = this.sort;
       },
       () => {
-        alert("Problem in getting file data!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting file data",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }

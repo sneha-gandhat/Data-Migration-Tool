@@ -5,6 +5,7 @@ import { FileUploadService } from '../services/file-upload.service';
 import { TransformService } from '../services/transform.service';
 import { UploadFilelistPreviewDialogbodyComponent } from '../upload-filelist-preview-dialogbody/upload-filelist-preview-dialogbody.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-uploadfiles',
@@ -85,15 +86,31 @@ export class UploadfilesComponent implements OnInit {
 
       if (this.selectedFiles[p].fileName === obj.fileName) {
         exist = false;
-        if (confirm(obj.fileName + " already exists, Do you still want to add it ?")) {
-          exist = true;
-        }
+        swal.fire({
+          title: "'" + obj.fileName + "' already exists",
+          text: 'Do you want to replace it?',
+          showCancelButton: true,
+          confirmButtonColor: "#4b4276",
+          icon: 'warning',
+          cancelButtonColor: '#d33',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            exist = true;
+            swal.fire({
+              title: 'Added!',
+              text: 'New file has been added for upload.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1000
+            });
+          }
+        })
         break;
       }
     }
-
     return exist;
   }
+
   dragOverHandler(ev) {
     console.log('File(s) in drop zone');
 
@@ -195,9 +212,28 @@ export class UploadfilesComponent implements OnInit {
     )
   }
   deleteFile(file) {
-    if (confirm("Are you sure you want to delete " + file.fileName + "?")) {
-      this.selectedFiles.splice(this.selectedFiles.indexOf(file), 1);
-    }
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete '" + file.fileName + "'?",
+      showCancelButton: true,
+      confirmButtonColor: '#4b4276',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      imageUrl: "/assets/images/del.gif",
+      imageWidth: 100,
+      imageHeight: 100,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.selectedFiles.splice(this.selectedFiles.indexOf(file), 1);
+        swal.fire({
+          title: 'Deleted!',
+          text: 'Your file has been deleted.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1000
+        });
+      }
+    })
   }
 
   importFile(ev) {
@@ -276,10 +312,27 @@ export class UploadfilesComponent implements OnInit {
 
   //Navigate to Transformation - Segregator Component
   loadTransform() {
-    if (confirm("Are you sure, you are done with file upload and want to proceed for transformation?")) {
-      //Set session value for upload
-      sessionStorage.setItem("upload", "true");
-      this.router.navigate(['gotoTransformation']);
-    }
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You are done with file upload and want to proceed for transformation?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#4b4276',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Proceed',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //Set session value for upload
+        sessionStorage.setItem("upload", "true");
+        this.router.navigate(['gotoTransformation']);
+        swal.fire({
+          title: 'Great!',
+          text: 'Your are proceeding for transformation!!',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
   }
 }

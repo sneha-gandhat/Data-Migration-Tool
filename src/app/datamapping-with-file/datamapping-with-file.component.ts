@@ -1,9 +1,8 @@
-import { Mapping } from './../mapping-preview/mapping';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { FileUploadService } from '../services/file-upload.service';
 import { TransformService } from '../services/transform.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-datamapping-with-file',
@@ -26,7 +25,7 @@ export class DatamappingWithFileComponent implements OnInit {
   loadMappingPreview() {
     this.router.navigate(['gotoMappingPreview']);
   }
-  
+
   // Navigate to Segregation window
   loadSegregationWindow() {
     this.router.navigate(['gotoSegregationWindow']);
@@ -39,13 +38,28 @@ export class DatamappingWithFileComponent implements OnInit {
 
       if (this.selectedFiles[p].fileName === obj.fileName) {
         exist = false;
-        if (confirm(obj.fileName + " already exists, Do you still want to add it ?")) {
-          exist = true;
-        }
+        swal.fire({
+          title: "'" + obj.fileName + "' already exists",
+          text: 'Do you want to replace it?',
+          showCancelButton: true,
+          confirmButtonColor: "#4b4276",
+          icon: 'warning',
+          cancelButtonColor: '#d33',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            exist = true;
+            swal.fire({
+              title: 'Added!',
+              text: 'New file has been added for upload.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1000
+            });
+          }
+        })
         break;
       }
     }
-
     return exist;
   }
 
@@ -78,9 +92,28 @@ export class DatamappingWithFileComponent implements OnInit {
 
   // Delete File which is selected for upload
   deleteFile(file) {
-    if (confirm("Are you sure you want to delete " + file.fileName + "?")) {
-      this.selectedFiles.splice(this.selectedFiles.indexOf(file), 1);
-    }
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete '" + file.fileName + "'?",
+      showCancelButton: true,
+      confirmButtonColor: '#4b4276',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      imageUrl: "/assets/images/del.gif",
+      imageWidth: 100,
+      imageHeight: 100,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.selectedFiles.splice(this.selectedFiles.indexOf(file), 1);
+        swal.fire({
+          title: 'Deleted!',
+          text: 'Your file has been deleted.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1000
+        });
+      }
+    })
   }
 
   // Upload file to server

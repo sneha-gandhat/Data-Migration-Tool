@@ -5,6 +5,8 @@ import { Error } from './error';
 import { MatSort } from '@angular/material/sort';
 import { ErrorDetailsService } from 'src/app/services/error-details.service';
 import { MatPaginator } from '@angular/material/paginator';
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-error-table',
   templateUrl: './error-table.component.html',
@@ -68,7 +70,12 @@ export class ErrorTableComponent implements OnInit, AfterViewInit {
         this.errorListDataSource.sort = this.sort;
       },
       () => {
-        alert("Problem in getting failed transform object data!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting failed transform object data",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
@@ -92,7 +99,12 @@ export class ErrorTableComponent implements OnInit, AfterViewInit {
         this.errorListDataSource.sort = this.sort;
       },
       () => {
-        alert("Problem in getting failed load object data!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting failed load object data",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }

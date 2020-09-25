@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { TransformationResponse } from './TransformationResponse';
 import { TransformService } from '../services/transform.service';
 import { SelectionModel } from '@angular/cdk/collections';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-transform-progressbar',
@@ -56,11 +57,28 @@ export class TransformProgressbarComponent implements OnInit {
   }
 
   initiateLoad() {
-    if (confirm("Are you sure, you are done with transform and want to proceed for load?")) {
-      //Set session value for transform
-      sessionStorage.setItem("transform", "true");
-      this.router.navigate(['load-landing']);
-    }
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You are done with transformation and want to proceed for load?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#4b4276',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Proceed'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //Set session value for transform
+        sessionStorage.setItem("transform", "true");
+        this.router.navigate(['load-landing']);
+        swal.fire({
+          title: 'Great!',
+          text: 'Your are proceeding for load!!',
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
   }
 
   getAllFileDetails() {
@@ -71,7 +89,12 @@ export class TransformProgressbarComponent implements OnInit {
         this.getFileNames();
       },
       err => {
-        alert("Problem in getting file data!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting file data",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
@@ -93,7 +116,12 @@ export class TransformProgressbarComponent implements OnInit {
   triggerTransformation() {
     console.log("File Size : " + this.selection.selected.length);
     if (this.selection.selected.length <= 0) {
-      alert("Please select at least one file to proceed!!");
+      swal.fire({
+        text: "Please select at least one file to proceed",
+        timer: 1000,
+        icon: 'warning',
+        showConfirmButton: false,
+      });
     } else {
       // alert("Showing Progress Bar!!");
       $("#progresswindow").css("display", "block");
@@ -112,10 +140,14 @@ export class TransformProgressbarComponent implements OnInit {
           $("#informationForm").css("display", "block");
         },
         error => {
-          alert(error);
+          swal.fire({
+            title: 'Oops...',
+            text: "Error " + error,
+            icon: 'error',
+            confirmButtonColor: "#4b4276"
+          });
         }
       );
-
     }
   }
 
@@ -146,6 +178,5 @@ export class TransformProgressbarComponent implements OnInit {
       this.selection.clear() :
       this.PartialTransformFileListDataSource.data.forEach(row => this.selection.select(row));
   }
-
 
 }

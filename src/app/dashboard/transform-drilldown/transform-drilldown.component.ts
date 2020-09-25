@@ -1,5 +1,6 @@
 import { MonitorService } from './../../services/monitor.service';
 import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert2';
 
 @Component({
     selector: 'app-transform-drilldown',
@@ -110,7 +111,12 @@ export class TransformDrilldownComponent implements OnInit {
             data => {
                 this.dataSource.data[0].value = data;
             }, () => {
-                alert("Problem in getting Successful Transformed object count!!");
+                swal.fire({
+                    title: 'Oops...',
+                    text: "Problem in getting Successful Transformed object count",
+                    icon: 'error',
+                    confirmButtonColor: "#4b4276"
+                });
             }
         );
     }
@@ -121,7 +127,12 @@ export class TransformDrilldownComponent implements OnInit {
             data => {
                 this.dataSource.data[1].value = data;
             }, () => {
-                alert("Problem in getting Failed Transformed object count!!");
+                swal.fire({
+                    title: 'Oops...',
+                    text: "Problem in getting Failed Transformed object count",
+                    icon: 'error',
+                    confirmButtonColor: "#4b4276"
+                });
             }
         );
     }
@@ -134,7 +145,12 @@ export class TransformDrilldownComponent implements OnInit {
                     this.successTypeDataArray.push({ label: entry[0], value: entry[1] });
                 });
             }, () => {
-                alert("Problem in getting Transform Successed Type count!!");
+                swal.fire({
+                    title: 'Oops...',
+                    text: "Problem in getting Transform Successed Type count",
+                    icon: 'error',
+                    confirmButtonColor: "#4b4276"
+                });
             }
         );
     }
@@ -147,7 +163,12 @@ export class TransformDrilldownComponent implements OnInit {
                     this.failedTypeDataArray.push({ label: entry[0], value: entry[1] });
                 });
             }, () => {
-                alert("Problem in getting Transform Failed Type count!!");
+                swal.fire({
+                    title: 'Oops...',
+                    text: "Problem in getting Transform Failed Type count",
+                    icon: 'error',
+                    confirmButtonColor: "#4b4276"
+                });
             }
         );
     }

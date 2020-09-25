@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoadService } from 'src/app/services/load.service';
 import { File } from 'src/app/upload-file-list/file';
 import { TransformationResponse } from 'src/app/transform-progressbar/TransformationResponse';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-load-select-files',
@@ -55,7 +56,7 @@ export class LoadSelectFilesComponent implements OnInit {
     this.router.navigate(['load-status-div']);
   }
   moveToDashboard() {
-     this.router.navigate(['dashboard']);
+    this.router.navigate(['dashboard']);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -81,7 +82,12 @@ export class LoadSelectFilesComponent implements OnInit {
         this.getFileNames();
       },
       err => {
-        alert("Problem in getting file data!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting file data",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
@@ -104,7 +110,12 @@ export class LoadSelectFilesComponent implements OnInit {
   triggerLoad() {
     console.log("File Size : " + this.selection.selected.length);
     if (this.selection.selected.length <= 0) {
-      alert("Please select at least one file to proceed!!");
+      swal.fire({
+        text: "Please select at least one file to proceed",
+        timer: 1000,
+        icon: 'warning',
+        showConfirmButton: false,
+      });
     } else {
       //alert("Starting Load Process");
       let component = this;
@@ -122,7 +133,7 @@ export class LoadSelectFilesComponent implements OnInit {
           $("#progresswindow").css("display", "none");
           $("#checkFilesToBeTransformed").css("display", "none");
           $("#informationForm").css("display", "block");
-          
+
           // alert("Load is completed! Status check enabled!");
           // //after Load Is Completed :
           // alert("Result For " + this.responseArray.filesProcessed + "\n" +
@@ -138,21 +149,39 @@ export class LoadSelectFilesComponent implements OnInit {
           // }
         },
         error => {
-          alert("Error" + error);
+          swal.fire({
+            title: 'Oops...',
+            text: "Error " + error,
+            icon: 'error',
+            confirmButtonColor: "#4b4276"
+          });
         }
       );
-
     }
   }
-  isLoadComplete(){
-    if (confirm("Are you sure, you are done with load?")) {
-         //Set session value for load
+
+  isLoadComplete() {
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You are done with load?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#4b4276',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //Set session value for load
         sessionStorage.setItem("load", "true");
-       }
+        swal.fire({
+          title: 'Great!',
+          text: 'Load process is Complete!!',
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
   }
-
-
-
-
 
 }

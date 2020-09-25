@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mapping-preview',
@@ -77,23 +78,44 @@ export class MappingPreviewComponent implements OnInit, AfterViewInit {
         this.dataMappingListDataSource.sort = this.sort;
       },
       () => {
-        alert("Problem in getting Mapping data!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting Mapping data",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
 
   // Delete Mapping form table as well as from DB
   deleteMapping(id: number) {
-    if (window.confirm('Are you sure want to delete this mapping ?')) {
-      this.transformservice.deleteMapping(id).subscribe(
-        () => {
-          this.getAllMappingDetails();
-        },
-        () => { }
-      );
-    } else {
-      console.log("EVENT CANCELLED!!");
-    }
+    swal.fire({
+      title: 'Are you sure?',
+      text: "You want to delete this mapping?",
+      showCancelButton: true,
+      confirmButtonColor: '#4b4276',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      imageUrl: "/assets/images/del.gif",
+      imageWidth: 100,
+      imageHeight: 100,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.transformservice.deleteMapping(id).subscribe(
+          () => {
+            this.getAllMappingDetails();
+          },
+          () => { }
+        );
+        swal.fire({
+          title: 'Deleted!',
+          text: 'Mapping has been deleted.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1000
+        });
+      }
+    })
   }
-
 }

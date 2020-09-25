@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MonitorService } from 'src/app/services/monitor.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-load-drilldown',
@@ -111,7 +112,12 @@ export class LoadDrilldownComponent implements OnInit {
       data => {
         this.dataSource.data[0].value = data;
       }, () => {
-        alert("Problem in getting Successful Load object count!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting Successful Load object count",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
@@ -122,7 +128,12 @@ export class LoadDrilldownComponent implements OnInit {
       data => {
         this.dataSource.data[1].value = data;
       }, () => {
-        alert("Problem in getting Failed Load object count!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting Failed Load object count",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
@@ -135,7 +146,12 @@ export class LoadDrilldownComponent implements OnInit {
           this.successTypeDataArray.push({ label: entry[0], value: entry[1] });
         });
       }, () => {
-        alert("Problem in getting Load Successed Type count!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting Load Successed Type count",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
@@ -148,7 +164,12 @@ export class LoadDrilldownComponent implements OnInit {
           this.failedTypeDataArray.push({ label: entry[0], value: entry[1] });
         });
       }, () => {
-        alert("Problem in getting Load Failed Type count!!");
+        swal.fire({
+          title: 'Oops...',
+          text: "Problem in getting Load Failed Type count",
+          icon: 'error',
+          confirmButtonColor: "#4b4276"
+        });
       }
     );
   }
