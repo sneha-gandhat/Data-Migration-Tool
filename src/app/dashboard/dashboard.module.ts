@@ -17,12 +17,14 @@ import { UploadDashboardComponent } from './upload-dashboard/upload-dashboard.co
 import { UploadDrilldownComponent } from './upload-drilldown/upload-drilldown.component';
 import { FileErrorTableComponent } from './file-error-table/file-error-table.component';
 import { FileerrorPreviewDialogbodyComponent } from './fileerror-preview-dialogbody/fileerror-preview-dialogbody.component';
+import { ReprocessDialogbodyComponent } from './reprocess-dialogbody/reprocess-dialogbody.component';
 
 // Import FusionCharts library and chart modules
 import * as FusionCharts from "fusioncharts";
 import * as charts from "fusioncharts/fusioncharts.charts";
 import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
+import { FormsModule } from '@angular/forms';
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
 
@@ -40,6 +42,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     UploadDrilldownComponent,
     FileErrorTableComponent,
     FileerrorPreviewDialogbodyComponent,
+    ReprocessDialogbodyComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +50,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     MaterialModule,
     FusionChartsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    FormsModule
   ],
   exports: [
     MainDashboardComponent,
@@ -61,7 +65,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme, Widgets);
     UploadDashboardComponent,
     UploadDrilldownComponent,
     FileErrorTableComponent,
-    FileerrorPreviewDialogbodyComponent
+    FileerrorPreviewDialogbodyComponent,
+    ReprocessDialogbodyComponent
   ]
 })
 export class DashboardModule { }

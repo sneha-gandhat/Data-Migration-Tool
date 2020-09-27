@@ -1,0 +1,79 @@
+/* custom styling for heading  */
+
+h3 {
+    color: #4b4276;
+    font-weight: 500;
+}
+
+/* custom styling for div  */
+
+.parent {
+    height: 36em;
+    width: 52em;
+}
+
+.footer-block {
+    position: fixed;
+    top: 39em
+}
+
+.update {
+    margin-top: 10px;
+}
+
+/* custom styling for span  */
+
+span {
+    margin-left: 5px;
+    color: #4b4276;
+    font-weight: 500;
+    font-size: medium;
+}
+
+/* custom styling for button  */
+
+.closebtn {
+    background-color: rgb(172, 71, 71);
+    color: white;
+    margin-left: 23em;
+}
+
+.updateBtn {
+    margin-left: 15px;
+}
+
+/* custom styling for form  */
+
+.displayform, .Flag1 {
+    padding: 22px;
+    border: double;
+    border-color: #4b4276;
+    margin-top: 5px;
+    margin-left: 13px;
+    width: 96%;
+}
+
+.col-sm-3 {
+    color: #4b4276;
+    font-weight: 500;
+    padding: 5px;
+}
+
+.col-sm-8 {
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;   /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.form-block {
+    display: flex;
+}
+
+/* custom styling for icon */
+
+.fa-check-circle {
+    color: green;
+}

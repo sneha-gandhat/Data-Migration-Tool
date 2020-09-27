@@ -1,3 +1,4 @@
+import { FailedObjectInfoService } from './services/failed-object-info.service';
 import { UploadFilelistPreviewDialogbodyComponent } from './upload-filelist-preview-dialogbody/upload-filelist-preview-dialogbody.component';
 import { ErrorDetailsService } from './services/error-details.service';
 import { MonitorService } from './services/monitor.service';
@@ -68,7 +69,8 @@ import { LoadService } from './services/load.service';
     GetMappingIdService,
     MonitorService,
     ErrorDetailsService,
-    LoadService
+    LoadService,
+    FailedObjectInfoService
   ],
   bootstrap: [AppComponent]
 })

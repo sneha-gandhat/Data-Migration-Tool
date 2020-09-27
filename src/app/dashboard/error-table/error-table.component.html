@@ -51,7 +51,7 @@
                 <td mat-cell *matCellDef="let element" style="width: 13%; text-align: center;">
 
                     <!-- Re-process Button -->
-                    <button mat-icon-button (click)="reProcess()" matTooltip="Click to Re-process the Object"
+                    <button mat-icon-button (click)="reProcess(element)" matTooltip="Click to Re-process the Object"
                         matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
                         <mat-icon><i class="fas fa-sync-alt fa-xs"></i></mat-icon>
                     </button>

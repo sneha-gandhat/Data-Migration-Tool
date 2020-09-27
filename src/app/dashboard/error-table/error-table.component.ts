@@ -1,3 +1,5 @@
+import { FailedObjectInfoService } from './../../services/failed-object-info.service';
+import { element } from 'protractor';
 import { MonitorService } from './../../services/monitor.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
@@ -6,11 +8,14 @@ import { MatSort } from '@angular/material/sort';
 import { ErrorDetailsService } from 'src/app/services/error-details.service';
 import { MatPaginator } from '@angular/material/paginator';
 import swal from 'sweetalert2';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ReprocessDialogbodyComponent } from '../reprocess-dialogbody/reprocess-dialogbody.component';
 
 @Component({
   selector: 'app-error-table',
   templateUrl: './error-table.component.html',
-  styleUrls: ['./error-table.component.css']
+  styleUrls: ['./error-table.component.css'],
+  entryComponents: [ReprocessDialogbodyComponent],
 })
 export class ErrorTableComponent implements OnInit, AfterViewInit {
   errorCategory: string;
@@ -20,7 +25,7 @@ export class ErrorTableComponent implements OnInit, AfterViewInit {
   errorListDataSource: any;
   errObj = new Error("", "", "", "", "", "", "");
 
-  constructor(private errordetailsService: ErrorDetailsService, private monitorservice: MonitorService) {
+  constructor(private dialog: MatDialog, private errordetailsService: ErrorDetailsService, private monitorservice: MonitorService, private failedobjectinfoservice: FailedObjectInfoService) {
     //Get Error Category sent from component (TransformDashboardComponent/LoadDashboardComponent)
     this.errordetailsService.invokeEvent.subscribe(value => {
       this.errorCategory = value;
@@ -110,7 +115,12 @@ export class ErrorTableComponent implements OnInit, AfterViewInit {
   }
 
   //Reprocess the failed object
-  reProcess() {
-
+  reProcess(element: Error) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    this.dialog.open(ReprocessDialogbodyComponent, dialogConfig);
+    //Send the current object to ReprocessDialogbodyComponent
+    this.failedobjectinfoservice.invokeEvent.next(element);
   }
 }
