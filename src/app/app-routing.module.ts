@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { LoadStatusComponent } from './load/load-status/load-status.component';
 import { LoadSelectFilesComponent } from './load/load-select-files/load-select-files.component';
 import { LoadlandingComponent } from './load/loadlanding/loadlanding.component';
@@ -15,6 +16,10 @@ import { MappingPreviewComponent } from './mapping-preview/mapping-preview.compo
 import { TransformProgressbarComponent } from './transform-progressbar/transform-progressbar.component';
 
 const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent
+  },
   {
     path: 'upload',
     component: UploadfilesComponent

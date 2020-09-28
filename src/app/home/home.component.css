@@ -1,0 +1,33 @@
+.Features{
+     font-size: larger;
+    color:#4b4276;
+    font-weight: 600;
+    border-bottom: 1px solid #4b4276;
+}
+b{
+    color:indianred;
+}
+.typed-text{
+    font-size: 1.8rem;
+}
+
+#parent {
+    margin: 0;
+    width: 100%;
+}
+.content {
+    float: left;
+    width: 60%;
+    text-align: justify;
+  text-justify: inter-word;
+}
+.spinner {
+    overflow: hidden;
+    width: 40%;
+}
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}

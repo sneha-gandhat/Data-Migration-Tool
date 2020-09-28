@@ -16,10 +16,10 @@ justify-content:space-between;
 align-items: center;
 }
 .brandlogo{
-  font-size: 2.1rem;
+  font-size: 2.38rem;
   padding-left: 2%;
   color: antiquewhite;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .menulines{
   font-size: 30px;
