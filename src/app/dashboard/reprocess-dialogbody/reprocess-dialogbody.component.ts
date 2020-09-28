@@ -12,11 +12,9 @@ import swal from 'sweetalert2';
 })
 export class ReprocessDialogbodyComponent implements OnInit {
   responseArray: Error;
-  Flag1: boolean = false;
   fieldValue: string;
   oldValue: string;
   newValue: string;
-  isEnable: boolean = false;
   formFieldList = ['Type', 'Name', 'Revision'];
 
 
@@ -28,11 +26,6 @@ export class ReprocessDialogbodyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  //Show Div on click of radio button
-  enableDiv() {
-    this.Flag1 = true;
   }
 
   //Update the old value field as per the selected value from dropdown list
@@ -47,11 +40,6 @@ export class ReprocessDialogbodyComponent implements OnInit {
     } else if ("Revision" == this.fieldValue) {
       this.oldValue = this.responseArray.revision;
     }
-  }
-
-  //Enables the update button if new value is entered
-  changedNewValue(event: any) {
-    this.isEnable = true;
   }
 
   //Close the Reprocess window

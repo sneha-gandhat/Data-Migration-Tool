@@ -14,20 +14,7 @@ h3 {
 
 .footer-block {
     position: fixed;
-    top: 39em
-}
-
-.update {
-    margin-top: 10px;
-}
-
-/* custom styling for span  */
-
-span {
-    margin-left: 5px;
-    color: #4b4276;
-    font-weight: 500;
-    font-size: medium;
+    top: 39.5em
 }
 
 /* custom styling for button  */
@@ -35,7 +22,7 @@ span {
 .closebtn {
     background-color: rgb(172, 71, 71);
     color: white;
-    margin-left: 23em;
+    margin-left: 46em;
 }
 
 .updateBtn {

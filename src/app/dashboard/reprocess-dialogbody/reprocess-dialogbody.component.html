@@ -25,48 +25,40 @@
         </div>
     </div>
 
-    <div class="update">
-        <!-- Update - Radio button -->
-        <label>
-            <input type="radio" name="group1" (click)="enableDiv()">
-            <span>Re-Process</span>
-        </label>
+    <h3 style="margin-top: 10px;">Re-Process</h3>
 
-        <div *ngIf="Flag1" class="Flag1">
+    <div class="Flag1">
 
-            <!-- form field list-->
-            <form class="form-block">
-                <!-- Form Field Dropdown -->
-                <mat-form-field>
-                    <mat-select (selectionChange)="selectedFormField($event)" #matSelect placeholder="Select Field Type"
-                        [(ngModel)]="fieldValue" name="fieldValue" value="{{fieldValue}}">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let formField of formFieldList" [value]="formField">{{formField}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+        <!-- form field list-->
+        <form class="form-block">
+            <!-- Form Field Dropdown -->
+            <mat-form-field>
+                <mat-select (selectionChange)="selectedFormField($event)" #matSelect placeholder="Select Field Type"
+                    [(ngModel)]="fieldValue" name="fieldValue" value="{{fieldValue}}">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let formField of formFieldList" [value]="formField">{{formField}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-                <!-- Old Value Input box -->
-                <mat-form-field style="margin-left: 30px;">
-                    <input [readonly]="true" matInput type="text" [(ngModel)]="oldValue" name="oldValue"
-                        placeholder="Old Value" value="{{oldValue}}" style="color: brown; font-weight: 500;">
-                </mat-form-field>
+            <!-- Old Value Input box -->
+            <mat-form-field style="margin-left: 30px;">
+                <input [readonly]="true" matInput type="text" [(ngModel)]="oldValue" name="oldValue"
+                    placeholder="Old Value" value="{{oldValue}}" style="color: brown; font-weight: 500;">
+            </mat-form-field>
 
-                <!-- New Value Input box -->
-                <mat-form-field style="margin-left: 30px;">
-                    <input (ngModelChange)="changedNewValue($event)" matInput type="text" [(ngModel)]="newValue"
-                        name="newValue" placeholder="Enter New Value" value="{{newValue}}"
-                        style="color: brown; font-weight: 500;">
-                </mat-form-field>
+            <!-- New Value Input box -->
+            <mat-form-field style="margin-left: 30px;">
+                <input matInput type="text" [(ngModel)]="newValue" name="newValue" placeholder="Enter New Value"
+                    value="{{newValue}}" style="color: brown; font-weight: 500;">
+            </mat-form-field>
 
-                <!-- Update Button -->
-                <button *ngIf="isEnable" class="updateBtn" mat-icon-button (click)="UpdateData()"
-                    matTooltip="Click to update the value" matTooltipPosition="below" matTooltipHideDelay="100"
-                    matTooltipClass="custom-tooltip">
-                    <mat-icon><i class="fas fa-check-circle"></i></mat-icon>
-                </button>
-            </form>
-        </div>
+            <!-- Update Button -->
+            <button class="updateBtn" mat-icon-button (click)="UpdateData()" matTooltip="Click to update the value"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                <mat-icon><i class="fas fa-check-circle"></i></mat-icon>
+            </button>
+        </form>
     </div>
 
     <!-- Close button -->
