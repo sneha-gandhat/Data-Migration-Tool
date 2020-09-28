@@ -64,7 +64,7 @@ export class UploadDrilldownComponent implements OnInit {
     {
       "label": "File Parsed Failed",
       "value": 0,
-      "link": "newchart-xml-FailedNumberOfObjectPerFile"
+    
     }
     ],
     "linkeddata": [{

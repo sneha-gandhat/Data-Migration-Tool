@@ -85,5 +85,14 @@ export class MonitorService {
   public getNumOfObjinUnParsed(): any {
     return this.httpclient.get("http://localhost:8089/noOfObjectInunparsedFile");
   }
+  
+  public errorPreview():Observable<any>{
+									 
+    return this.httpclient.get<any>("http://localhost:8089/errorPreview");
+   
+									 
+									   
+																				 
+     }
 
 }

@@ -51,6 +51,18 @@ export class UploadFileListComponent implements OnInit, AfterViewInit {
       imageHeight: 100,
     }).then((result) => {
       if (result.isConfirmed) {
+		  
+   this.fileService.deleteFileFromDB(item.fileName).subscribe(response => {
+        console.log(response);
+								
+      }, err => {
+        console.log(err.message);
+      }, () => {
+        console.log('completed');	
+      }
+      );		 
+		 
+		  
         this.fileService.deleteFile(item.fileDeleteUri).subscribe(
           data => {
             this.getAllFileDetails();

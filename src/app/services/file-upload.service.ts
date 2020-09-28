@@ -40,4 +40,16 @@ export class FileUploadService {
 
     return this.httpclient.request(req);
   }
+  public deleteFileFromDB(file: any): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', "http://localhost:8089/deleteFile", formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.httpclient.request(req);
+  }															  
 }

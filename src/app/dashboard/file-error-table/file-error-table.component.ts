@@ -3,6 +3,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MonitorService } from './../../services/monitor.service';
+
 
 @Component({
   selector: 'app-file-error-table',
@@ -10,24 +12,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./file-error-table.component.css']
 })
 export class FileErrorTableComponent implements OnInit, AfterViewInit {
-  columnsToDisplay = ['filename', 'size', 'objCount', 'error', 'reprocessFailure'];
+  columnsToDisplay = ['filename', 'size', 'error'];  
+  tempErrorList: any = [];
   fileErrorList: FileError[] = [];
-  fileErrorListDataSource: any;
-  constructor() {
-    this.fileErrorList.push(new FileError("product.xml", "98234", 910, "Internal server error"));
-    this.fileErrorList.push(new FileError("abc.xml", "13234", 510, "Internal server error"));
-    this.fileErrorList.push(new FileError("pqr.xml", "2334", 120, "Internal server error"));
-    this.fileErrorList.push(new FileError("aaa.xml", "2634", 110, "Internal server error"));
-    this.fileErrorList.push(new FileError("product.xml", "98234", 910, "Internal server error"));
-    this.fileErrorList.push(new FileError("abc.xml", "13234", 510, "Internal server error"));
-    this.fileErrorList.push(new FileError("pqr.xml", "2334", 120, "Internal server error"));
-    this.fileErrorList.push(new FileError("aaa.xml", "2634", 110, "Internal server error"));
-    this.fileErrorList.push(new FileError("aaa.xml", "2634", 110, "Internal server error"));
-    this.fileErrorList.push(new FileError("product.xml", "98234", 910, "Internal server error"));
-    this.fileErrorList.push(new FileError("abc.xml", "13234", 510, "Internal server error"));
-    this.fileErrorList.push(new FileError("pqr.xml", "2334", 120, "Internal server error"));
-    this.fileErrorList.push(new FileError("aaa.xml", "2634", 110, "Internal server error"));
-    this.fileErrorListDataSource = new MatTableDataSource(this.fileErrorList);
+  fileErrorListDataSource: any;  
+  errObj = new FileError("", "", "");
+  size:number =0;
+  constructor(private monitorservice: MonitorService) {
+  this.geterrorPreview();
   }
   
   ngOnInit(): void {
@@ -37,8 +29,7 @@ export class FileErrorTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   ngAfterViewInit(): void {
-    this.fileErrorListDataSource.paginator = this.paginator;
-    this.fileErrorListDataSource.sort = this.sort;
+    
   }
 
   //Search Filter
@@ -52,4 +43,31 @@ export class FileErrorTableComponent implements OnInit, AfterViewInit {
   reProcess() {
 
   }
+
+geterrorPreview(){
+  console.log("In error");
+  this.monitorservice.errorPreview().subscribe(
+    data => {
+      this.tempErrorList = data;
+ 
+      console.log("----"+data);    
+      for (let i in this.tempErrorList) {  
+        console.log(this.tempErrorList[i]); 
+        this.errObj = this.tempErrorList[i]; 
+        let fileName = this.errObj.fileName;     
+        let fileSize = this.errObj.fileSize;
+        let err = this.errObj.error;
+        console.log(fileName, fileSize, err);
+        this.fileErrorList.push(new FileError(fileName, fileSize,err));	
+
+      }
+      this.fileErrorListDataSource = new MatTableDataSource(this.fileErrorList);
+      this.fileErrorListDataSource.paginator = this.paginator;
+      this.fileErrorListDataSource.sort = this.sort;
+
+      }
+  
+  );
+}
+
 }
