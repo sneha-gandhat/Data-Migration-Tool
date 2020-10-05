@@ -1,3 +1,4 @@
+import { SegregatorPreviewComponent } from './../segregator-preview/segregator-preview.component';
 import { Component, OnInit, TestabilityRegistry } from '@angular/core';
 import * as $ from 'jquery';
 import { tag, adminType } from './tagfile';
@@ -6,6 +7,7 @@ import { TransformService } from '../services/transform.service';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { MatSelectModule, MatSelect } from '@angular/material/select';
 import swal from 'sweetalert2';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 //declare var $: any;
 
@@ -16,7 +18,8 @@ interface TypeDropdown {
 @Component({
   selector: 'app-segregator',
   templateUrl: './segregator.component.html',
-  styleUrls: ['./segregator.component.css']
+  styleUrls: ['./segregator.component.css'],
+  entryComponents: [SegregatorPreviewComponent],//to open the Segregation Preview component in Dialog
 })
 export class SegregatorComponent implements OnInit {
 
@@ -48,7 +51,7 @@ export class SegregatorComponent implements OnInit {
   ];
 
 
-  constructor(private router: Router, private transformservice: TransformService) { }
+  constructor(private dialog: MatDialog, private router: Router, private transformservice: TransformService) { }
 
   ngAfterViewInit() {
     this.matSelect.valueChange.subscribe(value1 => {
@@ -133,7 +136,7 @@ export class SegregatorComponent implements OnInit {
     } else if ((this.typelist.length == 0)) {
       swal.fire({
         text: "Please select Values",
-        timer: 5000,
+        timer: 2000,
         icon: 'warning',
         showConfirmButton: false,
       });
@@ -145,11 +148,17 @@ export class SegregatorComponent implements OnInit {
         icon: 'success',
         showConfirmButton: false,
       });
-      window.setTimeout(function(){ 
+      window.setTimeout(function () {
         location.reload();
-    } ,1000);
+      }, 1000);
     }
-    
   }
-  
+
+  //Open Segregation Preview in Dialog
+  loadSegregationPreview() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    this.dialog.open(SegregatorPreviewComponent, dialogConfig);
+  }
 }

@@ -1,7 +1,7 @@
 <body>
 
     <div class="list">
-        <p>Unique Tags from source File</p>
+        <h3>Unique Tags from source File</h3>
         <div class="wrapper">
             <!-- <mat-grid-list cols="3" *ngFor="let item of taglist">
                 <mat-grid-tile class="cell" >
@@ -19,9 +19,9 @@
     <div class="tags">
         <br>
         <div class="dropdown">
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" style="width: 240px;">
                 <mat-label>Select Admin Type</mat-label>
-                <mat-select #matSelect required> 
+                <mat-select #matSelect required>
                     <mat-option *ngFor="let type of adminTypeDropdownList" [value]="type.value">
                         {{type.viewValue}}
                     </mat-option>
@@ -41,10 +41,8 @@
 
     <div class="footerbutton">
         <!-- Apply button -->
-        <button 
-		 (click)="updateTypeNameDB()"
-		mat-icon-button matTooltip="Create Admin Type List" matTooltipPosition="below" matTooltipHideDelay="100"
-            matTooltipClass="custom-tooltip">
+        <button (click)="updateTypeNameDB()" mat-icon-button matTooltip="Create Admin Type List"
+            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
             <mat-icon><i class="fas fa-check-circle fa-lg" style="color:green"></i></mat-icon>
         </button>
 
@@ -56,6 +54,15 @@
             matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
             <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
         </button>
+
+        <div class="preview-block">
+            <i class="fas fa-hand-point-right fa-2x"></i>
+
+            <!-- Segregation Preview button -->
+            <button class="btn" matTooltip="Click to view Segregation Preview" matTooltipPosition="below"
+                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" mat-raised-button
+                (click)="loadSegregationPreview()">Segregation Preview</button>
+        </div>
     </div>
 
 

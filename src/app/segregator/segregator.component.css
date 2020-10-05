@@ -78,7 +78,7 @@ mat-label, mat-select,mat-option,mat-form-field{
     position:absolute;
     width:25%;
     left: 75%;
-    top: 92%;
+    top: 83%;
     /* background-color: red; */
 }
 .fas {
@@ -88,4 +88,26 @@ label {
     color: #4b4276;
     font-weight: 500;
     margin-top: 12px;
+}
+
+.btn{
+    background-color: #4b4276;
+    color: white;
+    margin-top: 7px;
+    margin-left: 5px;
+    width: 210px;
+}
+
+/* custom styling for icon  */
+
+.fa-hand-point-right {
+    color: #c73535;
+    margin-left: 12px;
+}
+
+/* custom styling for Heading */
+
+h3 {
+    color: #4b4276;
+    margin-top:10px;
 }
