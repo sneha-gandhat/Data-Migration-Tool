@@ -1,0 +1,80 @@
+<div class="parent">
+    <form class="header-block">
+        <h3>Unique Tags Segregation Preview</h3>
+
+        <!-- Search Filter -->
+        <div class="search-data">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)">
+                <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true"
+                        matTooltip="Search for Unique Tags" matTooltipPosition="below" matTooltipHideDelay="100"
+                        matTooltipClass="custom-tooltip"></i>
+                </mat-icon>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="mat-elevation-z8 data-table">
+        <table mat-table matSort [dataSource]="uniqueTagListDataSource">
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <!-- File Name Column -->
+            <ng-container matColumnDef="fileName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> File Name </th>
+                <td mat-cell *matCellDef="let element" style="width: 13%;"> {{element.fileName}} </td>
+            </ng-container>
+
+            <!-- Unique Tag Name Column -->
+            <ng-container matColumnDef="tagName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Unique Tag Name </th>
+                <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.tagName}} </td>
+            </ng-container>
+
+            <!-- Admin Type Column -->
+            <ng-container matColumnDef="adminType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin Type </th>
+                <td mat-cell *matCellDef="let element" style="width: 10%;"> {{element.adminType}} </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element" style="width: 6%;">
+
+                    <!-- Modify Button -->
+                    <button mat-icon-button (click)="openModifyUniqueTagsDialog(element)"
+                        matTooltip="Click to modify Mapping" matTooltipPosition="below"
+                        matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                        <mat-icon><i class="fas fa-edit fa-xs"></i></mat-icon>
+                    </button>
+
+                    <!-- Delete Button -->
+                    <button mat-icon-button matTooltip="Delete mapping"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                        (click)="deleteUniqueTag(element.id)">
+                        <mat-icon><i class="far fa-trash-alt fa-xs"></i></mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        </table>
+    </div>
+
+    <!-- Table Paginator -->
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25,50,75,100]" class="mat-paginator-sticky">
+    </mat-paginator>
+
+    <!-- Close button -->
+    <div class="footer-block">
+        <button mat-raised-button class="closebtn" (click)="close()" matTooltip="Close Segregation Preview"
+            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Close</button>
+    </div>
+</div>

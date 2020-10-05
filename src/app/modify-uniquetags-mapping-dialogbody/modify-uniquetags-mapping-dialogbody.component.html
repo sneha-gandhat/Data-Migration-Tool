@@ -1,0 +1,47 @@
+<div class="parent">
+    <h3>Modify Mapping</h3>
+    <div>
+        <mat-card class="main" style="background-color: #faf6f6">
+            <div class="data-mapping">
+
+                <!-- Unique Tag form field -->
+                <form class="tag-block">
+                    <mat-label> Tag Name</mat-label>
+                    <!-- Admin Type dropdown -->
+                    <div class="tag-list">
+                        <mat-form-field style="width: 300px;">
+                            <input [readonly]="true" matInput type="text" [(ngModel)]="tagValue" name="tagValue"
+                                value="{{tagValue}}" style="color: brown;">
+                        </mat-form-field>
+                    </div>
+                </form>
+
+                <!-- Admin Type form field -->
+                <form class="adminType-block">
+                    <mat-label> Admin Type</mat-label>
+                    <!-- Admin Type dropdown -->
+                    <div class="adminType-list">
+                        <mat-form-field style="width: 300px;">
+                            <mat-select [(ngModel)]="selectedAdminValue" #matSelect name="adminType">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let adminType of adminTypeList" [value]="adminType">{{adminType}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </form>
+
+                <!-- Modify button -->
+                <button class="modbtn" mat-raised-button matTooltip="Click to Modify selected Mapping"
+                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                    (click)="modifyUniqueTagMapping()">Modify</button>
+
+                <!-- Cancel button -->
+                <button mat-raised-button class="cancelbtn" (click)="cancel()" matTooltip="Cancel"
+                    matTooltipPosition="below" matTooltipHideDelay="100"
+                    matTooltipClass="custom-tooltip">Cancel</button>
+
+            </div>
+        </mat-card>
+    </div>
+</div>

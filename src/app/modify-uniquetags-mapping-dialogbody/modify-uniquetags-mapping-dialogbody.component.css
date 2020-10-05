@@ -1,0 +1,50 @@
+/* custom styling for Heading */
+h3 {
+    color: #4b4276;
+}
+
+/* custom styling for Label */
+
+mat-label {
+    margin-top: 16px;
+}
+
+::ng-deep .mat-select-value-text {
+    color: brown;
+}
+
+/* custom styling for Form */
+
+.adminType-block {
+    display: flex;
+}
+
+.adminType-list {
+    margin-left: 20px;
+}
+
+.tag-block {
+    display: flex;
+}
+
+.tag-list {
+    margin-left: 29px;
+}
+
+.mat-option.mat-active {
+    background: #bfbccf !important;
+}
+
+.cancelbtn {
+    background-color: rgb(172, 71, 71);
+    color: white;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.modbtn {
+    color: white;
+    background-color: #4b4276;
+    padding: 0px 30px;
+    margin-left: 27%;
+}

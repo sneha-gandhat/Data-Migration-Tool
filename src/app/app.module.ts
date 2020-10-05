@@ -30,6 +30,8 @@ import { MappingPreviewComponent } from './mapping-preview/mapping-preview.compo
 import { ModifymappingDialogbodyComponent } from './modifymapping-dialogbody/modifymapping-dialogbody.component';
 import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dialogbody/targetvalue-chooser-dialogbody.component';
 import { LoadService } from './services/load.service';
+import { SegregatorPreviewComponent } from './segregator-preview/segregator-preview.component';
+import { ModifyUniquetagsMappingDialogbodyComponent } from './modify-uniquetags-mapping-dialogbody/modify-uniquetags-mapping-dialogbody.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { LoadService } from './services/load.service';
     SegregatorComponent,
     TransformProgressbarComponent,
     SortListPipe,
-    UploadFilelistPreviewDialogbodyComponent
+    UploadFilelistPreviewDialogbodyComponent,
+    SegregatorPreviewComponent,
+    ModifyUniquetagsMappingDialogbodyComponent
 
   ],
   imports: [

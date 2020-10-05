@@ -1,0 +1,97 @@
+/* custom styling for heading  */
+
+h3 {
+    color: #4b4276;
+}
+
+/* custom styling for table  */
+
+table {
+    width: 100%;
+}
+
+.data-table {
+    max-height: 26em;
+    overflow: auto;
+}
+
+.mat-header-cell {
+    background-color: #4b4276;
+    color: white;
+    font-weight: 500;
+}
+
+::ng-deep .mat-sort-header-arrow {
+    color: white;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+    display: flex;
+}
+
+tr.mat-header-row, tr.mat-row {
+    height: 25px !important;
+}
+
+table tr:nth-child(odd) {
+    background-color: #e8e8ec;
+}
+
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* custom styling for paginator  */
+
+.mat-paginator-sticky {
+    /* position: sticky; */
+    color: #4b4276;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-right: 150px;
+}
+
+/* custom styling for specific icons  */
+
+.fa-trash-alt {
+    color: red;
+}
+
+.fa-edit {
+    color: green;
+}
+
+/* custom styling for search filter  */
+
+.search-data {
+    margin-left: 19em;
+    margin-top: -10px;
+    color: #4b4276;
+}
+
+/* custom styling for Form */
+
+.header-block {
+    display: flex;
+}
+
+/* custom styling for button  */
+
+.closebtn {
+    background-color: rgb(172, 71, 71);
+    color: white;
+    margin-left: 47.3em;
+}
+
+/* custom styling for div  */
+
+.parent {
+    height: 35em;
+    width: 52em;
+}
+
+.footer-block {
+    position: fixed;
+    top: 39em
+}
