@@ -31,7 +31,7 @@ export class LoadSelectFilesComponent implements OnInit {
   constructor(private router: Router, private fileService: FileUploadService, private httpClient: HttpClient, private loadService: LoadService) { }
 
   ngOnInit(): void {
-    this.getAllFileDetails();
+    this.getTransformedFileDetails();
   }
 
   selection = new SelectionModel<LoadFileList>(true, []);
@@ -74,8 +74,8 @@ export class LoadSelectFilesComponent implements OnInit {
   }
 
   //service to read all the files
-  getAllFileDetails() {
-    this.fileService.getUploadedFilesDeatils().subscribe(
+  getTransformedFileDetails() {
+    this.fileService.getTransformedFilesDetails().subscribe(
       data => {
         this.fileList = data;
         console.log(this.fileList);

@@ -18,6 +18,10 @@ export class FileUploadService {
     return this.httpclient.get<File[]>("http://localhost:8080/ETLfileservice/files/details");
   }
 
+  public getTransformedFilesDetails(): Observable<File[]> {
+    return this.httpclient.get<File[]>("http://localhost:8080/ETLfileservice/files/transformation/details");
+  }
+
   public downloadFile(fileDownloadUri: string): any {
     console.log("In Service..");
     return this.httpclient.get(fileDownloadUri, { responseType: 'blob' });

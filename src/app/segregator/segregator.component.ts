@@ -126,14 +126,14 @@ export class SegregatorComponent implements OnInit {
     if (this.adminSelect == undefined) {
       swal.fire({
         text: "Please select Admin Type",
-        timer: 1000,
+        timer: 2000,
         icon: 'warning',
         showConfirmButton: false,
       });
     } else if ((this.typelist.length == 0)) {
       swal.fire({
         text: "Please select Values",
-        timer: 1000,
+        timer: 5000,
         icon: 'warning',
         showConfirmButton: false,
       });
@@ -141,12 +141,15 @@ export class SegregatorComponent implements OnInit {
       this.transformservice.updateType(this.adminSelect, this.typelist);
       swal.fire({
         text: "Values Added",
-        timer: 1000,
+        timer: 2000,
         icon: 'success',
         showConfirmButton: false,
       });
-      window.location.reload()
+      window.setTimeout(function(){ 
+        location.reload();
+    } ,1000);
     }
+    
   }
-
+  
 }
