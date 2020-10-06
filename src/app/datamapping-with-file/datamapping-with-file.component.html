@@ -46,10 +46,19 @@
             </button>
 
             <label style="margin-left: 10px;"> Segregation Window</label>
-            <label style="margin-left: 50vw;"> Mapping Preview</label>
+            
+            <div class="preview-block">
+                <i class="fas fa-hand-point-right fa-2x"></i>
+    
+                <button class="btn" matTooltip="Click to view Mapping Preview" matTooltipPosition="below"
+                    matTooltipHideDelay="100" matTooltipClass="custom-tooltip" mat-raised-button
+                    (click)="loadMappingPreview()">Mapping Preview</button>
+            </div>
+
+            <label style="margin-left: 18vw;"> Proceed to Transform</label>
 
             <!-- Mapping Preview Arrow button -->
-            <button mat-icon-button (click)="loadMappingPreview()" matTooltip="Click to view Mapping Preview"
+            <button mat-icon-button (click)="openTranformProgressView()" matTooltip="Click to Proceed for Transformation"
                 matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
                 <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
             </button>

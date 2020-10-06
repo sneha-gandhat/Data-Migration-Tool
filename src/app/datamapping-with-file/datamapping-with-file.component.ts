@@ -1,13 +1,16 @@
+import { MappingPreviewComponent } from './../mapping-preview/mapping-preview.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { TransformService } from '../services/transform.service';
 import swal from 'sweetalert2';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-datamapping-with-file',
   templateUrl: './datamapping-with-file.component.html',
   styleUrls: ['./datamapping-with-file.component.css'],
+  entryComponents: [MappingPreviewComponent],  //to open the component in Dialog
 })
 export class DatamappingWithFileComponent implements OnInit {
   loading: boolean;
@@ -16,19 +19,27 @@ export class DatamappingWithFileComponent implements OnInit {
   progress = 0;
   message = '';
 
-  constructor(private router: Router, private fileService: TransformService) { }
+  constructor(private router: Router, private fileService: TransformService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   // Navigate to Mapping Preview window
   loadMappingPreview() {
-    this.router.navigate(['gotoMappingPreview']);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    this.dialog.open(MappingPreviewComponent, dialogConfig);
   }
 
   // Navigate to Segregation window
   loadSegregationWindow() {
     this.router.navigate(['gotoSegregationWindow']);
+  }
+  
+  //Navigate to Transformation Progress Bar
+  openTranformProgressView() {
+    this.router.navigate(['gotoTransformationProgressBar']);
   }
 
   // Check whether file is already added for upload

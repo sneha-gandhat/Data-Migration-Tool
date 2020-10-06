@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import swal from 'sweetalert2';
 
 @Component({
@@ -21,7 +21,7 @@ export class MappingPreviewComponent implements OnInit, AfterViewInit {
   dataMappingListDataSource: any;
   dataMappingList: Mapping[] = [];
 
-  constructor(private transformservice: TransformService, private mappingIdService: GetMappingIdService, private router: Router, private dialog: MatDialog) {
+  constructor(public dialogRef: MatDialogRef<MappingPreviewComponent>,private transformservice: TransformService, private mappingIdService: GetMappingIdService, private router: Router, private dialog: MatDialog) {
     //Send getAllMappingDetails() method to DataMappingComponent
     this.mappingIdService.invokeEvent.subscribe(value => {
       if (value === 'loadMapping') {
@@ -48,16 +48,6 @@ export class MappingPreviewComponent implements OnInit, AfterViewInit {
     this.dataMappingListDataSource.filter = filterValue;
   }
 
-  //Navigate to Data Mapping
-  loadMappingPage() {
-    this.router.navigate(['gotoDataMapping']);
-  }
-
-  //Navigate to Transformation Progress 
-  openTranformProgressView() {
-    this.router.navigate(['gotoTransformationProgressBar']);
-  }
-
   //Open Dialog to modify the Data Mapping
   openModifyMappingDialog(mapping: Mapping) {
     const dialogConfig = new MatDialogConfig();
@@ -66,6 +56,11 @@ export class MappingPreviewComponent implements OnInit, AfterViewInit {
     this.dialog.open(ModifymappingDialogbodyComponent, dialogConfig);
     //Send Mapping
     this.mappingIdService.invokeEvent.next(mapping);
+  }
+
+  //Close the Mapping Preview window
+  close() {
+    this.dialogRef.close("Close the window");
   }
 
   //Render all Mapping data in table

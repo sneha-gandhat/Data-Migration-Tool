@@ -1,6 +1,6 @@
 <div class="parent">
     <form class="header-block">
-        <h2>Data Mapping Preview</h2>
+        <h3>Data Mapping Preview</h3>
 
         <!-- Search Filter -->
         <div class="search-data">
@@ -19,19 +19,19 @@
             <!-- ID Column -->
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-                <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.id}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
 
             <!-- Admin Type Column -->
             <ng-container matColumnDef="adminType">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin Type </th>
-                <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.adminType}} </td>
+                <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.adminType}} </td>
             </ng-container>
 
             <!-- Source Value Column -->
             <ng-container matColumnDef="sourceValue">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Source Value </th>
-                <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.sourceValue}} </td>
+                <td mat-cell *matCellDef="let element" style="width: 40%;"> {{element.sourceValue}} </td>
             </ng-container>
 
             <!-- Target Value Column -->
@@ -43,7 +43,7 @@
             <!-- File Actions Column -->
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
-                <td mat-cell *matCellDef="let element" style="width: 10%;">
+                <td mat-cell *matCellDef="let element" style="width: 6%;">
 
                     <!-- Modify Button -->
                     <button mat-icon-button (click)="openModifyMappingDialog(element)"
@@ -71,25 +71,10 @@
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25,50,75,100]" class="mat-paginator-sticky">
     </mat-paginator>
 
-    <!-- Footer buttons -->
-    <div class="footerbtn-block">
-        <form class="footer-block">
-
-            <!-- Back to Mapping Arrow button -->
-            <button mat-icon-button (click)="loadMappingPage()" matTooltip="Go to Mapping window"
-                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
-                <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
-            </button>
-
-            <label style="margin-left: 10px;"> Back to Mapping</label>
-            <label style="margin-left: 53vw;"> Proceed to Transform</label>
-
-            <!-- Proceed for Transformation Arrow button -->
-            <button mat-icon-button (click)="openTranformProgressView()" matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
-                matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
-                <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
-            </button>
-
-        </form>
+    <!-- Close button -->
+    <div class="footer-block">
+        <button mat-raised-button class="closebtn" (click)="close()" matTooltip="Close Mapping Preview"
+            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Close</button>
     </div>
+
 </div>

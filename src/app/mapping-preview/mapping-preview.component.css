@@ -1,25 +1,27 @@
 /* custom styling for heading  */
 
-h2 {
+h3 {
     color: #4b4276;
-    margin-top: 10px;
+}
+
+/* custom styling for button  */
+
+.closebtn {
+    background-color: rgb(172, 71, 71);
+    color: white;
+    margin-left: 47.3em;
 }
 
 /* custom styling for div  */
 
 .parent {
-    margin-right: 75px;
+    height: 35em;
+    width: 52em;
 }
 
 .footer-block {
-    display: flex;
-}
-
-.footerbtn-block {
-    margin-left: -20px;
-    bottom: 0px;
-    left: 50px;
-    position: absolute;
+    position: fixed;
+    top: 39em
 }
 
 /* custom styling for table  */
@@ -29,7 +31,7 @@ table {
 }
 
 .data-table {
-    max-height: 23em;
+    max-height: 26em;
     overflow: auto;
 }
 
@@ -67,7 +69,7 @@ table tr:nth-child(even) {
     font-size: 13px;
     font-weight: 500;
     margin-top: 10px;
-    margin-right: 350px;
+    margin-right: 150px;
 }
 
 /* custom styling for specific icons  */
@@ -100,8 +102,8 @@ label {
 /* custom styling for search filter  */
 
 .search-data {
-    margin-left: 41em;
-    margin-top: 20px;
+    margin-left: 26em;
+    margin-top: -10px;
     color: #4b4276;
 }
 

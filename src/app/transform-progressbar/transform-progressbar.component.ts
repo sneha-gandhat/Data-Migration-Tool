@@ -47,9 +47,10 @@ export class TransformProgressbarComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.PartialTransformFileListDataSource.filter = filterValue;
   }
-  //Navigate to Data Mapping Preview
-  loadMappingPreview() {
-    this.router.navigate(['gotoMappingPreview']);
+
+  //Navigate to Data Mapping
+  loadMappingPage() {
+    this.router.navigate(['gotoDataMapping']);
   }
 
   openTranformProgressView() {
