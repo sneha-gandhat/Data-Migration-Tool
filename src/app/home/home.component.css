@@ -31,3 +31,151 @@ img{
     margin-right: auto;
     
 }
+/* Capsule Try */
+body{
+    margin:0;
+    padding:0;
+    }
+.container{    
+    height:60vh;
+    width:90vw;
+    background: white;
+}
+.container .content{
+    height:25vh;
+    width: 19vw;
+    background:black;
+    float:left;
+    margin:15px; 
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 10px;
+
+}
+.container .content .icon {
+position: relative;
+top:0;
+left: 0;
+width: 100%;
+height: 100%;
+transition: 0.5s;
+z-index: 1;
+background: red;
+}
+.container .content:hover .icon {
+top:1vh;
+left:7vw;
+width:80px;
+height: 80px;
+border-radius: 50%;
+}
+.container .content .icon .fas {
+position: relative;
+top:50%;
+left:50%;
+transform :translate(-50%,-50%);
+font-size: 80px;
+transition: 0.5s;
+color: #fff;
+}
+.container .content:hover .icon .fas {
+    font-size: 40px;
+}
+.container .content .desc{
+    position: relative;
+    top:1vh;
+    height:18vh;
+    text-align: center;
+    box-sizing: border-box;
+    transition: 0.5s;
+    opacity:0;
+}
+.container .content:hover .desc{
+top:1vh;
+opacity:1;
+}
+.container .content h3{
+margin:0;
+padding:0;
+color:#fff;
+font-size:16px;
+font-weight: 600;
+}
+.container .content p{
+    margin:0;
+    padding:0;
+    color:#fff;
+    font-size:13px;
+}
+.container .content:nth-child(1) .icon{
+background:#319635;
+}
+.container .content:nth-child(1){
+background: #4caf50;
+}
+.container .content:nth-child(2) .icon{
+    background:#4b4276;
+}
+.container .content:nth-child(2){
+    background:#4e4675
+}
+.container .content:nth-child(3) .icon{
+        background:#45a1cc;
+ }
+.container .content:nth-child(3){
+background:#50add8
+}    
+.container .content:nth-child(4) .icon{
+ background:#e94f08;
+}
+.container .content:nth-child(4){
+ background:#eb6020
+ }
+.container .content:nth-child(5) .icon{
+ background:#b81064;
+}
+.container .content:nth-child(5){
+ background:#d11a75
+ }
+.container .content:nth-child(6) .icon{
+  background:#e04444;
+ }
+ .container .content:nth-child(6){
+ background:#dd4e4e
+}
+.parent {
+    margin: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1px;
+}
+.container {    
+    float: left;
+    width: 80vw;
+    }
+.text {
+    overflow: hidden;
+    width: 20vw;
+    float:right;
+    color: black;
+    text-align: justify;
+  text-justify: inter-word;
+}
+.animatedbutton{
+    padding-left:3vw;
+    font-weight: 800;
+    /* box-shadow: 0 0 10px #4b4276; */
+    box-shadow: 0 0 10px blue;
+
+    background-color: #4b4276;
+    color: white;
+    margin-top: 7px;
+    margin-left: 5px;
+    width: 15vw;
+    height:7vh;    
+    padding-top: 2vh;
+    
+
+    
+}

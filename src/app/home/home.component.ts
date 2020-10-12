@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Typed from 'typed.js';
 
 @Component({
@@ -8,7 +9,7 @@ import Typed from 'typed.js';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  constructor(private router:Router) {
     // var typed = new Typed('#typed', {
     //   stringsElement: '#typed-strings'
     // });
@@ -28,6 +29,9 @@ export class HomeComponent implements OnInit {
     });
     //var typed = new Typed('.typed-text', options);
    
+  }
+  redirecttoUpload(){
+    this.router.navigate(['upload']);
   }
   
 }
