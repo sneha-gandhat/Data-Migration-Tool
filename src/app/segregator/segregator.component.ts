@@ -122,6 +122,9 @@ export class SegregatorComponent implements OnInit {
       data => {
         this.taglist = data;
         this.valueList = this.taglist;
+        if (this.taglist.length == 0) {
+          this.isEmpty = true;
+        }
       },
       err => {
         swal.fire({
