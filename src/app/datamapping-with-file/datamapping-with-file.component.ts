@@ -18,10 +18,24 @@ export class DatamappingWithFileComponent implements OnInit {
   selectedFiles = [];
   progress = 0;
   message = '';
+  step = 0;
 
   constructor(private router: Router, private fileService: TransformService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
   // Navigate to Mapping Preview window
@@ -32,14 +46,17 @@ export class DatamappingWithFileComponent implements OnInit {
     this.dialog.open(MappingPreviewComponent, dialogConfig);
   }
 
-  // Navigate to Segregation window
-  loadSegregationWindow() {
-    this.router.navigate(['gotoSegregationWindow']);
-  }
-  
   //Navigate to Transformation Progress Bar
   openTranformProgressView() {
     this.router.navigate(['gotoTransformationProgressBar']);
+  }
+
+  //Download Sample Mapping File
+  downloadFile() {
+    let link = document.createElement("a");
+    link.download = "Sample Mapping File";
+    link.href = "assets/images/Sample Mapping File.xlsx";
+    link.click();
   }
 
   // Check whether file is already added for upload
@@ -134,6 +151,12 @@ export class DatamappingWithFileComponent implements OnInit {
     this.selectedFiles.forEach(element => {
       this.fileService.uploadFileToServer(element.selectedFile).subscribe(
         event => {
+          swal.fire({
+            text: "File uploaded successfully",
+            timer: 1000,
+            icon: 'success',
+            showConfirmButton: false,
+          });
           if (event.type === HttpEventType.UploadProgress) {
             element.uploadedPercent = Math.round(100 * event.loaded / event.total);
             element.uploadCompleted = true;
@@ -142,6 +165,12 @@ export class DatamappingWithFileComponent implements OnInit {
           }
         },
         err => {
+          swal.fire({
+            title: 'Oops...',
+            text: "Problem in uploading Mapping file",
+            icon: 'error',
+            confirmButtonColor: "#4b4276"
+          });
           this.progress = 0;
           this.message = 'Could not upload the file!';
           element = undefined;

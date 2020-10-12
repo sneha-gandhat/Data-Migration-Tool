@@ -26,11 +26,15 @@ const routes: Routes = [
   },
   {
     path: 'transform',
-    component: SegregatorComponent
+    component: DatamappingWithFileComponent
   },
   {
     path: 'gotoTransformation',
-    component: SegregatorComponent
+    component: DatamappingWithFileComponent
+  },
+  {
+    path: 'gotoDataMapping',
+    component: DatamappingWithFileComponent
   },
   {
     //to load the login Component as default landing page
@@ -46,16 +50,8 @@ const routes: Routes = [
     component: SettingsComponent
   },
   {
-    path: 'gotoDataMapping',
-    component: DatamappingWithFileComponent
-  },
-  {
     path: 'gotoMappingPreview',
     component: MappingPreviewComponent
-  },
-  {
-    path: 'gotoSegregationWindow',
-    component: SegregatorComponent
   },
   {
     path: 'gotoTransformationProgressBar',

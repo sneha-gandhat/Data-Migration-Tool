@@ -1,68 +1,116 @@
 <div>
-    <h2>Data Mapping</h2>
+    <form class="header-block">
+        <h2>Data Mapping</h2>
+        <div class="preview-block">
+            <i class="fas fa-hand-point-right fa-2x"></i>
 
-    <!-- Load Mapping Component -->
-    <app-datamapping></app-datamapping>
-    <p class="or">OR</p>
-
-    <mat-card class="main" style="background-color: #faf6f6;">
-        <form class="uploadFile-block">
-            <mat-label style="margin-top: 15px; margin-left: 300px;">Choose Mapping File</mat-label>
-
-            <!-- Choose File button -->
-            <button mat-icon-button matTooltip="Select files to upload" matTooltipPosition="below"
-                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" #buttonElem multiple (click)="openDialog()">
-                <mat-icon><i class="fas fa-paperclip fa-xs"></i></mat-icon>
-            </button>
-            <input #inputFile type="file" hidden multiple (click)="loading = true" (change)="onChange($event)">
-
-            <!-- Upload button -->
-            <button id="uploadfilebtn" matTooltip="Upload all the selected files" matTooltipPosition="below"
+            <button class="btn" matTooltip="Click to view Mapping Preview" matTooltipPosition="below"
                 matTooltipHideDelay="100" matTooltipClass="custom-tooltip" mat-raised-button
-                (click)="uploadFiles()">Upload</button>
-        </form>
-
-        <!-- Upload File List Div -->
-        <div class="filelists">
-            <div *ngFor="let file of selectedFiles" class="file-list">
-                <h5 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h5>
-                <mat-progress-bar mode="determinate" [value]="file?.uploadedPercent"
-                    style="width: 320px; margin-top:10px; margin-left: 10px;">
-                </mat-progress-bar>
-                <i *ngIf="file?.uploadCompleted != true" class="fas fa-trash-alt fa-lg" (click)="deleteFile(file)"></i>
-                <span *ngIf="file?.uploadCompleted == true"><i class="fas fa-check fa-2x"></i></span>
-            </div>
+                (click)="loadMappingPreview()">Mapping Preview</button>
         </div>
-    </mat-card>
+    </form>
+
+    <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Add Mapping File
+                </mat-panel-title>
+                <mat-icon>attach_file</mat-icon>
+            </mat-expansion-panel-header>
+
+            <mat-card class="main" style="background-color: #faf6f6;">
+                <form style="display: flex;">
+                    <p>* Please upload xlsx file in specified format</p>
+                    <button mat-icon-button matTooltip="Click to download Sample Mapping File"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                        #buttonElem multiple (click)="downloadFile()">
+                        <mat-icon><i class="fas fa-file-download fa-xs"></i></mat-icon>
+                    </button>
+                </form>
+                <form class="uploadFile-block">
+                    <mat-label style="margin-top: 15px; margin-left: 320px;">Choose Mapping File</mat-label>
+
+                    <!-- Choose File button -->
+                    <button mat-icon-button matTooltip="Select files to upload" matTooltipPosition="below"
+                        matTooltipHideDelay="100" matTooltipClass="custom-tooltip" #buttonElem multiple
+                        (click)="openDialog()">
+                        <mat-icon><i class="fas fa-paperclip fa-xs"></i></mat-icon>
+                    </button>
+                    <input #inputFile type="file" hidden multiple (click)="loading = true" (change)="onChange($event)">
+                </form>
+
+                <!-- Upload File List Div -->
+                <div class="filelists">
+                    <div *ngFor="let file of selectedFiles" class="file-list">
+                        <h5 *ngIf="file?.fileName.length > 0">{{file?.fileName}}</h5>
+                        <mat-progress-bar mode="determinate" [value]="file?.uploadedPercent"
+                            style="width: 320px; margin-top:10px; margin-left: 10px;">
+                        </mat-progress-bar>
+                        <i *ngIf="file?.uploadCompleted != true" class="fas fa-trash-alt fa-lg"
+                            (click)="deleteFile(file)"></i>
+                        <span *ngIf="file?.uploadCompleted == true"><i class="fas fa-check fa-2x"></i></span>
+                    </div>
+                </div>
+
+                <!-- Upload button -->
+                <button id="uploadfilebtn" matTooltip="Upload all the selected files" matTooltipPosition="below"
+                    matTooltipHideDelay="100" matTooltipClass="custom-tooltip" mat-raised-button
+                    (click)="uploadFiles()">Upload</button>
+            </mat-card>
+
+            <mat-action-row>
+                <button mat-button (click)="nextStep()" style="bottom: 17px;">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Segregate Unique tags
+                </mat-panel-title>
+                <mat-icon>vertical_split</mat-icon>
+            </mat-expansion-panel-header>
+
+            <!-- Load Segregator Component -->
+            <app-segregator></app-segregator>
+
+            <mat-action-row>
+                <button mat-button (click)="prevStep()" style="bottom: 18px; color: brown;">Previous</button>
+                <button mat-button (click)="nextStep()" style="bottom: 18px;">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Map Source and Target Value
+                </mat-panel-title>
+                <mat-icon>map</mat-icon>
+            </mat-expansion-panel-header>
+
+            <!-- Load Mapping Component -->
+            <app-datamapping></app-datamapping>
+
+            <mat-action-row>
+                <button mat-button (click)="prevStep()" style="bottom: 17px; color: brown;">Previous</button>
+                <button mat-button (click)="nextStep()" style="bottom: 17px;">Close</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+
 
     <!-- Footer buttons -->
     <div class="footerbtn-block">
         <form class="footer-block">
 
-            <!-- Previous Arrow button -->
-            <button mat-icon-button (click)="loadSegregationWindow()" matTooltip="Move to Segregation window"
-                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
-                <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
-            </button>
-
-            <label style="margin-left: 10px;"> Segregation Window</label>
-            
-            <div class="preview-block">
-                <i class="fas fa-hand-point-right fa-2x"></i>
-    
-                <button class="btn" matTooltip="Click to view Mapping Preview" matTooltipPosition="below"
-                    matTooltipHideDelay="100" matTooltipClass="custom-tooltip" mat-raised-button
-                    (click)="loadMappingPreview()">Mapping Preview</button>
-            </div>
-
-            <label style="margin-left: 18vw;"> Proceed to Transform</label>
-
             <!-- Mapping Preview Arrow button -->
-            <button mat-icon-button (click)="openTranformProgressView()" matTooltip="Click to Proceed for Transformation"
-                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+            <button mat-icon-button (click)="openTranformProgressView()"
+                matTooltip="Click to Proceed for Transformation" matTooltipPosition="below" matTooltipHideDelay="100"
+                matTooltipClass="custom-tooltip">
                 <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
             </button>
-
         </form>
     </div>
 </div>

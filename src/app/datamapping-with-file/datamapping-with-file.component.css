@@ -5,13 +5,29 @@ h2 {
     margin-top: 10px;
 }
 
+/* custom styling for Paragraph  */
+
+p {
+    color: brown;
+    font-size: small;
+    padding-left: 32.5%;
+    margin-top: 10px;
+    font-weight: 500;
+    margin-top: 17px;
+}
+
 /* custom styling for div  */
 
 .main {
-    width: 65vw;
-    margin-left: 9em;
-    height: 120px;
+    width: 60vw;
+    margin: 11px auto;
+    margin-top: 30px;
+    margin-bottom: 15px;
     border-radius: 30px 30px 30px 30px;
+}
+
+.header-block {
+    display: flex;
 }
 
 .footer-block {
@@ -19,12 +35,13 @@ h2 {
 }
 
 .footerbtn-block {
-    margin-top: 35px;
-    margin-left: 55px;
+    bottom: 55px;
+    position: fixed;
+    right: 15px;
 }
 
 .filelists {
-    max-height: 4em;
+    max-height: 6em;
     width: 55em;
     margin-left: 160px;
     margin: auto;
@@ -39,17 +56,63 @@ h2 {
 }
 
 .preview-block {
-    margin-left: 225px;
-    margin-top: -15px;
+    margin-left: 57vw;
+    margin-top: 6px;
 }
 
-/* custom styling for Paragraph  */
+/* custom styling for mat-expansion-panel  */
 
-.or {
-    color: brown;
-    margin-top: 10px;
-    margin-left: 42.3vw;
-    font-weight: 500;
+.example-headers-align .mat-expansion-panel-header-title, .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.example-headers-align .mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+mat-action-row {
+    height: 10px;
+    background-color: #d3d3db;
+    color: #4b4276;
+}
+
+mat-panel-title {
+    color: white;
+}
+
+.mat-expansion-panel, .mat-accordion {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.mat-expansion-panel.mat-expanded {
+    margin-top: -5px;
+    order: -1;
+}
+
+mat-expansion-panel {
+    left: 2em;
+    width: 92%;
+    max-height: 35.5vw;
+}
+
+mat-expansion-panel-header {
+    height: 35px;
+    background-color: #9b96b8 !important;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid #cbcbcf;
+}
+
+::ng-deep.mat-expansion-panel-header.mat-expanded {
+    height: 35px;
+    background-color: #665d92 !important;
+    border-radius: 10px;
 }
 
 /* custom styling for icon  */
@@ -75,6 +138,11 @@ h2 {
     margin-left: 30px;
 }
 
+.fa-file-download {
+    color: #80411c;
+    margin-left: -15px;
+}
+
 /* custom styling for button  */
 
 #uploadfilebtn {
@@ -82,6 +150,7 @@ h2 {
     color: white;
     height: 35px;
     margin-top: 8px;
+    margin-left: 25.5em;
 }
 
 .btn {

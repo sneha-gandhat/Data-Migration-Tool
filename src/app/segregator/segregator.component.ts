@@ -38,7 +38,10 @@ export class SegregatorComponent implements OnInit {
 
   public taglist: String[] = [];
   public typelist: String[] = [];
+  public valueList: String[] = [];
+  public selectedAdminValue: string;
   public adminSelect: string;
+  isEmpty: boolean = false;
   @ViewChild('matSelect') matSelect: MatSelect;
   adminTypeDropdownList: TypeDropdown[] = [
     { value: 'Type', viewValue: 'Type' },
@@ -103,15 +106,22 @@ export class SegregatorComponent implements OnInit {
     }
 
   }
-  //Navigate to Data Mapping
-  loadMappingPage() {
-    this.router.navigate(['gotoDataMapping']);
+
+  //Search Filter
+  applyFilter(value) {
+    this.taglist = this.search(value);
+  }
+
+  search(value: string) {
+    let filter = value.toLowerCase();
+    return this.valueList.filter(option => option.toLowerCase().includes(filter));
   }
 
   getAllUniqueTags() {
     this.transformservice.getAllUniqueTagList().subscribe(
       data => {
         this.taglist = data;
+        this.valueList = this.taglist;
       },
       err => {
         swal.fire({
@@ -148,6 +158,12 @@ export class SegregatorComponent implements OnInit {
         icon: 'success',
         showConfirmButton: false,
       });
+      if (this.taglist.length == 0) {
+        this.isEmpty = true;
+      }
+      // $(".dropdown-block").load(location.href + " .dropdown-block");
+      // this.selectedAdminValue = " ";
+
       window.setTimeout(function () {
         location.reload();
       }, 1000);

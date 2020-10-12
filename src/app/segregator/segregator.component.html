@@ -1,13 +1,37 @@
-<body>
+<div class="parent">
+
+    <form style="display: flex;">
+        <p style="color: brown; margin-top: 10px;">* Please click on below tag to add that into list</p>
+        <!-- Search Filter -->
+        <div class="search-data">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" value="Search..."
+                    onfocus="if(this.value==this.defaultValue)this.value=''"
+                    onblur="if(this.value=='')this.value=this.defaultValue">
+                <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true" matTooltip="Search for Unique Tag"
+                        matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
+                </mat-icon>
+            </mat-form-field>
+        </div>
+    </form>
 
     <div class="list">
-        <h3>Unique Tags from source File</h3>
+        <div *ngIf="isEmpty" class="empty">
+            <img src="/assets/images/smile.png" height="160" />
+            <br>
+            <br>
+            <p><b style="color:green; font-size: large; margin-bottom: -15px;"> Congratulations!!</b>
+                <mat-icon><i class="fas fa-thumbs-up fa-sm"></i></mat-icon>
+            </p>
+            <p style="color: #4b4276; font-size: 1.5rem;">All tags are Segregated!!</p>
+        </div>
+
         <div class="wrapper">
             <!-- <mat-grid-list cols="3" *ngFor="let item of taglist">
                 <mat-grid-tile class="cell" >
                     {{item.tagname}} </mat-grid-tile>
               </mat-grid-list>  -->
-            <div class="taglist" matTooltip="Add to list" matTooltipPosition="below" matTooltipHideDelay="100"
+            <div class="taglist" matTooltip="{{item}}" matTooltipPosition="below" matTooltipHideDelay="100"
                 matTooltipClass="custom-tooltip" *ngFor="let item of taglist">
                 {{item}}
             </div>
@@ -15,55 +39,48 @@
     </div>
     <div class="separator">
     </div>
-
-    <div class="tags">
-        <br>
-        <div class="dropdown">
-            <mat-form-field appearance="fill" style="width: 240px;">
+    <div class="dropdown">
+        <div>
+            <mat-form-field appearance="fill" style="width: 205px; position: fixed;">
                 <mat-label>Select Admin Type</mat-label>
-                <mat-select #matSelect required>
+                <mat-select [(ngModel)]="selectedAdminValue" #matSelect required>
                     <mat-option *ngFor="let type of adminTypeDropdownList" [value]="type.value">
                         {{type.viewValue}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <br>
+        <div class="dropdown-block">
+            <div class="tags">
 
-        <div class="tagswrapper">
+                <div class="tagswrapper">
 
-            <div matTooltip="Move back to Tags" matTooltipPosition="below" matTooltipHideDelay="100"
-                matTooltipClass="custom-tooltip" class="tagstest" *ngFor="let type of typelist">
-                {{type}}
+                    <div matTooltip="Move back to Tags" matTooltipPosition="below" matTooltipHideDelay="100"
+                        matTooltipClass="custom-tooltip" class="tagstest" *ngFor="let type of typelist">
+                        {{type}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="footerbutton">
-        <!-- Apply button -->
-        <button (click)="updateTypeNameDB()" mat-icon-button matTooltip="Create Admin Type List"
-            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
-            <mat-icon><i class="fas fa-check-circle fa-lg" style="color:green"></i></mat-icon>
-        </button>
+        <form class="footer">
+            <!-- Apply button -->
+            <button (click)="updateTypeNameDB()" mat-icon-button matTooltip="Create Admin Type List"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                <mat-icon><i class="fas fa-check-circle fa-lg" style="color:green; margin-left: 10px;"></i></mat-icon>
+            </button>
 
-        <label style="margin-left: 1vw;"> Apply</label>
-        <label style="margin-left: 5vw;"> Mapping</label>
-
-        <!-- Mapping button -->
-        <button mat-icon-button (click)="loadMappingPage()" matTooltip="Move to Data Mapping" matTooltipPosition="below"
-            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
-            <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
-        </button>
-
-        <div class="preview-block">
-            <i class="fas fa-hand-point-right fa-2x"></i>
+            <label style="margin-left: 1.3vw;"> Apply</label>
+            <label style="margin-left: 5.5vw;"> Preview</label>
 
             <!-- Segregation Preview button -->
-            <button class="btn" matTooltip="Click to view Segregation Preview" matTooltipPosition="below"
-                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" mat-raised-button
-                (click)="loadSegregationPreview()">Segregation Preview</button>
-        </div>
+            <button mat-icon-button matTooltip="Click to view Segregation Preview" matTooltipPosition="below"
+                matTooltipHideDelay="100" matTooltipClass="custom-tooltip" (click)="loadSegregationPreview()">
+                <mat-icon><i class="fas fa-hand-point-right fa-lg"></i></mat-icon>
+            </button>
+        </form>
     </div>
 
 
-</body>
+</div>
