@@ -164,12 +164,9 @@ export class SegregatorComponent implements OnInit {
       if (this.taglist.length == 0) {
         this.isEmpty = true;
       }
-      // $(".dropdown-block").load(location.href + " .dropdown-block");
-      // this.selectedAdminValue = " ";
-
-      window.setTimeout(function () {
-        location.reload();
-      }, 1000);
+      //Make the list empty once values added into DB
+      this.typelist.length = 0;
+      this.selectedAdminValue = " ";
     }
   }
 
