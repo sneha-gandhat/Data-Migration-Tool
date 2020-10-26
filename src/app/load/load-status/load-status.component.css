@@ -1,22 +1,27 @@
 /* Header */
+
 h2 {
   color: #4b4276;
   margin-top: 10px;
 }
+
 .header-block {
   display: flex;
 }
+
 button:hover {
   opacity: 0.8;
 }
+
 .search-data {
   /* margin-left: 41em;
   margin-top: 20px; */
-  margin-left:auto;
+  margin-left: auto;
   color: #4b4276;
 }
 
 /* Table */
+
 table {
   width: 100%;
 }
@@ -51,7 +56,9 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
   background-color: #ffffff;
 }
+
 /* Paginator */
+
 .mat-paginator-sticky {
   /* position: sticky; */
   color: #4b4276;
@@ -61,28 +68,29 @@ table tr:nth-child(even) {
   margin-right: 350px;
 }
 
-
 /* Footer */
+
 .footer-block {
-    display: flex;
+  display: flex;
 }
 
 .footerbtn-block {
-    margin-left: -20px;
-    bottom: 0px;
-    left: 50px;
-    position: absolute; 
-  
+  margin-left: -20px;
+  bottom: 0px;
+  left: 50px;
+  position: absolute;
 }
+
 .fa-arrow-alt-circle-left {
-    color: brown;
-  }
-  
-  .fa-arrow-alt-circle-right {
-    color: brown;
-  }
-  label {
-    color: #4b4276;
-    font-weight: 600;
-     margin-top: 12px; 
-  }  
+  color: rgb(15, 161, 15);
+}
+
+.fa-arrow-alt-circle-right {
+  color: rgb(15, 161, 15);
+}
+
+label {
+  color: #4b4276;
+  font-weight: 600;
+  margin-top: 12px;
+}

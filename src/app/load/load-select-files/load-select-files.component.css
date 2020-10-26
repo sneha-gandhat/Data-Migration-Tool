@@ -301,11 +301,11 @@ table tr:nth-child(even) {
 }
 
 .fa-arrow-alt-circle-left {
-  color: brown;
+  color: rgb(15, 161, 15);
 }
 
 .fa-arrow-alt-circle-right {
-  color: brown;
+  color: rgb(15, 161, 15);
 }
 
 /* custom styling for label  */

@@ -1,37 +1,39 @@
+.urltestform {
+  /* background-color: red; */
+  border-radius: 15px 50px 30px;
+  background: #faf6f6;
+  padding: 20px;
+  height: 60%;
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #4b4276;
+}
 
-.urltestform{
-    /* background-color: red; */
-    border-radius: 15px 50px 30px;
-    background:  #faf6f6;
-    padding: 20px;
-    height: 60%;
-    width: 80%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border:2px solid  #4b4276;
+h2 {
+  text-align: center;
+  color: #4b4276;
 }
-h2{
-    text-align: center;
-    color: #4b4276;
+
+.urlrow {
+  /* background-color: blue; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-.urlrow{
-    /* background-color: blue; */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
-.urlfield{
-    /* background-color: red; */
-    border:double;
-    width:75%;
-    border-radius: 25px;
+
+.urlfield {
+  /* background-color: red; */
+  border: double;
+  width: 75%;
+  border-radius: 25px;
   border: 2px solid #4b4276;
   padding: 20px;
   height: 5%;
 }
-.verifybtn{
+
+.verifybtn {
   color: white;
   background-color: #4b4276;
   padding: 0px 30px;
@@ -39,26 +41,28 @@ h2{
 }
 
 /* Footer */
+
 .footer-block {
-    display: flex;
+  display: flex;
 }
 
 .footerbtn-block {
-    margin-left: -20px;
-    bottom: 0px;
-    left: 50px;
-    position: absolute; 
-  
+  margin-left: -20px;
+  bottom: 0px;
+  left: 50px;
+  position: absolute;
 }
+
 .fa-arrow-alt-circle-left {
-    color: brown;
-  }
-  
-  .fa-arrow-alt-circle-right {
-    color: brown;
-  }
-  label {
-    color: #4b4276;
-    font-weight: 600;
-     margin-top: 12px; 
-  }  
+  color: rgb(15, 161, 15);
+}
+
+.fa-arrow-alt-circle-right {
+  color: rgb(15, 161, 15);
+}
+
+label {
+  color: #4b4276;
+  font-weight: 600;
+  margin-top: 12px;
+}

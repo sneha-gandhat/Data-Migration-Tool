@@ -143,6 +143,10 @@ mat-expansion-panel-header {
     margin-left: -15px;
 }
 
+.fa-arrow-alt-circle-right {
+    color: rgb(15, 161, 15);
+}
+
 /* custom styling for button  */
 
 #uploadfilebtn {
