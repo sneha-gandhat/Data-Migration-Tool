@@ -1,64 +1,178 @@
+<div class="container">
+  <h2> Settings</h2>
+  <div class="main">
+    <div class="main-block">
+      <mat-accordion class="example-headers-align">
 
-<body>
-    <div class="container">
-      <div>
-        <form role = "form" class="settings">
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Pagination
+            </mat-panel-title>
 
-          <h2 style="color:#4b4276 "> Settings</h2>
-          <div class = "form-group ">
-             <label  for = "name">Pagination </label>
-            
-             <!-- Rounded switch -->
-             <span class="space"> 
-             <label class="switch">
-               <input type="checkbox">
-               <span class="slider round"></span>
-             </label>
-            </span>
-            </div>
-            <div class="form-group"> 
-              <label for = "name">Records Per Page</label>
-      
-              <select class = "form-control">
-                 <option>5</option>
-                 <option>10</option>
-                 <option>15</option>
-                 <option>25</option>
-                 <option>50</option>
-              </select>
-
-            </div>
-
-            <div class = "form-group ">
-              <label  for = "name">Tooltip </label>
-              <!-- Rounded switch -->
-              <span class="space" style="padding-left:430px;">
+            <!-- Rounded switch -->
+            <span class="space">
               <label class="switch">
                 <input type="checkbox">
                 <span class="slider round"></span>
               </label>
             </span>
-             </div>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
 
-             <div class="form-group"> 
-              <label for = "name">How do you want to upload the Files</label>
-      
-              <select class = "form-control">
-                 <option>Statically</option>
-                 <option>On The Fly</option>
-              </select>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title style="padding-top: 7px;">
+              Records Per Page
+            </mat-panel-title>
 
+            <!-- Dropdown -->
+            <select class="form-control">
+              <option>5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>25</option>
+              <option>50</option>
+            </select>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Tooltip
+            </mat-panel-title>
+
+            <!-- Rounded switch -->
+            <span class="space">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </span>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title style="padding-top: 7px;">
+              How do you want to upload the Files
+            </mat-panel-title>
+
+            <!-- Dropdown -->
+            <select class="form-control">
+              <option>Statically</option>
+              <option>On The Fly</option>
+            </select>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br>
+      <h3>Preferences</h3>
+
+      <mat-accordion class="example-headers-align">
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Invalid Characters
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="invalidChar-block">
+            <label style="margin-top:7px;"> List of Invalid Characters</label>
+            <div class="charlist-block">
+              <div class="charlist">
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip *ngFor="let char of invalidCharacterList" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(char)">
+                    {{char}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+
+              <!-- Add New button -->
+              <button (click)="expandToAddInvalidChar()" mat-icon-button matTooltip="Add New Char"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                style="color: #4b4276; margin-top: 10px;">
+                <mat-icon style="margin-top: -15px;"><i class="fas fa-plus-circle fa-xs" style="color:#4b4276;"></i>
+                </mat-icon>Add New Character
+              </button>
+
+              <div *ngIf="isNewCharAdd" class="addNewChar">
+                <mat-form-field>
+                  <mat-label>Enter Character...</mat-label>
+                  <input matInput type="text" [(ngModel)]="newChar">
+                  <button mat-button *ngIf="newChar" matSuffix mat-icon-button aria-label="Clear" (click)="newChar=''">
+                    <mat-icon style="color: #4b4276;">close</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <button mat-raised-button class="btn" (click)="addNewInvalidChar()"
+                  matTooltip="Click to add new Invalid Char into List" matTooltipPosition="below"
+                  matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Add</button>
+              </div>
             </div>
+            <label style="margin-top:20px;"> What do you want to do with this characters?</label>
 
-            <div>
+            <mat-radio-group class="radio-group">
+              <mat-radio-button (click)="disableDiv()" value="1">Remove</mat-radio-button>
 
-            </div>
-          
-          <!--<div class="text-center">-->
-            <button type = "submit" class = "btn btn-default">Apply</button>
-          <!--</div>-->
-       </form>
-      </div>
+              <mat-radio-button (click)="enableSingleCharDiv()" value="2">Replace with single Character
+              </mat-radio-button>
+              <div *ngIf="Flag1" class="addNewChar">
+                <mat-form-field>
+                  <mat-label>Enter new Character...</mat-label>
+                  <input matInput type="text" [(ngModel)]="newReplacedChar">
+                  <button mat-button *ngIf="newReplacedChar" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="newReplacedChar=''">
+                    <mat-icon style="color: #4b4276;">close</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <button mat-raised-button class="btn" (click)="replaceSingleNewChar()"
+                  matTooltip="Click to replace with new Invalid Character" matTooltipPosition="below"
+                  matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Replace</button>
+              </div>
+
+              <mat-radio-button (click)="enableMultipleCharDiv()" value="3">Replace with different Characters
+              </mat-radio-button>
+              <div *ngIf="Flag2" class="addNewChar">
+                <form class="selectCharlist-block">
+                  <!-- Invalid Char dropdown -->
+                  <mat-form-field style="width: 90px;">
+                    <mat-label> Select Char</mat-label>
+                    <mat-select [(ngModel)]="selectedChar" #matSelect name="invalidChar">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let invalidChar of tempInvalidCharacterList" [value]="invalidChar">
+                        {{invalidChar}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <div style="margin-left: 25px;">
+                    <mat-form-field>
+                      <mat-label>Enter new Character...</mat-label>
+                      <input matInput type="text" [(ngModel)]="newReplacedMultipleChar" name="newReplacedMultipleChar">
+                      <button mat-button *ngIf="newReplacedMultipleChar" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="newReplacedMultipleChar=''">
+                        <mat-icon style="color: #4b4276;">close</mat-icon>
+                      </button>
+                    </mat-form-field>
+
+                    <button mat-raised-button class="btn" (click)="replaceMultipleNewChar(selectedChar)"
+                      matTooltip="Click to replace with new Invalid Character" matTooltipPosition="below"
+                      matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Replace</button>
+                  </div>
+                </form>
+              </div>
+            </mat-radio-group>
+
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
-  </body>
-  
+  </div>
+  <!-- <button type="submit" class="btn btn-default">Apply</button> -->
+</div>
