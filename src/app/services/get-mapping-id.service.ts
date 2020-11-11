@@ -18,4 +18,8 @@ export class GetMappingIdService {
   callMethodOfModifymappingDialogbodyComponent() {
     this.invokeEvent.next("closeWindow");
   }
+  //Call nextStepSegregation() method of DatamappingWithFileComponent
+  callMethodOfDatamappingWithFileComponent() {
+    this.invokeEvent.next("loadSegregation");
+  }
 }

@@ -5,6 +5,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { TransformService } from '../services/transform.service';
 import swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { GetMappingIdService } from '../services/get-mapping-id.service';
 
 @Component({
   selector: 'app-datamapping-with-file',
@@ -20,7 +21,14 @@ export class DatamappingWithFileComponent implements OnInit {
   message = '';
   step = 0;
 
-  constructor(private router: Router, private fileService: TransformService, private dialog: MatDialog) { }
+  constructor(private router: Router, private fileService: TransformService, private dialog: MatDialog, private mappingIdService: GetMappingIdService) {
+    //Send nextStepSegregation() method to MappingReportComponent
+    this.mappingIdService.invokeEvent.subscribe(value => {
+      if (value === 'loadSegregation') {
+        this.nextStepSegregation();
+      }
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -31,6 +39,10 @@ export class DatamappingWithFileComponent implements OnInit {
   }
 
   nextStep() {
+    this.step++;
+  }
+
+  nextStepSegregation() {
     this.step++;
   }
 
@@ -46,9 +58,11 @@ export class DatamappingWithFileComponent implements OnInit {
     this.dialog.open(MappingPreviewComponent, dialogConfig);
   }
 
-  //Navigate to Transformation Progress Bar
-  openTranformProgressView() {
-    this.router.navigate(['gotoTransformationProgressBar']);
+
+
+  // Navigate to Mapping Report window
+  openMappingReportView() {
+    this.router.navigate(['MappingReport']);
   }
 
   //Download Sample Mapping File
@@ -164,7 +178,7 @@ export class DatamappingWithFileComponent implements OnInit {
             this.message = event.body.message;
           }
         },
-        err => {
+        () => {
           swal.fire({
             title: 'Oops...',
             text: "Problem in uploading Mapping file",

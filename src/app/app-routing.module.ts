@@ -1,3 +1,4 @@
+import { MappingReportComponent } from './mapping-report/mapping-report.component';
 import { HomeComponent } from './home/home.component';
 import { LoadStatusComponent } from './load/load-status/load-status.component';
 import { LoadSelectFilesComponent } from './load/load-select-files/load-select-files.component';
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'gotoMappingPreview',
     component: MappingPreviewComponent
+  },
+  {
+    path: 'MappingReport',
+    component: MappingReportComponent
   },
   {
     path: 'gotoTransformationProgressBar',

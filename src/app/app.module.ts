@@ -32,6 +32,7 @@ import { TargetvalueChooserDialogbodyComponent } from './targetvalue-chooser-dia
 import { LoadService } from './services/load.service';
 import { SegregatorPreviewComponent } from './segregator-preview/segregator-preview.component';
 import { ModifyUniquetagsMappingDialogbodyComponent } from './modify-uniquetags-mapping-dialogbody/modify-uniquetags-mapping-dialogbody.component';
+import { MappingReportComponent } from './mapping-report/mapping-report.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ModifyUniquetagsMappingDialogbodyComponent } from './modify-uniquetags-
     SortListPipe,
     UploadFilelistPreviewDialogbodyComponent,
     SegregatorPreviewComponent,
-    ModifyUniquetagsMappingDialogbodyComponent
+    ModifyUniquetagsMappingDialogbodyComponent,
+    MappingReportComponent
 
   ],
   imports: [

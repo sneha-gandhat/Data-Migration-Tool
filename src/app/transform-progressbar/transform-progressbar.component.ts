@@ -48,9 +48,9 @@ export class TransformProgressbarComponent implements OnInit {
     this.PartialTransformFileListDataSource.filter = filterValue;
   }
 
-  //Navigate to Data Mapping
+  //Navigate to MappingReport
   loadMappingPage() {
-    this.router.navigate(['gotoDataMapping']);
+    this.router.navigate(['MappingReport']);
   }
 
   openTranformProgressView() {

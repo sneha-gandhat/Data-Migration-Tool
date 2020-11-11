@@ -1,0 +1,267 @@
+<div class="parent">
+    <h2>Mapping Report</h2>
+
+    <div class="main">
+
+        <mat-tab-group mat-align-tabs="center" mat-stretch-tabs>
+            <!-- Panel for - Non-Segregated Tags -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Non - Segregated Tags
+                    <div [matBadge]="nonSegregatedTagCount" matBadgeColor="warn" class="c-badge"></div>
+                </ng-template>
+                <div class="tab">
+                    <p>Below tags are failed to segregate according to Admin Type</p>
+                    <div class="panel">
+                        <div class="chiplist">
+                            <mat-grid-list cols="7" rowHeight="4:1.4" gutterSize="10px">
+                                <mat-grid-tile *ngFor="let val of (nonSegregatedTagList | sortList)">
+                                    <button mat-flat-button class="valuebtn" matTooltip="{{val}}"
+                                        matTooltipPosition="below" matTooltipHideDelay="100"
+                                        matTooltipClass="custom-tooltip">
+                                        {{val}}
+                                    </button>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="footer-bar">
+                        <button class="navigateBtn" mat-raised-button (click)="openSegregationWindow()"
+                            matTooltip="Click to Navigate to Segregation window" matTooltipPosition="below"
+                            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                            * Please navigate to Segregation window to Segregate the tags
+                            <mat-icon style=" margin-top: -12px;"><i class="fas fa-arrow-alt-circle-right fa-xs"
+                                    style="color: brown;"></i>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!-- Panel for - Non-Mapped data -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Non - Mapped Tags
+                    <div [matBadge]="nonMappedTagCount" matBadgeColor="warn" class="c-badge"></div>
+                </ng-template>
+                <div class="tab">
+                    <p>Below tags are failed to map with the Target System</p>
+                    <div class="panel">
+                        <div class="chiplist">
+                            <mat-grid-list cols="7" rowHeight="4:1.4" gutterSize="10px">
+                                <mat-grid-tile *ngFor="let val of (nonMappedTagList | sortList)">
+                                    <button mat-flat-button class="valuebtn" matTooltip="{{val}}"
+                                        matTooltipPosition="below" matTooltipHideDelay="100"
+                                        matTooltipClass="custom-tooltip">
+                                        {{val}}
+                                    </button>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="footer-bar">
+                        <button class="navigateBtn" mat-raised-button (click)="openMappingPreview()"
+                            matTooltip="Click to Navigate to Mapping Preview" matTooltipPosition="below"
+                            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                            * Please navigate to Mapping Preview to Map the tags with Target System
+                            <mat-icon style=" margin-top: -12px;"><i class="fas fa-arrow-alt-circle-right fa-xs"
+                                    style="color: brown;"></i>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!-- Panel for - Invalid Schema -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Invalid Schema
+                    <div [matBadge]="invalidSchemaTagCount" matBadgeColor="warn" class="c-badge"></div>
+                </ng-template>
+                <div class="tab">
+                    <form class="header-block">
+                        <p>Below tags are mapped with invalid schema from the Target System</p>
+
+                        <!-- Search Filter -->
+                        <div class="search-data">
+                            <mat-form-field>
+                                <input matInput (keyup)="applyFilter($event.target.value)" value="Search..."
+                                    onfocus="if(this.value==this.defaultValue)this.value=''"
+                                    onblur="if(this.value=='')this.value=this.defaultValue">
+                                <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true"
+                                        matTooltip="Search for Mapping" matTooltipPosition="below"
+                                        matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <div class="mat-elevation-z8 data-table">
+                        <table mat-table matSort [dataSource]="dataMappingListDataSource">
+
+                            <!-- Admin Type Column -->
+                            <ng-container matColumnDef="adminType">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin Type </th>
+                                <td mat-cell *matCellDef="let element" style="width: 33%;"> {{element.adminType}} </td>
+                            </ng-container>
+
+                            <!-- Source Value Column -->
+                            <ng-container matColumnDef="sourceValue">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Source Value </th>
+                                <td mat-cell *matCellDef="let element" style="width: 33%;"> {{element.sourceValue}}
+                                </td>
+                            </ng-container>
+
+                            <!-- Target Value Column -->
+                            <ng-container matColumnDef="destinationValue">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Target Value </th>
+                                <td mat-cell *matCellDef="let element" style="width: 33%; color: rgb(224, 21, 21);">
+                                    {{element.destinationValue}}
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+                        </table>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="footer-bar">
+                        <button class="navigateBtn" mat-raised-button (click)="openMappingPreview()"
+                            matTooltip="Click to Navigate to Mapping Preview" matTooltipPosition="below"
+                            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                            * Please navigate to Mapping Preview to map with the valid schema
+                            <mat-icon style=" margin-top: -12px;"><i class="fas fa-arrow-alt-circle-right fa-xs"
+                                    style="color: brown;"></i>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!-- Panel for - Mandatory Attributes/Default Value -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Mandatory Attributes
+                    <div [matBadge]="mandatoryTagCount" matBadgeColor="warn" class="c-badge"></div>
+                </ng-template>
+                <div class="tab">
+                    <form class="header-block">
+                        <p>Below tags are marked as Mandatory</p>
+
+                        <!-- Search Filter -->
+                        <div class="search-data">
+                            <mat-form-field>
+                                <input matInput (keyup)="applyFilter($event.target.value)" value="Search..."
+                                    onfocus="if(this.value==this.defaultValue)this.value=''"
+                                    onblur="if(this.value=='')this.value=this.defaultValue">
+                                <mat-icon matSuffix><i class="fas fa-search fa-sm" aria-hidden="true"
+                                        matTooltip="Search for Mapping" matTooltipPosition="below"
+                                        matTooltipHideDelay="100" matTooltipClass="custom-tooltip"></i>
+                                </mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <div class="mat-elevation-z8 data-table">
+                        <table mat-table [dataSource]="mandatoryTagListDataSource" matSort>
+
+                            <!-- Admin Type Column -->
+                            <ng-container matColumnDef="adminTypeValue">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin Type </th>
+                                <td mat-cell *matCellDef="let element" style="width: 33%;"> {{element.adminTypeValue}}
+                                </td>
+                            </ng-container>
+
+                            <!-- Source Value Column -->
+                            <ng-container matColumnDef="sourceTagValue">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> *Source Value </th>
+                                <td mat-cell *matCellDef="let element" style="width: 33%;"> {{element.sourceTagValue}}
+                                </td>
+                            </ng-container>
+
+                            <!-- Default Value Column -->
+                            <ng-container matColumnDef="defaultValue">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Default Value </th>
+                                <td mat-cell *matCellDef="let element" style="width: 33%;">
+                                    {{element.defaultValue}}
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="mandatoryTagColumnsToDisplay; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let myRowData; columns: mandatoryTagColumnsToDisplay"></tr>
+                        </table>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="footer-bar">
+                        <button class="navigateBtn" mat-raised-button (click)="openMappingPreview()"
+                            matTooltip="Click to Navigate to Mapping Preview" matTooltipPosition="below"
+                            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                            * Please navigate to Mapping Preview to update the mandatory tags and its default value
+                            <mat-icon style=" margin-top: -12px;"><i class="fas fa-arrow-alt-circle-right fa-xs"
+                                    style="color: brown;"></i>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!-- Panel for - Invalid Characters tags -->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Invalid Character Tags
+                    <div [matBadge]="invalidCharacterTagCount" matBadgeColor="warn" class="c-badge"></div>
+                </ng-template>
+                <div class="tab">
+                    <p>Below tags are need to process for Invalid Characters</p>
+                    <div class="panel">
+                        <div class="chiplist">
+                            <mat-grid-list cols="7" rowHeight="4:1.4" gutterSize="10px">
+                                <mat-grid-tile *ngFor="let val of (invalidCharacterTagList | sortList)">
+                                    <button mat-flat-button class="valuebtn" matTooltip="{{val}}"
+                                        matTooltipPosition="below" matTooltipHideDelay="100"
+                                        matTooltipClass="custom-tooltip">
+                                        {{val}}
+                                    </button>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="footer-bar">
+                        <button class="navigateBtn" mat-raised-button (click)="openMappingPreview()"
+                            matTooltip="Click to Navigate to Mapping Preview" matTooltipPosition="below"
+                            matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
+                            * Please navigate to Mapping Preview to update Invalid Characters tags
+                            <mat-icon style=" margin-top: -12px;"><i class="fas fa-arrow-alt-circle-right fa-xs"
+                                    style="color: brown;"></i>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <!-- Footer buttons -->
+    <div class="footerbtn-block">
+        <form class="footer-block">
+
+            <!-- Back to Mapping Arrow button -->
+            <button mat-icon-button (click)="loadMappingPage()" matTooltip="Go back to Data Mapping Preview"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                style="margin-left: -10px;">
+                <mat-icon><i class="fas fa-arrow-alt-circle-left fa-lg"></i></mat-icon>
+            </button>
+
+            <div class="footerbtn">
+                <!-- Transformation Progressbar Arrow button -->
+                <button mat-icon-button (click)="openTranformProgressView()"
+                    matTooltip="Click to Proceed for Transformation" matTooltipPosition="below"
+                    matTooltipHideDelay="100" matTooltipClass="custom-tooltip" style="right: 15px;">
+                    <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -60,7 +60,7 @@
             </mat-card>
 
             <mat-action-row>
-                <button mat-button (click)="nextStep()" style="bottom: 17px;">Next</button>
+                <button mat-button (click)="nextStepSegregation()" style="bottom: 17px;">Next</button>
             </mat-action-row>
         </mat-expansion-panel>
 
@@ -104,11 +104,8 @@
     <!-- Footer buttons -->
     <div class="footerbtn-block">
         <form class="footer-block">
-
-            <!-- Mapping Preview Arrow button -->
-            <button mat-icon-button (click)="openTranformProgressView()"
-                matTooltip="Click to Proceed for Transformation" matTooltipPosition="below" matTooltipHideDelay="100"
-                matTooltipClass="custom-tooltip">
+            <button mat-icon-button (click)="openMappingReportView()" matTooltip="Click to view the Mapping Report"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">
                 <mat-icon><i class="fas fa-arrow-alt-circle-right fa-lg"></i></mat-icon>
             </button>
         </form>
