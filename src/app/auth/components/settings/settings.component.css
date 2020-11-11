@@ -75,9 +75,9 @@ mat-expansion-panel-header {
 }
 
 .charlist {
-  border-radius: 40px;
+  border-radius: 20px;
   padding: 15px;
-  border: dotted #b0abc7;
+  border: 1.9px dashed #4b4276;
 }
 
 .selectCharlist-block {
@@ -87,6 +87,17 @@ mat-expansion-panel-header {
 .addNewChar {
   margin-top: 10px;
   margin-left: 35px;
+  padding: 15px;
+  border-radius: 20px;
+  border: 1.9px dashed #4b4276;
+  text-align: center;
+  width: 55%;
+}
+
+.addNewCharSymbol {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 15px;
 }
 
 .btn {
