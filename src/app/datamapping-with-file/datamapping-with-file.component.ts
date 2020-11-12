@@ -20,6 +20,7 @@ export class DatamappingWithFileComponent implements OnInit {
   progress = 0;
   message = '';
   step = 0;
+  invalidCount: number = 60;
 
   constructor(private router: Router, private fileService: TransformService, private dialog: MatDialog, private mappingIdService: GetMappingIdService) {
     //Send nextStepSegregation() method to MappingReportComponent
@@ -167,10 +168,21 @@ export class DatamappingWithFileComponent implements OnInit {
         event => {
           swal.fire({
             text: "File uploaded successfully",
-            timer: 1000,
             icon: 'success',
-            showConfirmButton: false,
-          });
+            confirmButtonColor: '#4b4276',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              //Add code here to get the count of invalid schema values
+              if (this.invalidCount > 0) {
+                swal.fire({
+                  title: 'Oops...',
+                  text: this.invalidCount + ' Invalid schema values are mapped',
+                  icon: 'warning',
+                  confirmButtonColor: '#4b4276',
+                });
+              }
+            }
+          })
           if (event.type === HttpEventType.UploadProgress) {
             element.uploadedPercent = Math.round(100 * event.loaded / event.total);
             element.uploadCompleted = true;
