@@ -1,3 +1,4 @@
+import { DataCleaningComponent } from './data-cleaning/data-cleaning.component';
 import { MappingReportComponent } from './mapping-report/mapping-report.component';
 import { HomeComponent } from './home/home.component';
 import { LoadStatusComponent } from './load/load-status/load-status.component';
@@ -77,6 +78,11 @@ const routes: Routes = [
   {
     path: 'load-status',
     component: LoadStatusComponent
+
+  },
+  {
+    path: 'data-cleaning',
+    component: DataCleaningComponent
 
   },
 ];

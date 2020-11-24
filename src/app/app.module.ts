@@ -33,6 +33,8 @@ import { LoadService } from './services/load.service';
 import { SegregatorPreviewComponent } from './segregator-preview/segregator-preview.component';
 import { ModifyUniquetagsMappingDialogbodyComponent } from './modify-uniquetags-mapping-dialogbody/modify-uniquetags-mapping-dialogbody.component';
 import { MappingReportComponent } from './mapping-report/mapping-report.component';
+import { IsMandatoryDialogComponent } from './is-mandatory-dialog/is-mandatory-dialog.component';
+import { DataCleaningComponent } from './data-cleaning/data-cleaning.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { MappingReportComponent } from './mapping-report/mapping-report.componen
     UploadFilelistPreviewDialogbodyComponent,
     SegregatorPreviewComponent,
     ModifyUniquetagsMappingDialogbodyComponent,
-    MappingReportComponent
+    MappingReportComponent,
+    IsMandatoryDialogComponent,
+    DataCleaningComponent
 
   ],
   imports: [

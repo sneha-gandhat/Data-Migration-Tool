@@ -53,9 +53,9 @@
         <div class="dropdown-block">
             <div class="tags">
 
-                <div class="tagswrapper">
+                <div class="tagswrapper" (click)="ontagClick()">
 
-                    <div matTooltip="Move back to Tags" matTooltipPosition="below" matTooltipHideDelay="100"
+                    <div matTooltip="Click to mark as Mandatory" matTooltipPosition="below" matTooltipHideDelay="100"
                         matTooltipClass="custom-tooltip" class="tagstest" *ngFor="let type of typelist">
                         {{type}}
                     </div>

@@ -8,6 +8,7 @@ import { ViewChild, AfterViewInit } from '@angular/core';
 import { MatSelectModule, MatSelect } from '@angular/material/select';
 import swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { IsMandatoryDialogComponent } from '../is-mandatory-dialog/is-mandatory-dialog.component';
 
 //declare var $: any;
 
@@ -76,8 +77,16 @@ export class SegregatorComponent implements OnInit {
       deletetag(selectedtag);
     });
 
-    //On Typelist Click, add tag to taglist and remove it from typelist
+    //On Typelist single Click, mark the tag as mandatory
     $(".tagswrapper").click(function (event) {
+      event.stopImmediatePropagation();
+     // alert("Mark Mandatory");
+     
+    });
+    
+
+    //On Typelist DoubleClick, add tag to taglist and remove it from typelist
+    $(".tagswrapper").dblclick(function (event) {
       event.stopImmediatePropagation();
       var selectedtag = $(event.target).text();
       console.log(selectedtag);
@@ -177,4 +186,13 @@ export class SegregatorComponent implements OnInit {
     dialogConfig.autoFocus = false;
     this.dialog.open(SegregatorPreviewComponent, dialogConfig);
   }
+  //for Madatory Atrribute check Dialog box
+  ontagClick(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.width="25%";
+    this.dialog.open(IsMandatoryDialogComponent, dialogConfig );
+  }
+  
 }

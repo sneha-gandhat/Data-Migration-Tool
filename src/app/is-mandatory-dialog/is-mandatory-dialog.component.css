@@ -1,0 +1,9 @@
+.formcontent{
+text-align:center ;
+}
+.buttonsJustify
+{
+         display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }

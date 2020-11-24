@@ -34,23 +34,23 @@ export class MappingReportComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router, private dialog: MatDialog, private mappingIdService: GetMappingIdService) {
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id"));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
-    this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part"));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name"));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id"));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
-    this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part"));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name"));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id"));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
-    this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part"));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name"));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part"));
+    // this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part"));
+    // this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
+    // this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part"));
+    // this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name"));
+    // this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part"));
     this.dataMappingListDataSource = new MatTableDataSource(this.dataMappingList);
 
     this.mandatoryTagList.push(new MandatoryTag("Type", "Product", "P1"));
@@ -90,9 +90,9 @@ export class MappingReportComponent implements OnInit, AfterViewInit {
     this.mandatoryTagListDataSource.filter = filterValue;
   }
 
-  //Navigate to Transformation Progress Bar
-  openTranformProgressView() {
-    this.router.navigate(['gotoTransformationProgressBar']);
+  //Navigate to Data Cleaning
+  openDataCleaning() {
+    this.router.navigate(['data-cleaning']);
   }
 
   //Navigate to Data Mapping

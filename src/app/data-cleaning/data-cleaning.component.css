@@ -1,0 +1,336 @@
+/* Header */
+
+h2 {
+    color: #4b4276;
+    margin-top: 10px;
+  }
+  
+  .header-block {
+    display: flex;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  .search-data {
+    /* margin-left: 41em;
+    margin-top: 20px; */
+    margin-left: auto;
+    color: #4b4276;
+  }
+  
+  /* Table */
+  
+  table {
+    width: 100%;
+  }
+  
+  .data-table {
+    max-height: 23em;
+    max-width: 80%;
+    margin-left: 100px;
+    overflow: auto;
+  }
+  
+  .mat-header-cell {
+    background-color: #4b4276;
+    color: white;
+    font-weight: 500;
+  }
+  
+  ::ng-deep .mat-sort-header-arrow {
+    color: white;
+  }
+  
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+  }
+  
+  tr.mat-header-row, tr.mat-row {
+    height: 25px !important;
+  }
+  
+  table tr:nth-child(odd) {
+    background-color: #e8e8ec;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+  
+  .loadbtn {
+    color: white;
+    background-color: #4b4276;
+    padding: 0px 30px;
+    margin-left: 45%;
+  }
+  
+  /* Paginator */
+  
+  .mat-paginator-sticky {
+    /* position: sticky; */
+    color: #4b4276;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-right: 350px;
+  }
+  
+  /* Footer */
+  
+  .footer-block {
+    display: flex;
+  }
+  
+  .footerbtn-block {
+    margin-left: -20px;
+    bottom: 0px;
+    left: 50px;
+    position: absolute;
+  }
+  
+  .fa-arrow-alt-circle-left {
+    color: brown;
+  }
+  
+  .fa-arrow-alt-circle-right {
+    color: brown;
+  }
+  
+  label {
+    color: #4b4276;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #4b4276;
+  }
+  
+  /* Same as TransfoemProgressbar */
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  h2 {
+    color: #4b4276;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Extra styles for the cancel button */
+  
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #4b4276;
+  }
+  
+  /* Center the image and position the close button */
+  
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+  
+  .fa-user-circle {
+    color: #4b4276;
+    font-size: 50px;
+  }
+  
+  .displayform {
+    padding: 16px;
+    border: double;
+    border-color: #4b4276;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+  }
+  
+  .even {
+    background-color: #ffffff;
+  }
+  
+  .odd {
+    background-color: #e8e8ec;
+  }
+  
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+  
+  /* The Modal (background) */
+  
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    padding-top: 60px;
+  }
+  
+  /* Modal Content/Box */
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 40%;
+    /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button (x) */
+  
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #4b4276;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+  
+  .checkFilesToBeTransformed {
+    width: 85vw;
+    height: 77vh;
+    overflow-y: auto;
+  }
+  
+  .informationForm {
+    /* background-color: aqua; */
+    width: 55vw;
+    height: 55vh;
+    /* position: relative; */
+  }
+  
+  .main-section {
+    border: 1px solid #4b4276;
+  }
+  
+  .footer-block {
+    display: flex;
+  }
+  
+  .footerbtn-block {
+    margin-left: -20px;
+    bottom: 0px;
+    left: 50px;
+    position: absolute;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .data-table {
+    max-height: 23em;
+    max-width: 80%;
+    margin-left: 100px;
+    overflow: auto;
+  }
+  
+  .mat-header-cell {
+    background-color: #4b4276;
+    color: white;
+    font-weight: 500;
+  }
+  
+  ::ng-deep .mat-sort-header-arrow {
+    color: white;
+  }
+  
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+  }
+  
+  tr.mat-header-row, tr.mat-row {
+    height: 25px !important;
+  }
+  
+  table tr:nth-child(odd) {
+    background-color: #e8e8ec;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+  
+  /* custom styling for paginator  */
+  
+  .mat-paginator-sticky {
+    /* position: sticky; */
+    color: #4b4276;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-right: 400px;
+  }
+  
+  .fa-arrow-alt-circle-left {
+    color: rgb(15, 161, 15);
+  }
+  
+  .fa-arrow-alt-circle-right {
+    color: rgb(15, 161, 15);
+  }
+  
+  /* custom styling for label  */
+  
+  label {
+    color: #4b4276;
+    font-weight: 600;
+    /* margin-top: 12px; */
+  }
+  
+  /* custom styling for search filter  */
+  
+  .search-data {
+    margin-left: 43em;
+    /* margin-top: 20px;  */
+    /* margin-left:auto; */
+    color: #4b4276;
+  }
+  
+  /* custom styling for Form */
+  
+  .header-block {
+    display: flex;
+  }
+  
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #4b4276;
+  }
