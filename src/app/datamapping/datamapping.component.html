@@ -23,8 +23,8 @@
                 <!-- Source value chooser -->
                 <div class="src-dst-value-list">
                     <mat-form-field style="width: 180px;">
-                        <input [readonly]="true" matInput type="text" [(ngModel)]="selectedSourceValue" name="selectedSourceValue"
-                            value="{{selectedSourceValue}}" style="color: brown;">
+                        <input [readonly]="true" matInput type="text" [(ngModel)]="selectedSourceValue"
+                            name="selectedSourceValue" value="{{selectedSourceValue}}" style="color: brown;">
                         <button matSuffix mat-icon-button matTooltip="Click to choose Source value"
                             matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
                             (click)="openValueChooserSource()">
@@ -36,8 +36,8 @@
                 <!-- Target value chooser -->
                 <div class="src-dst-value-list">
                     <mat-form-field style="width: 180px;">
-                        <input [readonly]="true" matInput type="text" [(ngModel)]="selectedTargetValue" name="selectedTargetValue"
-                            value="{{selectedTargetValue}}" style="color: brown;">
+                        <input [readonly]="true" matInput type="text" [(ngModel)]="selectedTargetValue"
+                            name="selectedTargetValue" value="{{selectedTargetValue}}" style="color: brown;">
                         <button matSuffix mat-icon-button matTooltip="Click to choose Target value"
                             matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
                             (click)="openValueChooserTarget()">
@@ -47,23 +47,40 @@
                 </div>
             </form>
 
+            <form *ngIf="isParent == false" style="display: flex;">
+                <div class="checkField-block">
+                    <mat-checkbox [(ngModel)]="isCharChecked" name="isCharChecked">Invalid Character Check
+                    </mat-checkbox>
+                    <mat-checkbox [(ngModel)]="isMandatory" name="isMandatory" style="margin-left: 50px;">Mandatory
+                    </mat-checkbox>
+                </div>
+
+                <!-- Default Value Textbox-->
+                <div style="height: 5px; margin-left: 50px; margin-top: -3px;">
+                    <mat-label> Default Value</mat-label>
+                    <mat-form-field style="margin-left: 10px; width: 130px; color: brown">
+                        <input matInput [(ngModel)]="defaultValue" name="defaultValue">
+                    </mat-form-field>
+                </div>
+            </form>
+
             <!-- Add button -->
             <button *ngIf="isParent != false" class="addbtn" mat-raised-button matTooltip="Add mapping into Database"
-            matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-            (click)="addMapping()">Add</button>
-            
-            <!-- Modify button -->
-                <button *ngIf="isParent == false" class="modbtn" mat-raised-button matTooltip="Modify selected Mapping"
-                    matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
-                    (click)="modifyMapping()">Modify</button>
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                (click)="addMapping()">Add</button>
 
-		<!-- Cancel button -->
-        <button *ngIf="isParent == false" mat-raised-button class="cancelbtn" (click)="cancel()" matTooltip="Cancel" matTooltipPosition="below"
-        matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Cancel</button>
+            <!-- Modify button -->
+            <button *ngIf="isParent == false" class="modbtn" mat-raised-button matTooltip="Modify selected Mapping"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip"
+                (click)="modifyMapping()">Modify</button>
+
+            <!-- Cancel button -->
+            <button *ngIf="isParent == false" mat-raised-button class="cancelbtn" (click)="cancel()" matTooltip="Cancel"
+                matTooltipPosition="below" matTooltipHideDelay="100" matTooltipClass="custom-tooltip">Cancel</button>
 
 
             <p *ngIf="isParent != false">Please Check Mapping Preview</p>
-            
+
             <p *ngIf="isParent == false" style="margin-left: 3%;">Please Check on Modify</p>
         </div>
     </mat-card>

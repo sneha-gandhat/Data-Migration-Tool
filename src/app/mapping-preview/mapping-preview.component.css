@@ -27,7 +27,7 @@ h3 {
 /* custom styling for table  */
 
 table {
-    width: 100%;
+    width: 150%;
 }
 
 .data-table {
@@ -59,6 +59,10 @@ table tr:nth-child(odd) {
 
 table tr:nth-child(even) {
     background-color: #ffffff;
+}
+
+.highlight {
+    background-color: red;
 }
 
 /* custom styling for paginator  */
@@ -97,7 +101,6 @@ label {
     font-weight: 500;
     margin-top: 12px;
 }
-
 
 /* custom styling for search filter  */
 

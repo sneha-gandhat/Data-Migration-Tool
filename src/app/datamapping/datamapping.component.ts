@@ -16,11 +16,15 @@ import swal from 'sweetalert2';
   entryComponents: [TargetvalueChooserDialogbodyComponent],//to open the chooser component in Dialog
 })
 export class DatamappingComponent implements OnInit, AfterViewInit {
+  mappingId: number;
   selectedAdminValue: string = " ";
   selectedSourceValue: string;
   selectedTargetValue: string;
-  mapping = new Mapping(0, "", "", "");
-  mappingId: number;
+  isCharChecked: boolean = false;
+  isMandatory: boolean = false;
+  defaultValue: string;
+  isValidSchema: boolean = false;
+  mapping = new Mapping(0, "", "", "", "", false, false, false);
   message: any;
   @Input()
   isParent: boolean;
@@ -40,6 +44,9 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
       this.selectedAdminValue = this.mapping.adminType;
       this.selectedSourceValue = this.mapping.sourceValue;
       this.selectedTargetValue = this.mapping.destinationValue;
+      this.isCharChecked = this.mapping.processInvalidChars;
+      this.isMandatory = this.mapping.isMandatory;
+      this.defaultValue = this.mapping.defaultValue;
     });
   }
 
@@ -64,9 +71,10 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
     });
   }
 
+
   // Add Mapping to DB
   addMapping() {
-    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue);
+    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue, this.defaultValue, this.isCharChecked, this.isMandatory, this.isValidSchema);
     this.transformservice.addMappingRule(modifiedMapping).subscribe(data => {
       swal.fire({
         text: "Mapping successfully added",
@@ -77,6 +85,9 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
       this.selectedAdminValue = " ";
       this.selectedSourceValue = " ";
       this.selectedTargetValue = " ";
+      this.isCharChecked = false;
+      this.isMandatory = false;
+      this.defaultValue = " ";
     }, err => {
       swal.fire({
         title: 'Oops...',
@@ -89,7 +100,7 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
 
   // Modify Mapping and save into DB
   modifyMapping() {
-    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue);
+    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue, this.defaultValue, this.isCharChecked, this.isMandatory, this.isValidSchema);
     this.transformservice.updateMapping(this.mappingId, modifiedMapping)
       .subscribe(data => {
         swal.fire({
@@ -188,7 +199,8 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
 
   //Cancel value selection for Mapping and close the window
   cancel() {
-    this.dialog.closeAll();
+    //Call closeDialog() method of ModifymappingDialogbodyComponent
+    this.mappingIdService.callMethodOfModifymappingDialogbodyComponent();
   }
 
 }

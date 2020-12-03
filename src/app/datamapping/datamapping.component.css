@@ -45,6 +45,7 @@ mat-label {
     background-color: #4b4276;
     padding: 0px 30px;
     margin-left: 36%;
+    margin-top: 15px;
 }
 
 /* custom styling for paragraph  */
@@ -71,12 +72,28 @@ p {
     margin-left: 7em;
 }
 
+.checkField-block {
+    margin-top: 10px;
+}
+
+/* custom styling for Checkbox  */
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: #4b4276!important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #4b4276;
+}
+
 /* custom styling for Chooser Icon  */
 
 .chooserIcon {
     color: brown;
     transform: scale(1.3);
 }
+
 .cancelbtn {
     background-color: rgb(172, 71, 71);
     color: white;
@@ -89,5 +106,4 @@ p {
     background-color: #4b4276;
     padding: 0px 30px;
     margin-left: 27%;
-}  
-
+}

@@ -17,11 +17,11 @@ import swal from 'sweetalert2';
   entryComponents: [ModifymappingDialogbodyComponent],  //to open the component in Dialog
 })
 export class MappingPreviewComponent implements OnInit, AfterViewInit {
-  columnsToDisplay = ['adminType', 'sourceValue', 'destinationValue', 'action'];
+  columnsToDisplay = ['adminType', 'sourceValue', 'destinationValue', 'isValidSchema', 'defaultValue', 'processInvalidChars', 'isMandatory', 'action'];
   dataMappingListDataSource: any;
   dataMappingList: Mapping[] = [];
 
-  constructor(public dialogRef: MatDialogRef<MappingPreviewComponent>,private transformservice: TransformService, private mappingIdService: GetMappingIdService, private router: Router, private dialog: MatDialog) {
+  constructor(public dialogRef: MatDialogRef<MappingPreviewComponent>, private transformservice: TransformService, private mappingIdService: GetMappingIdService, private router: Router, private dialog: MatDialog) {
     //Send getAllMappingDetails() method to DataMappingComponent
     this.mappingIdService.invokeEvent.subscribe(value => {
       if (value === 'loadMapping') {
@@ -31,6 +31,11 @@ export class MappingPreviewComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
+    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id", "90000008", false, true, false));
+    this.dataMappingList.push(new Mapping(0, "Relationship", "Product_Relationsh b,jbjfhflkhfkipd fsdfada", "Part_Relatjhj hjhjfjhionship", "90009800", true, true, true));
+    this.dataMappingListDataSource = new MatTableDataSource(this.dataMappingList);
+
     //Load All Mapping Data
     this.getAllMappingDetails();
   }
