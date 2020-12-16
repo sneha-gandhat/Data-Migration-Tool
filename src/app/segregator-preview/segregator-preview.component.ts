@@ -7,6 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import swal from 'sweetalert2';
 import { GetMappingIdService } from '../services/get-mapping-id.service';
+import { TransformService } from './../services/transform.service';
+import {UniqueTagPreviewService} from '../services/unique-tag-preview.service';
+
 
 @Component({
   selector: 'app-segregator-preview',
@@ -20,20 +23,11 @@ export class SegregatorPreviewComponent implements OnInit, AfterViewInit {
   uniqueTagListDataSource: any;
   uniqueTagList: UniqueTags[] = [];
 
-  constructor(public dialogRef: MatDialogRef<SegregatorPreviewComponent>, private dialog: MatDialog, private mappingIdService: GetMappingIdService) {
-    this.uniqueTagList.push(new UniqueTags(1, "abc.xml", "Product", "Type"));
-    this.uniqueTagList.push(new UniqueTags(2, "pqr.xml", "Bike", "Attribute"));
-    this.uniqueTagList.push(new UniqueTags(11, "abc.xml", "Date", "Policy"));
-    this.uniqueTagList.push(new UniqueTags(3, "aaa.xml", "Brand", "Attribute"));
-    this.uniqueTagList.push(new UniqueTags(4, "bbb.xml", "Id", "Policy"));
-    this.uniqueTagList.push(new UniqueTags(5, "ccc.xml", "Year", "Type"));
-    this.uniqueTagList.push(new UniqueTags(31, "abc.xml", "Product", "Type"));
-    this.uniqueTagList.push(new UniqueTags(6, "pqr.xml", "Bike", "Attribute"));
-    this.uniqueTagList.push(new UniqueTags(1, "abc.xml", "Date", "Policy"));
-    this.uniqueTagList.push(new UniqueTags(7, "aaa.xml", "Brand", "Attribute"));
-    this.uniqueTagList.push(new UniqueTags(8, "bbb.xml", "Id", "Policy"));
-    this.uniqueTagList.push(new UniqueTags(9, "ccc.xml", "Year", "Type"));
-    this.uniqueTagListDataSource = new MatTableDataSource(this.uniqueTagList);
+  constructor(public dialogRef: MatDialogRef<SegregatorPreviewComponent>, private dialog: MatDialog, private mappingIdService: GetMappingIdService
+  ,private transformservice: TransformService,private tagPreview:  UniqueTagPreviewService) {
+	  
+	   this.getUniqueTagPreview(); 
+									
   }
 
   ngOnInit(): void {
@@ -77,15 +71,17 @@ export class SegregatorPreviewComponent implements OnInit, AfterViewInit {
       imageWidth: 100,
       imageHeight: 100,
     }).then((result) => {
-      if (result.isConfirmed) {
-        //Add logic here
-        swal.fire({
-          title: 'Deleted!',
-          text: 'Mapping has been deleted.',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1000
-        });
+      if (result.isConfirmed) {		  
+        {
+          this.tagPreview.DeleteSegregationTag(id);       
+          swal.fire({
+            title: 'Deleted!',
+            text: 'Mapping has been deleted.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+          });
+        }
       }
     })
   }
@@ -94,4 +90,18 @@ export class SegregatorPreviewComponent implements OnInit, AfterViewInit {
   close() {
     this.dialogRef.close("Close the window");
   }
+  getUniqueTagPreview() {
+    this.transformservice.getMappingDetails().subscribe(
+      data => {
+        this.uniqueTagListDataSource = data;        
+      
+        for (let index = 0; index < this.uniqueTagListDataSource.length; index++) {
+          const element = this.uniqueTagListDataSource[index];
+          //console.log("element.defaultValue"+element.default_value);
+          this.uniqueTagList.push(new UniqueTags(element.id, element.fileName, element.sourceValue,element.adminType));    
+        }
+         this.uniqueTagListDataSource = new MatTableDataSource(this.uniqueTagList);
+      },     
+    );
+  }  							   
 }

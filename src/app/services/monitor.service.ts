@@ -69,26 +69,26 @@ export class MonitorService {
 
   //to get the number of Parsed File
   public getParsedFileNumber(): any {
-    return this.httpclient.get("http://localhost:8089/totalParsedFile");
+    return this.httpclient.get("http://localhost:8089/mappings/totalParsedFile");
   }
 
   //to get the number of Unparsed File
   public getUnParsedFileNumber(): any {
-    return this.httpclient.get("http://localhost:8089/totalUnparsedFile");
+    return this.httpclient.get("http://localhost:8089/mappings/totalUnparsedFile");
   }
 
   //number of object in parsed file
   public getNumOfObjinParsed(): any {
-    return this.httpclient.get("http://localhost:8089/noOfObjectInparsedFile");
+    return this.httpclient.get("http://localhost:8089/mappings/noOfObjectInparsedFile");
   }
   //number of object in Unparsed file
   public getNumOfObjinUnParsed(): any {
-    return this.httpclient.get("http://localhost:8089/noOfObjectInunparsedFile");
+    return this.httpclient.get("http://localhost:8089/mappings/noOfObjectInunparsedFile");
   }
   
   public errorPreview():Observable<any>{
 									 
-    return this.httpclient.get<any>("http://localhost:8089/errorPreview");
+    return this.httpclient.get<any>("http://localhost:8089/mappings/errorPreview");
    
 									 
 									   

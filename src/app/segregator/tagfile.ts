@@ -15,3 +15,15 @@ export class adminType{
 
     }
 }
+    export class mappingInfo{
+        constructor(
+            public adminType: string,
+            public sourceValue: string,
+            public default_value: string,
+            public isProcess_invalid_chars :boolean,
+            public isMandatory :boolean,
+        ){
+    
+        }
+
+    }

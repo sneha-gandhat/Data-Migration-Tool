@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  transformationURI: "http://localhost:8082/mappings",
+  transformationURI: "http://localhost:8089/mappings",
   monitorURI:"http://localhost:8085/dashboard/"
 };
 

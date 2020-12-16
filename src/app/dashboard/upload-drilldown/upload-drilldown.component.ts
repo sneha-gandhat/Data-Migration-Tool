@@ -3,7 +3,7 @@ import { MonitorService } from './../../services/monitor.service';
 import { ErrorDetailsService } from './../../services/error-details.service';
 import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
 import swal from 'sweetalert2';
-
+ 
 @Component({
   selector: 'app-upload-drilldown',
   templateUrl: './upload-drilldown.component.html',

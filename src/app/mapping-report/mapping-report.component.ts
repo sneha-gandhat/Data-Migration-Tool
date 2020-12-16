@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Mapping } from '../mapping-preview/mapping';
+import { TransformService } from './../services/transform.service';																   
 import { MappingPreviewComponent } from '../mapping-preview/mapping-preview.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SegregatorComponent } from '../segregator/segregator.component';
@@ -16,9 +17,10 @@ import { GetMappingIdService } from '../services/get-mapping-id.service';
   entryComponents: [MappingPreviewComponent],  //to open the component in Dialog
 })
 export class MappingReportComponent implements OnInit, AfterViewInit {
-  nonSegregatedTagList: string[] = ['product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name'];
-  nonMappedTagList: string[] = ['product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name'];
-  invalidCharacterTagList: string[] = ['product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name', 'product', 'product_id', 'brand_id', 'model_year', 'list_price', 'category', 'category_id', 'brand_name'];
+  nonSegregatedTagList: string[];
+  nonMappedTagList: string[] = [];
+  invalidCharacterTagList: string[] = [];
+  
   columnsToDisplay = ['adminType', 'sourceValue', 'destinationValue'];
   mandatoryTagColumnsToDisplay = ['adminTypeValue', 'sourceTagValue', 'defaultValue'];
   dataMappingListDataSource: any;
@@ -33,44 +35,14 @@ export class MappingReportComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private router: Router, private dialog: MatDialog, private mappingIdService: GetMappingIdService) {
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_id", "Part_id", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Policy", "Product_policy", "EC Part", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Attribute", "Product_name", "Part_name", "90000001", true, false, true));
-    this.dataMappingList.push(new Mapping(0, "Type", "Product", "Part", "90000001", true, false, true));
-    this.dataMappingListDataSource = new MatTableDataSource(this.dataMappingList);
-
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Product", "P1"));
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Brand", "B1"));
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Category", "C1"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_id", "111"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_name", "Prod1"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_rev", "A"));
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Product", "P1"));
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Category", "C1"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_id", "111"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_name", "Prod1"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_rev", "A"));
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Product", "P1"));
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Brand", "B1"));
-    this.mandatoryTagList.push(new MandatoryTag("Type", "Category", "C1"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_id", "111"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_name", "Prod1"));
-    this.mandatoryTagList.push(new MandatoryTag("Attribute", "Product_rev", "A"));
-    this.mandatoryTagListDataSource = new MatTableDataSource(this.mandatoryTagList);
+  constructor(private router: Router, private dialog: MatDialog, private mappingIdService: GetMappingIdService
+    ,private transformservice: TransformService ) {
+	    this.getAllUniqueTags();
+      this.getNonMappedTags();
+      this.getMandatoryTags();
+      this.getInValidSchema();
+      this.getInvalidChar();
+   
   }
 
   ngOnInit(): void {
@@ -117,4 +89,58 @@ export class MappingReportComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
+
+  getAllUniqueTags() {
+    this.transformservice.getAllUniqueTagList().subscribe(
+      data => {
+        this.nonSegregatedTagList = data;        
+        this.nonSegregatedTagCount=this.nonSegregatedTagList.length;
+      },     
+    );
+  }  
+
+  getNonMappedTags(){
+    this.transformservice.getNonMappedData().subscribe(
+      data => {
+        this.nonMappedTagList = data;        
+        this.nonMappedTagCount= this.nonMappedTagList.length;
+      },     
+    );
+  }
+
+  getMandatoryTags(){
+    this.transformservice.getMandatoryTagInfo().subscribe(
+      data => {
+        this.mandatoryTagListDataSource = data;                
+        this.mandatoryTagCount= this.mandatoryTagListDataSource.length;
+
+        console.log(" this.mandatoryTagListDataSource"+ this.mandatoryTagListDataSource);
+        for (let index = 0; index < this.mandatoryTagListDataSource.length; index++) {
+          const element = this.mandatoryTagListDataSource[index];
+          console.log("element.defaultValue"+element.default_value);
+          this.mandatoryTagList.push(new MandatoryTag(element.adminType, element.sourceValue, element.default_value));
+        }
+        this.mandatoryTagListDataSource = new MatTableDataSource(this.mandatoryTagList); 
+      },     
+    );
+  }
+
+  //this.getInvValidSchemagetInvValidSchema_Info();
+  getInValidSchema(){
+    this.transformservice.getInValidSchema_Info().subscribe(
+      data => {
+        this.dataMappingListDataSource = data;                
+       this.invalidSchemaTagCount= this.dataMappingListDataSource.length;
+      },     
+    );
+  }
+
+  getInvalidChar(){
+    this.transformservice.getInvalidChar_Info().subscribe(
+      data => {
+        this.invalidCharacterTagList = data;        
+        this.invalidCharacterTagCount=this.invalidCharacterTagList.length;
+      },     
+    );
+  }					  
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UniqueTags } from '../segregator-preview/uniquetags';
 import { GetMappingIdService } from '../services/get-mapping-id.service';
+import {UniqueTagPreviewService} from '../services/unique-tag-preview.service';																			   
 
 @Component({
   selector: 'app-modify-uniquetags-mapping-dialogbody',
@@ -14,9 +15,9 @@ export class ModifyUniquetagsMappingDialogbodyComponent implements OnInit {
   fileName: string = " ";
   mappingId: number;
   uniqueTags = new UniqueTags(0, "", "", "");
-  adminTypeList = ['Type', 'Name', 'Revision', 'Owner', 'Attribute', 'Policy', 'Relationship'];
+  adminTypeList = ['Type', 'Name', 'Revision', 'Owner', 'Attribute', 'Policy', 'Relationship', 'NA'];
 
-  constructor(public dialogRef: MatDialogRef<ModifyUniquetagsMappingDialogbodyComponent>, private mappingIdService: GetMappingIdService) {
+  constructor(public dialogRef: MatDialogRef<ModifyUniquetagsMappingDialogbodyComponent>, private mappingIdService: GetMappingIdService,private tagPreview:  UniqueTagPreviewService) {
     //Get Mapping
     this.mappingIdService.invokeEvent.subscribe(data => {
       this.uniqueTags = data;
@@ -34,6 +35,8 @@ export class ModifyUniquetagsMappingDialogbodyComponent implements OnInit {
   // Modify Unique tag Mapping and save into DB
   modifyUniqueTagMapping() {
 
+   this.tagPreview.modifyUniqueTag(this.selectedAdminValue,this.tagValue,this.mappingId);   
+   this.cancel();
   }
 
   //Cancel value selection for Unique tag Mapping and close the window

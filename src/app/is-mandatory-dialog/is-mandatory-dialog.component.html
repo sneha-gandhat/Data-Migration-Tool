@@ -1,20 +1,26 @@
 <div class="example-container">
-  <h3 style="text-align:center;">Mandatory Check Dialog </h3>
-  <div class="formcontent">
-    <mat-checkbox color="primary">Mark tag as Mandatory</mat-checkbox>
+    <h3 style="text-align:center;">Mandatory Check Dialog </h3>
+    <div class="formcontent">
+     <mat-checkbox color="primary" [(ngModel)]="isMandatoryChecked" name="isMandatoryChecked" 
+    (change)="OnChangeGet_isMandatory($event)">Mark tag as Mandatory</mat-checkbox>
+    
+    
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Default Value </mat-label>
-      <input matInput>
+      
+      <input matInput #default [(ngModel)]="defaultValue" name="defaultValue">
     </mat-form-field>
     <br>
-    <mat-checkbox color="primary">Check for Invalid Characters</mat-checkbox>
-    <br>
-    <br>
-  </div>
-  <div class="buttonsJustify">
+    <mat-checkbox color="primary" [(ngModel)]="isCharChecked" name="isCharChecked" 
+    (change)="OnChangeGet_InvalidChar($event)">Check for Invalid Characters</mat-checkbox>
+    
+     <br>
+     <br>
+    </div>
+    <div class="buttonsJustify">
     <button mat-raised-button color="warn" style="float:left;" (click)=close()>Cancel</button>
-    <button mat-raised-button color="accent" style="float:center;" (click)=close()>Delete Tag</button>
-    <button mat-raised-button color="primary" style="float:right; " (click)=ok()>OK</button>
+    <button mat-raised-button color="accent" style="float:center;" (click)=deleteTag()>Delete Tag</button>
+    <button mat-raised-button color="primary" style="float:right; " (click)=ok($event)>OK</button>
+    </div>
   </div>
-</div>

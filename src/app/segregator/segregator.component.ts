@@ -9,6 +9,9 @@ import { MatSelectModule, MatSelect } from '@angular/material/select';
 import swal from 'sweetalert2';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { IsMandatoryDialogComponent } from '../is-mandatory-dialog/is-mandatory-dialog.component';
+import {SharedService} from '../services/shared.service';
+import { stringify } from 'querystring';
+import {mappingInfo} from '../segregator/tagfile';
 
 //declare var $: any;
 
@@ -42,6 +45,12 @@ export class SegregatorComponent implements OnInit {
   public valueList: String[] = [];
   public selectedAdminValue: string;
   public adminSelect: string;
+  public selectedTag: string;
+  public is_Mandatory: boolean =false;
+  public process_Invalid_Char: boolean=false;
+  public default_value: string; 
+  public check: boolean= false;
+  public valCheck:any;							
   isEmpty: boolean = false;
   @ViewChild('matSelect') matSelect: MatSelect;
   adminTypeDropdownList: TypeDropdown[] = [
@@ -53,13 +62,16 @@ export class SegregatorComponent implements OnInit {
     { value: 'Attribute', viewValue: 'Attribute' },
     { value: 'Policy', viewValue: 'Policy' }
   ];
+loginDialogRef: any;
 
-
-  constructor(private dialog: MatDialog, private router: Router, private transformservice: TransformService) { }
-
+  constructor(private dialog: MatDialog, private router: Router, private transformservice: TransformService,
+    public share :SharedService) { }
   ngAfterViewInit() {
     this.matSelect.valueChange.subscribe(value1 => {
       this.adminSelect = value1;
+		for (let index = 0; index < this.share.typeinfolist.length; index++) {      
+           this.share.typeinfolist[index].adminType=this.adminSelect ;
+        }	
     });
   }
   ngOnInit(): void {
@@ -148,6 +160,26 @@ export class SegregatorComponent implements OnInit {
 
 
   updateTypeNameDB() {
+	  
+	  for (let index1 = 0; index1 < this.typelist.length; index1++) {    
+      console.log("first Loop Value:"+this.typelist[index1]);
+      this.check=false;
+      for (let index = 0; index < this.share.typeinfolist.length; index++) {
+       console.log("Second Loop Value:"+this.share.typeinfolist[index].sourceValue);
+          if(this.share.typeinfolist[index].sourceValue.trim()==this.typelist[index1].trim()){
+              console.log("hai");
+              this.check=true;
+           break;
+          }
+       }
+    if(this.check==false){
+      this.valCheck=this.typelist[index1].trim();
+      console.log("nai hai"+this.typelist[index1]);
+      this.share.typeinfolist.push(new mappingInfo(this.selectedAdminValue,
+       this.valCheck,"NA",false,false));
+      } 
+    }
+	  
     if (this.adminSelect == undefined) {
       swal.fire({
         text: "Please select Admin Type",
@@ -163,7 +195,7 @@ export class SegregatorComponent implements OnInit {
         showConfirmButton: false,
       });
     } else {
-      this.transformservice.updateType(this.adminSelect, this.typelist);
+      this.transformservice.updateType(this.share.typeinfolist);
       swal.fire({
         text: "Values Added",
         timer: 2000,
@@ -174,6 +206,7 @@ export class SegregatorComponent implements OnInit {
         this.isEmpty = true;
       }
       //Make the list empty once values added into DB
+	  this.adminSelect = undefined;						   
       this.typelist.length = 0;
       this.selectedAdminValue = " ";
     }
@@ -187,12 +220,32 @@ export class SegregatorComponent implements OnInit {
     this.dialog.open(SegregatorPreviewComponent, dialogConfig);
   }
   //for Madatory Atrribute check Dialog box
-  ontagClick(){
+  ontagClick($event){
+    this.share.setTypeList(this.typelist);
+    event.stopImmediatePropagation();
+    this.selectedTag = $(event.target).text(); 
+    this.share.setselectedTag (this.selectedTag);  
+    this.share.setadminSelect(this.selectedAdminValue);	   
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
     dialogConfig.width="25%";
-    this.dialog.open(IsMandatoryDialogComponent, dialogConfig );
+      this.loginDialogRef=this.dialog.open(IsMandatoryDialogComponent, dialogConfig);
+
+
+   this.loginDialogRef.afterClosed().subscribe(result => {
+    if(this.share.getCheckDelete()){
+      var elem=this.share.taglist.pop();
+      this.taglist.push(elem);
+
+      for (var i = this.share.typeinfolist.length - 1; i >= 0; --i) {
+        if (this.share.typeinfolist[i].sourceValue.trim()== elem) {
+          this.share.typeinfolist.splice(i, 1);
+          console.log("Deleted From Shared");
+        }
+      }   
+    }
+  });
   }
   
 }

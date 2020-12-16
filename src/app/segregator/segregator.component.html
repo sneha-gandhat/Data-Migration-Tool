@@ -53,7 +53,7 @@
         <div class="dropdown-block">
             <div class="tags">
 
-                <div class="tagswrapper" (click)="ontagClick()">
+                <div class="tagswrapper" (click)="ontagClick($event)">
 
                     <div matTooltip="Click to mark as Mandatory" matTooltipPosition="below" matTooltipHideDelay="100"
                         matTooltipClass="custom-tooltip" class="tagstest" *ngFor="let type of typelist">

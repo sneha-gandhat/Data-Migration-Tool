@@ -4,10 +4,11 @@ export class Mapping {
         public adminType: string,
         public sourceValue: string,
         public destinationValue: string,
-        public defaultValue: string,
-        public processInvalidChars: boolean,
+        public default_value: string,
+        public isProcess_invalid_chars: boolean,
         public isMandatory: boolean,
-        public isValidSchema: boolean
+        public isValidSchema: boolean,
+		public fileName:string
     ) {
     }
 }

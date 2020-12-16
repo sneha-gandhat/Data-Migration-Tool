@@ -23,8 +23,9 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
   isCharChecked: boolean = false;
   isMandatory: boolean = false;
   defaultValue: string;
+  fileName:string;
   isValidSchema: boolean = false;
-  mapping = new Mapping(0, "", "", "", "", false, false, false);
+  mapping = new Mapping(0, "", "", "", "", false, false, false,"");
   message: any;
   @Input()
   isParent: boolean;
@@ -44,9 +45,10 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
       this.selectedAdminValue = this.mapping.adminType;
       this.selectedSourceValue = this.mapping.sourceValue;
       this.selectedTargetValue = this.mapping.destinationValue;
-      this.isCharChecked = this.mapping.processInvalidChars;
+      this.isCharChecked = this.mapping.isProcess_invalid_chars;
       this.isMandatory = this.mapping.isMandatory;
-      this.defaultValue = this.mapping.defaultValue;
+      this.defaultValue = this.mapping.default_value;
+	  this.fileName=this.mapping.fileName;								  
     });
   }
 
@@ -74,7 +76,7 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
 
   // Add Mapping to DB
   addMapping() {
-    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue, this.defaultValue, this.isCharChecked, this.isMandatory, this.isValidSchema);
+    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue, this.defaultValue, this.isCharChecked, this.isMandatory, this.isValidSchema,this.fileName);
     this.transformservice.addMappingRule(modifiedMapping).subscribe(data => {
       swal.fire({
         text: "Mapping successfully added",
@@ -100,7 +102,7 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
 
   // Modify Mapping and save into DB
   modifyMapping() {
-    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue, this.defaultValue, this.isCharChecked, this.isMandatory, this.isValidSchema);
+    const modifiedMapping = new Mapping(this.mappingId, this.selectedAdminValue, this.selectedSourceValue, this.selectedTargetValue, this.defaultValue, this.isCharChecked, this.isMandatory, this.isValidSchema,this.fileName);
     this.transformservice.updateMapping(this.mappingId, modifiedMapping)
       .subscribe(data => {
         swal.fire({
@@ -181,7 +183,7 @@ export class DatamappingComponent implements OnInit, AfterViewInit {
     );
   }
 
-  getTagetValues() {
+  getTagetValues() {														
     this.transformservice.getTargetValue(this.selectedAdminValue).subscribe(
       data => {
         this.dstValueList = data;
